@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json",
+  "title": "Mailmodo Custom Event",
+  "description": "A user event sent to Mailmodo to drive journey enrollment, segmentation, and conditional flows.",
+  "type": "object",
+  "required": ["email", "event_name"],
+  "properties": {
+    "email": { "type": "string", "format": "email" },
+    "event_name": { "type": "string" },
+    "event_properties": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

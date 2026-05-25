@@ -1,0 +1,49 @@
+apiCommonsRateLimits: "0.1"
+provider: mailmodo
+name: Mailmodo Rate Limits
+description: >-
+  Mailmodo enforces request-per-second limits that scale with the plan
+  tier. Limits are applied on the API key and are documented on the
+  pricing page rather than per endpoint.
+source:
+  - https://www.mailmodo.com/pricing/
+policies:
+  - id: rps-by-plan
+    type: requestRate
+    unit: requests-per-second
+    scope: api-key
+    tiers:
+      - plan: lite
+        limit: 5
+      - plan: starter
+        limit: 10
+      - plan: pro
+        limit: 50
+      - plan: enterprise
+        limit: custom
+  - id: active-journey-contacts
+    type: quota
+    unit: contacts-per-journey
+    scope: workspace
+    tiers:
+      - plan: lite
+        limit: 500
+      - plan: starter
+        limit: 500
+      - plan: pro
+        limit: 100000
+      - plan: enterprise
+        limit: custom
+  - id: sending-credits
+    type: quota
+    unit: emails-per-month
+    scope: workspace
+    tiers:
+      - plan: lite
+        limit: 2000
+      - plan: starter
+        limit: 3000
+      - plan: pro
+        limit: unlimited
+      - plan: enterprise
+        limit: custom

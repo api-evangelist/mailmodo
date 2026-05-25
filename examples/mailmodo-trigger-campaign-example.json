@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.mailmodo.com/api/v1/triggerCampaign/abc123",
+    "headers": {
+      "mmApiKey": "$MAILMODO_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "subscriber@example.com",
+      "data": {
+        "firstName": "Alex",
+        "orderId": "ORD-9981",
+        "items": [
+          { "name": "AMP Quiz Pack", "qty": 1 }
+        ]
+      },
+      "addToList": true,
+      "listName": "purchasers"
+    }
+  },
+  "response": {
+    "success": true,
+    "message": "Campaign triggered",
+    "ref": "ref_01HRTX..."
+  }
+}

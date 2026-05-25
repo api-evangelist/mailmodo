@@ -1,0 +1,12 @@
+{
+  "name": "MailmodoContact",
+  "description": "Canonical structure of a Mailmodo contact across the API surface.",
+  "fields": [
+    { "name": "email", "type": "string", "required": true, "format": "email", "description": "Primary identifier." },
+    { "name": "firstName", "type": "string", "required": false },
+    { "name": "lastName", "type": "string", "required": false },
+    { "name": "subscriptionStatus", "type": "string", "enum": ["subscribed", "unsubscribed", "bounced", "archived"] },
+    { "name": "lists", "type": "array", "items": { "type": "string" } },
+    { "name": "data", "type": "object", "description": "Custom attributes used in templates and segments." }
+  ]
+}

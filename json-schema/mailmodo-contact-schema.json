@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json",
+  "title": "Mailmodo Contact",
+  "description": "A subscriber profile stored on a Mailmodo workspace, with list membership, subscription state, and custom attributes used for AMP-for-Email personalization and journey segmentation.",
+  "type": "object",
+  "required": ["email"],
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary identifier for the contact."
+    },
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" },
+    "subscriptionStatus": {
+      "type": "string",
+      "enum": ["subscribed", "unsubscribed", "bounced", "archived"],
+      "description": "Lifecycle state across the workspace."
+    },
+    "lists": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named lists the contact belongs to."
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Workspace-defined custom attributes."
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

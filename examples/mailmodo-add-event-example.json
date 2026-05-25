@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.mailmodo.com/api/v1/addEvent",
+    "headers": {
+      "mmApiKey": "$MAILMODO_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "subscriber@example.com",
+      "event_name": "checkout_abandoned",
+      "event_properties": {
+        "cartValue": 89.5,
+        "items": 2,
+        "currency": "USD"
+      }
+    }
+  },
+  "response": {
+    "success": true,
+    "message": "Event recorded"
+  }
+}

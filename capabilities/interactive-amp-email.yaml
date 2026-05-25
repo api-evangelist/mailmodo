@@ -1,0 +1,45 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: interactive-amp-email
+  provider: mailmodo
+  description: >-
+    End-to-end workflow for sending an interactive AMP-for-Email campaign:
+    enroll the contact, trigger the campaign with merge data, and read the
+    resulting engagement (including AMP form submissions) from the report.
+spec:
+  inputs:
+    - name: email
+      type: string
+      required: true
+    - name: campaignId
+      type: string
+      required: true
+    - name: listName
+      type: string
+      required: true
+    - name: data
+      type: object
+      required: false
+  steps:
+    - id: enroll
+      uses: mailmodo.contacts.add
+      with:
+        email: ${{ inputs.email }}
+        listName: ${{ inputs.listName }}
+        data: ${{ inputs.data }}
+    - id: send
+      uses: mailmodo.campaigns.trigger
+      with:
+        campaignId: ${{ inputs.campaignId }}
+        email: ${{ inputs.email }}
+        data: ${{ inputs.data }}
+    - id: report
+      uses: mailmodo.campaigns.report
+      with:
+        campaignId: ${{ inputs.campaignId }}
+  outputs:
+    sent: ${{ steps.report.output.sent }}
+    delivered: ${{ steps.report.output.delivered }}
+    opened: ${{ steps.report.output.opened }}
+    formSubmissions: ${{ steps.report.output.formSubmissions }}

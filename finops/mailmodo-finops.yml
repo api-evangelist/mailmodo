@@ -1,0 +1,41 @@
+finopsFramework: "FOCUS-aligned"
+provider: mailmodo
+name: Mailmodo FinOps
+description: >-
+  Mailmodo's billing surface aligns with the FinOps Framework capabilities
+  around Rate, Usage, and Forecasting. Charges are driven primarily by the
+  selected plan, email sending credits consumed, and active journey
+  contact counts.
+billing:
+  currency: USD
+  cadence: monthly | annual
+  discounts:
+    - name: Annual commitment
+      amount: 20%
+chargedDimensions:
+  - id: planSubscription
+    name: Plan Subscription
+    chargeType: subscription
+    description: Recurring fee for the chosen plan tier (Lite, Starter, Pro, Enterprise).
+  - id: sendingCredits
+    name: Email Sending Credits
+    chargeType: usage
+    description: Email sends counted against monthly plan allotment; overage handled by upgrade.
+  - id: activeJourneyContacts
+    name: Active Journey Contacts
+    chargeType: usage
+    description: Distinct contacts active in journeys per workspace.
+  - id: customDomains
+    name: Custom Sending Domains
+    chargeType: feature
+    description: Allowed configured custom sending domains.
+focusMapping:
+  ServiceCategory: Marketing
+  ServiceName: Mailmodo
+  ChargeCategory:
+    - Subscription
+    - Usage
+  PricingUnit:
+    - plan-month
+    - email
+    - active-contact

@@ -1,0 +1,198 @@
+aid: mailmodo
+name: Mailmodo
+description: >-
+  Mailmodo is an AI-powered interactive email marketing and automation
+  platform headquartered in Bengaluru with a presence in San Francisco.
+  It pioneered AMP-for-Email at scale, letting brands embed forms,
+  quizzes, polls, carousels, and calendars directly inside the inbox to
+  drive engagement and conversions without a landing-page round-trip.
+  The platform layers AI assistance on top of campaigns, journeys,
+  segmentation, and analytics, and exposes a REST API for contact
+  management, transactional sends, broadcast and bulk triggers, custom
+  event ingestion, and campaign reporting.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Email
+  - Interactive Email
+  - AMP for Email
+  - Marketing Automation
+  - Transactional Email
+  - Campaigns
+  - Journeys
+  - Customer Engagement
+url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/apis.yml
+created: '2026-05-25'
+modified: '2026-05-25'
+specificationVersion: '0.19'
+apis:
+  - aid: mailmodo:rest-api
+    name: Mailmodo REST API
+    description: >-
+      REST API for managing contacts, contact lists, custom events,
+      campaigns, templates, and campaign reports. Used to drive
+      transactional sends, bulk triggers, journey enrollment, and
+      AMP-for-Email interactive campaigns. Authentication is via an API
+      key issued from the Mailmodo dashboard and passed in the `mmApiKey`
+      request header.
+    humanURL: https://www.mailmodo.com/developers/
+    baseURL: https://api.mailmodo.com
+    tags:
+      - Email
+      - Contacts
+      - Campaigns
+      - Templates
+      - Events
+      - AMP for Email
+    properties:
+      - type: Documentation
+        url: https://www.mailmodo.com/developers/
+      - type: APIReference
+        url: https://developers.mailmodo.com/
+      - type: Quickstart
+        url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+      - type: Authentication
+        url: https://manage.mailmodo.com/app/settings/apikey
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/openapi/mailmodo-openapi.yml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+      - type: JSONStructure
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+      - type: JSONStructure
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+      - type: JSON-LD
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+      - type: RateLimits
+        url: https://www.mailmodo.com/pricing/
+common:
+  - type: Website
+    url: https://www.mailmodo.com
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Support
+    url: https://support.mailmodo.com/
+  - type: SignUp
+    url: https://manage.mailmodo.com/auth/signup
+  - type: Portal
+    url: https://manage.mailmodo.com/
+  - type: Console
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: Pricing
+    url: https://www.mailmodo.com/pricing/
+  - type: TermsOfService
+    url: https://www.mailmodo.com/gdpr/termsandconditions/
+  - type: PrivacyPolicy
+    url: https://www.mailmodo.com/gdpr/privacypolicy/
+  - type: Blog
+    url: https://www.mailmodo.com/blog/
+  - type: GitHubOrganization
+    url: https://github.com/mailmodo
+  - type: GitHubRepository
+    url: https://github.com/mailmodo/mailmodo-mcp
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rules/mailmodo-rules.yml
+  - type: NaftikoCapability
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/shared/mailmodo-shared.yaml
+  - type: NaftikoCapability
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/interactive-amp-email.yaml
+  - type: NaftikoCapability
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/journey-event-trigger.yaml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/vocabulary/mailmodo-vocabulary.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/plans/mailmodo-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rate-limits/mailmodo-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/finops/mailmodo-finops.yml
+  - type: Features
+    data:
+      - name: Interactive AMP-for-Email
+        description: >-
+          Embed forms, quizzes, polls, carousels, calendars, and other
+          interactive widgets directly inside the email so recipients
+          act without leaving the inbox.
+      - name: AI Email Template Generator
+        description: Generate on-brand HTML/AMP templates from a prompt.
+      - name: AI Automation Builder
+        description: Compose multi-step journeys from natural-language descriptions.
+      - name: AI Segment Generator
+        description: Translate plain-language audience descriptions into contact segments.
+      - name: AI Campaign Analyzer
+        description: Summarize and recommend next steps from campaign metrics.
+      - name: Transactional Email API
+        description: Trigger campaigns per recipient with merge data.
+      - name: Bulk Campaign Trigger
+        description: Send a campaign to many recipients in a single API call.
+      - name: Managed Deliverability
+        description: Hands-on deliverability service for high-volume senders.
+  - type: UseCases
+    data:
+      - name: Interactive Forms in Email
+        description: Capture survey, lead, and feedback responses inline.
+      - name: Quizzes & Gamification
+        description: Drive engagement and sales via in-email quizzes and games.
+      - name: Lifecycle & Onboarding Journeys
+        description: Automate welcome, activation, and re-engagement flows.
+      - name: Transactional & Triggered Email
+        description: Order confirmations, receipts, password resets driven by API.
+      - name: Newsletters & Broadcasts
+        description: Send rich interactive newsletters to large contact lists.
+  - type: Integrations
+    data:
+      - name: HubSpot
+        description: Sync contacts and trigger Mailmodo campaigns from HubSpot.
+      - name: Salesforce
+        description: CRM data sync and campaign triggers.
+      - name: Shopify
+        description: Ecommerce contact and order event sync.
+      - name: Zapier
+        description: No-code automations across thousands of apps.
+      - name: Make (Integromat)
+        description: Visual workflow automation.
+      - name: Customer.io
+        description: Customer messaging platform sync.
+      - name: MoEngage
+        description: Cross-channel engagement platform sync.
+      - name: WebEngage
+        description: Customer engagement platform sync.
+      - name: Zoho CRM
+        description: CRM sync for SMB use cases.
+      - name: Freshsales / Freshmarketer
+        description: Freshworks CRM and marketing automation sync.
+      - name: CleverTap
+        description: Mobile-first engagement platform sync.
+      - name: Calendly
+        description: Booking event sync into journeys.
+      - name: Zoom
+        description: Webinar registrant sync.
+      - name: Pabbly
+        description: Workflow automation integration.
+  - type: Solutions
+    data:
+      - name: Ecommerce
+        description: Cart recovery, product launches, post-purchase journeys with AMP forms.
+      - name: SaaS
+        description: Onboarding, activation, NPS, and feature-adoption journeys.
+      - name: Media & Newsletter
+        description: Interactive newsletters with embedded polls and content carousels.
+      - name: Enterprise Marketing
+        description: Managed deliverability with custom SLAs.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

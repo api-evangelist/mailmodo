@@ -1,0 +1,50 @@
+apiCommonsPlans: "0.1"
+provider: mailmodo
+name: Mailmodo Plans & Pricing
+description: >-
+  Mailmodo packages its interactive email platform into four self-service
+  plan tiers plus a custom Enterprise tier. All plans include AI email
+  template generation, automation builder, segment generator, marketing
+  planner, and performance analyzer. Annual billing saves 20%.
+source:
+  - https://www.mailmodo.com/pricing/
+plans:
+  - id: lite
+    name: Lite
+    billing: monthly
+    sendingCredits: 2000
+    teamMembers: 1
+    activeJourneys: 1
+    activeContactsPerJourney: 500
+    customDomains: 1
+    apiRateLimit: 5 req/s
+    support: Chat & email
+  - id: starter
+    name: Starter
+    billing: monthly
+    sendingCredits: 3000
+    teamMembers: 3
+    activeJourneys: 10
+    activeContactsPerJourney: 500
+    customDomains: 2
+    apiRateLimit: 10 req/s
+    support: Chat & email
+  - id: pro
+    name: Pro
+    billing: monthly
+    sendingCredits: unlimited
+    teamMembers: 5
+    activeJourneys: unlimited
+    activeContactsPerJourney: 100000
+    customDomains: 4
+    apiRateLimit: 50 req/s
+    support: Dedicated chat, email & call
+  - id: enterprise
+    name: Enterprise
+    billing: custom
+    sendingCredits: custom
+    teamMembers: custom
+    activeJourneys: custom
+    customDomains: custom
+    apiRateLimit: custom
+    support: Dedicated CSM

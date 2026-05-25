@@ -1,0 +1,33 @@
+name: mailmodo
+description: >-
+  Controlled vocabulary mapping Mailmodo's operational and capability
+  dimensions to the API Evangelist common taxonomy.
+dimensions:
+  domain:
+    - Email
+    - Marketing
+    - InteractiveEmail
+    - Automation
+  data:
+    - Contact
+    - ContactList
+    - Campaign
+    - Template
+    - Event
+    - Report
+  capabilities:
+    - ContactManagement
+    - ListSegmentation
+    - TransactionalEmail
+    - BroadcastCampaign
+    - JourneyAutomation
+    - AmpForEmail
+    - CampaignReporting
+    - CustomEventIngestion
+  channels:
+    - Email
+    - AMPEmail
+  patterns:
+    - APIKeyAuth
+    - JSONRequestResponse
+    - WebhookCallback

@@ -1,0 +1,43 @@
+extends:
+  - spectral:oas
+rules:
+  mailmodo-operation-summary-title-case:
+    description: Mailmodo API operation summaries must use Title Case.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]+( [A-Z][A-Za-z0-9]+)*( (a|an|the|to|for|of|from|in|on|by|with) [A-Za-z0-9 ]+)*$"
+  mailmodo-operation-id-camel-case:
+    description: operationId must be camelCase.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  mailmodo-api-key-header:
+    description: Mailmodo APIs are authenticated by API key in the mmApiKey header.
+    severity: error
+    given: $.components.securitySchemes[?(@.type=='apiKey')]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^mmApiKey$"
+  mailmodo-paths-v1-prefix:
+    description: All operational paths must live under /api/v1/.
+    severity: error
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v1/"
+  mailmodo-tags-defined:
+    description: Operations must have at least one tag.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy

@@ -1,0 +1,14 @@
+{
+  "name": "MailmodoCampaign",
+  "description": "Canonical structure of a Mailmodo campaign.",
+  "fields": [
+    { "name": "campaignId", "type": "string", "required": true },
+    { "name": "name", "type": "string", "required": true },
+    { "name": "type", "type": "string", "enum": ["broadcast", "transactional", "journey", "abtest"] },
+    { "name": "status", "type": "string" },
+    { "name": "templateId", "type": "string" },
+    { "name": "fromName", "type": "string" },
+    { "name": "fromEmail", "type": "string", "format": "email" },
+    { "name": "subject", "type": "string" }
+  ]
+}

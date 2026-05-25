@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json",
+  "title": "Mailmodo Campaign",
+  "description": "A configured email campaign on Mailmodo, either broadcast, transactional, journey-driven, or A/B test, sent against a contact list or triggered per recipient.",
+  "type": "object",
+  "required": ["campaignId", "name"],
+  "properties": {
+    "campaignId": { "type": "string" },
+    "name": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["broadcast", "transactional", "journey", "abtest"]
+    },
+    "status": { "type": "string" },
+    "templateId": { "type": "string" },
+    "fromName": { "type": "string" },
+    "fromEmail": { "type": "string", "format": "email" },
+    "subject": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

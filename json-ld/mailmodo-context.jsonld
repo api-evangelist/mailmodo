@@ -1,0 +1,22 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "mailmodo": "https://www.mailmodo.com/vocab/",
+    "Contact": "schema:Person",
+    "ContactList": "mailmodo:ContactList",
+    "Campaign": "mailmodo:Campaign",
+    "Template": "mailmodo:Template",
+    "Event": "schema:Event",
+    "email": "schema:email",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "subscriptionStatus": "mailmodo:subscriptionStatus",
+    "lists": "mailmodo:lists",
+    "campaignId": "schema:identifier",
+    "templateId": "schema:identifier",
+    "subject": "mailmodo:subject",
+    "amp": "mailmodo:isAmpEmail",
+    "event_name": "schema:name",
+    "event_properties": "mailmodo:eventProperties"
+  }
+}

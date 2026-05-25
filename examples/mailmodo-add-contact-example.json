@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.mailmodo.com/api/v1/addToList",
+    "headers": {
+      "mmApiKey": "$MAILMODO_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "newuser@example.com",
+      "listName": "newsletter-subscribers",
+      "data": {
+        "firstName": "Pat",
+        "plan": "lite"
+      }
+    }
+  },
+  "response": {
+    "success": true,
+    "message": "Contact added to list"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json",
+  "title": "Mailmodo Template",
+  "description": "An email template stored on a Mailmodo workspace, optionally an interactive AMP-for-Email template containing forms, polls, carousels, calendars, or quizzes.",
+  "type": "object",
+  "required": ["templateId", "name"],
+  "properties": {
+    "templateId": { "type": "string" },
+    "name": { "type": "string" },
+    "amp": {
+      "type": "boolean",
+      "description": "Whether this template uses AMP-for-Email for interactivity."
+    },
+    "category": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
