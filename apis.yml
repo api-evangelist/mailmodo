@@ -1,15 +1,11 @@
 aid: mailmodo
 name: Mailmodo
 description: >-
-  Mailmodo is an AI-powered interactive email marketing and automation
-  platform headquartered in Bengaluru with a presence in San Francisco.
-  It pioneered AMP-for-Email at scale, letting brands embed forms,
-  quizzes, polls, carousels, and calendars directly inside the inbox to
-  drive engagement and conversions without a landing-page round-trip.
-  The platform layers AI assistance on top of campaigns, journeys,
-  segmentation, and analytics, and exposes a REST API for contact
-  management, transactional sends, broadcast and bulk triggers, custom
-  event ingestion, and campaign reporting.
+  Mailmodo is an AI-powered interactive email marketing and automation platform headquartered in Bengaluru with a
+  presence in San Francisco. It pioneered AMP-for-Email at scale, letting brands embed forms, quizzes, polls, carousels,
+  and calendars directly inside the inbox to drive engagement and conversions without a landing-page round-trip. The
+  platform layers AI assistance on top of campaigns, journeys, segmentation, and analytics, and exposes a REST API for
+  contact management, transactional sends, broadcast and bulk triggers, custom event ingestion, and campaign reporting.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -29,12 +25,9 @@ apis:
   - aid: mailmodo:rest-api
     name: Mailmodo REST API
     description: >-
-      REST API for managing contacts, contact lists, custom events,
-      campaigns, templates, and campaign reports. Used to drive
-      transactional sends, bulk triggers, journey enrollment, and
-      AMP-for-Email interactive campaigns. Authentication is via an API
-      key issued from the Mailmodo dashboard and passed in the `mmApiKey`
-      request header.
+      REST API for managing contacts, contact lists, custom events, campaigns, templates, and campaign reports. Used to
+      drive transactional sends, bulk triggers, journey enrollment, and AMP-for-Email interactive campaigns.
+      Authentication is via an API key issued from the Mailmodo dashboard and passed in the `mmApiKey` request header.
     humanURL: https://www.mailmodo.com/developers/
     baseURL: https://api.mailmodo.com
     tags:
@@ -56,25 +49,34 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/openapi/mailmodo-openapi.yml
       - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
       - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
       - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
       - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
       - type: JSONStructure
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
       - type: JSONStructure
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
       - type: JSON-LD
         url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
       - type: Example
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
       - type: Example
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
       - type: Example
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
       - type: RateLimits
         url: https://www.mailmodo.com/pricing/
 common:
@@ -106,12 +108,6 @@ common:
     url: https://github.com/mailmodo/mailmodo-mcp
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rules/mailmodo-rules.yml
-  - type: NaftikoCapability
-    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/shared/mailmodo-shared.yaml
-  - type: NaftikoCapability
-    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/interactive-amp-email.yaml
-  - type: NaftikoCapability
-    url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/capabilities/journey-event-trigger.yaml
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/vocabulary/mailmodo-vocabulary.yml
   - type: Plans
@@ -124,9 +120,8 @@ common:
     data:
       - name: Interactive AMP-for-Email
         description: >-
-          Embed forms, quizzes, polls, carousels, calendars, and other
-          interactive widgets directly inside the email so recipients
-          act without leaving the inbox.
+          Embed forms, quizzes, polls, carousels, calendars, and other interactive widgets directly inside the email so
+          recipients act without leaving the inbox.
       - name: AI Email Template Generator
         description: Generate on-brand HTML/AMP templates from a prompt.
       - name: AI Automation Builder
