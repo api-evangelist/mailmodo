@@ -3,16 +3,12 @@
   "feeds": [
     {
       "source": "https://www.mailmodo.com/blog/",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://www.mailmodo.com/gdpr/privacypolicy/",
-      "feed_url": "https://www.mailmodo.com/gdpr/privacypolicy/",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 6,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:53:30Z",
+  "agent_pulled": "2026-06-27"
 }

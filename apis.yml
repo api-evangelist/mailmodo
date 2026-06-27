@@ -42,7 +42,7 @@ apis:
         url: https://www.mailmodo.com/developers/
       - type: APIReference
         url: https://developers.mailmodo.com/
-      - type: Quickstart
+      - type: GettingStarted
         url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
       - type: Authentication
         url: https://manage.mailmodo.com/app/settings/apikey
@@ -66,15 +66,15 @@ apis:
       - type: JSONStructure
         url: >-
           https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
-      - type: Example
+      - type: Examples
         url: >-
           https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
-      - type: Example
+      - type: Examples
         url: >-
           https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
-      - type: Example
+      - type: Examples
         url: >-
           https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
       - type: RateLimits
@@ -88,7 +88,7 @@ common:
     url: https://developers.mailmodo.com/
   - type: Support
     url: https://support.mailmodo.com/
-  - type: SignUp
+  - type: Signup
     url: https://manage.mailmodo.com/auth/signup
   - type: Portal
     url: https://manage.mailmodo.com/
