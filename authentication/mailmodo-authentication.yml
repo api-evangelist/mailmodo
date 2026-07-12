@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mailmodo-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: mmApiKey
+  description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey.
+    Sent as the `mmApiKey` request header on every call.
+  sources:
+  - openapi/mailmodo-openapi.yml

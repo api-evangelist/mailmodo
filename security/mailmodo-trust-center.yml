@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.mailmodo.com/security/
+url: https://www.mailmodo.com/security/
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://www.mailmodo.com/security/
+  keywords:
+  - soc 2
+  - soc2
+  - compliance certification
+  - gdpr
