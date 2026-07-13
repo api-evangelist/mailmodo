@@ -2,13 +2,14 @@
   "repo": "mailmodo",
   "feeds": [
     {
-      "source": "https://www.mailmodo.com/blog/",
-      "feed_url": "",
+      "source": "https://www.mailmodo.com/gdpr/privacypolicy/",
+      "feed_url": "https://www.mailmodo.com/gdpr/privacypolicy/",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
-  "post_count": 6,
-  "fetched": "2026-06-27T12:53:30Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 9,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
