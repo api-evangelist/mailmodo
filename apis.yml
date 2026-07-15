@@ -80,6 +80,8 @@ apis:
       - type: RateLimits
         url: https://www.mailmodo.com/pricing/
 common:
+  - type: AgenticAccess
+    url: agentic-access/mailmodo-agentic-access.yml
   - type: TrustCenter
     url: security/mailmodo-trust-center.yml
   - type: DomainSecurity
