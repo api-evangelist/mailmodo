@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: Mailmodo Campaigns Contacts API
+  description: Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.
+  version: 1.0.0
+  contact:
+    name: Mailmodo
+    url: https://www.mailmodo.com/developers/
+servers:
+- url: https://api.mailmodo.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Contacts
+  description: Add, remove, archive, unsubscribe, resubscribe, and look up contacts
+paths:
+  /api/v1/addToList:
+    post:
+      tags:
+      - Contacts
+      summary: Add a Single Contact to a List
+      description: Add (or update) one contact in a named contact list with optional custom attributes used for segmentation and personalization.
+      operationId: addContactToList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactRequest'
+      responses:
+        '200':
+          description: Contact added or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/addToList/batch:
+    post:
+      tags:
+      - Contacts
+      summary: Add a Batch of Contacts to a List
+      description: Add (or update) up to several thousand contacts to a list in a single request.
+      operationId: addContactsToListBatch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactsBatchRequest'
+      responses:
+        '200':
+          description: Batch accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/removeFromList:
+    post:
+      tags:
+      - Contacts
+      summary: Remove a Contact From a List
+      description: Remove a single contact from the named list but keep the contact record on the workspace.
+      operationId: removeContactFromList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              - listName
+              properties:
+                email:
+                  type: string
+                  format: email
+                listName:
+                  type: string
+      responses:
+        '200':
+          description: Contact removed from list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/contacts/unsubscribe:
+    post:
+      tags:
+      - Contacts
+      summary: Unsubscribe a Contact
+      description: Mark a contact as unsubscribed across the workspace.
+      operationId: unsubscribeContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Contact unsubscribed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/contacts/resubscribe:
+    post:
+      tags:
+      - Contacts
+      summary: Resubscribe a Contact
+      description: Reverse the unsubscribed status for a contact.
+      operationId: resubscribeContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Contact resubscribed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/contacts:
+    delete:
+      tags:
+      - Contacts
+      summary: Archive a Contact
+      description: Archive (soft-delete) a contact from the workspace.
+      operationId: archiveContact
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+          format: email
+      responses:
+        '200':
+          description: Contact archived
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContactResponse'
+  /api/v1/getContactDetails:
+    get:
+      tags:
+      - Contacts
+      summary: Get Contact Details
+      description: Return profile information and list membership for a contact.
+      operationId: getContactDetails
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+          format: email
+      responses:
+        '200':
+          description: Contact details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+components:
+  schemas:
+    AddContactsBatchRequest:
+      type: object
+      required:
+      - values
+      - listName
+      properties:
+        listName:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddContactRequest'
+    Contact:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+        subscriptionStatus:
+          type: string
+          enum:
+          - subscribed
+          - unsubscribed
+          - bounced
+          - archived
+        lists:
+          type: array
+          items:
+            type: string
+        data:
+          type: object
+          additionalProperties: true
+    AddContactRequest:
+      type: object
+      required:
+      - email
+      - listName
+      properties:
+        email:
+          type: string
+          format: email
+        listName:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+          description: Optional custom attributes used for personalization and segmentation
+    AddContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: mmApiKey
+      description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey. Sent as the `mmApiKey` request header on every call.

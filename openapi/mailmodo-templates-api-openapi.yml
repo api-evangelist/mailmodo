@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  title: Mailmodo Campaigns Templates API
+  description: Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.
+  version: 1.0.0
+  contact:
+    name: Mailmodo
+    url: https://www.mailmodo.com/developers/
+servers:
+- url: https://api.mailmodo.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Templates
+  description: List interactive AMP email templates available on the workspace
+paths:
+  /api/v1/getAllTemplates:
+    get:
+      tags:
+      - Templates
+      summary: List Templates
+      description: Return interactive AMP email templates available on the workspace.
+      operationId: listTemplates
+      responses:
+        '200':
+          description: Template list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Template'
+components:
+  schemas:
+    Template:
+      type: object
+      properties:
+        templateId:
+          type: string
+        name:
+          type: string
+        amp:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: mmApiKey
+      description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey. Sent as the `mmApiKey` request header on every call.

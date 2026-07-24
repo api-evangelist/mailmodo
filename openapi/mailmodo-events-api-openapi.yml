@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: Mailmodo Campaigns Events API
+  description: Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.
+  version: 1.0.0
+  contact:
+    name: Mailmodo
+    url: https://www.mailmodo.com/developers/
+servers:
+- url: https://api.mailmodo.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Events
+  description: Send custom user events into Mailmodo journeys and segments
+paths:
+  /api/v1/addEvent:
+    post:
+      tags:
+      - Events
+      summary: Send a Custom Event
+      description: Send a custom user event into Mailmodo to drive journey enrollment, segmentation, and conditional logic.
+      operationId: addEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '200':
+          description: Event accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponse'
+components:
+  schemas:
+    EventResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    EventRequest:
+      type: object
+      required:
+      - email
+      - event_name
+      properties:
+        email:
+          type: string
+          format: email
+        event_name:
+          type: string
+        event_properties:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: mmApiKey
+      description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey. Sent as the `mmApiKey` request header on every call.

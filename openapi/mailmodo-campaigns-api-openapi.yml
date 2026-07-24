@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Mailmodo Campaigns API
+  description: Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.
+  version: 1.0.0
+  contact:
+    name: Mailmodo
+    url: https://www.mailmodo.com/developers/
+servers:
+- url: https://api.mailmodo.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Campaigns
+  description: List campaigns, fetch reports, and trigger sends to individuals or lists
+paths:
+  /api/v1/triggerCampaign/{campaignId}:
+    post:
+      tags:
+      - Campaigns
+      summary: Trigger a Transactional Campaign for One Recipient
+      description: Send a configured campaign to a single recipient with merge data for personalization. Used for transactional sends and journey triggers.
+      operationId: triggerCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerCampaignRequest'
+      responses:
+        '200':
+          description: Campaign triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerCampaignResponse'
+  /api/v1/bulktriggerCampaign/{campaignId}:
+    post:
+      tags:
+      - Campaigns
+      summary: Bulk Trigger a Campaign to Multiple Recipients
+      description: Trigger a campaign for a list of recipients in a single request, with per-recipient merge data.
+      operationId: bulkTriggerCampaign
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkTriggerCampaignRequest'
+      responses:
+        '200':
+          description: Bulk send accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerCampaignResponse'
+  /api/v1/campaigns:
+    get:
+      tags:
+      - Campaigns
+      summary: List Campaigns
+      description: Return campaigns configured on the workspace.
+      operationId: listCampaigns
+      responses:
+        '200':
+          description: Campaign list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+  /api/v1/campaignReports/{campaignId}:
+    post:
+      tags:
+      - Campaigns
+      summary: Get Campaign Report
+      description: Return delivery and engagement metrics for the given campaign.
+      operationId: getCampaignReport
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Campaign report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignReport'
+components:
+  schemas:
+    CampaignReport:
+      type: object
+      properties:
+        campaignId:
+          type: string
+        sent:
+          type: integer
+        delivered:
+          type: integer
+        opened:
+          type: integer
+        clicked:
+          type: integer
+        bounced:
+          type: integer
+        unsubscribed:
+          type: integer
+        formSubmissions:
+          type: integer
+          description: Submissions from AMP-for-Email interactive forms
+    TriggerCampaignResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        ref:
+          type: string
+    Campaign:
+      type: object
+      properties:
+        campaignId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - broadcast
+          - transactional
+          - journey
+          - abtest
+        status:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    BulkTriggerCampaignRequest:
+      type: object
+      required:
+      - recipients
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            required:
+            - email
+            properties:
+              email:
+                type: string
+                format: email
+              data:
+                type: object
+                additionalProperties: true
+    TriggerCampaignRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        data:
+          type: object
+          additionalProperties: true
+          description: Merge data for template personalization
+        addToList:
+          type: boolean
+        listName:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: mmApiKey
+      description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey. Sent as the `mmApiKey` request header on every call.
