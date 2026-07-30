@@ -7,7 +7,20 @@ description: >-
   platform layers AI assistance on top of campaigns, journeys, segmentation, and analytics, and exposes a REST API for
   contact management, transactional sends, broadcast and bulk triggers, custom event ingestion, and campaign reporting.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mailmodo.png
 tags:
   - Email
   - Interactive Email
@@ -22,64 +35,259 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
-  - aid: mailmodo:rest-api
-    name: Mailmodo REST API
-    description: >-
-      REST API for managing contacts, contact lists, custom events, campaigns, templates, and campaign reports. Used to
-      drive transactional sends, bulk triggers, journey enrollment, and AMP-for-Email interactive campaigns.
-      Authentication is via an API key issued from the Mailmodo dashboard and passed in the `mmApiKey` request header.
-    humanURL: https://www.mailmodo.com/developers/
-    baseURL: https://api.mailmodo.com
-    tags:
-      - Email
-      - Contacts
-      - Campaigns
-      - Templates
-      - Events
-      - AMP for Email
-    properties:
-      - type: Documentation
-        url: https://www.mailmodo.com/developers/
-      - type: APIReference
-        url: https://developers.mailmodo.com/
-      - type: GettingStarted
-        url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
-      - type: Authentication
-        url: https://manage.mailmodo.com/app/settings/apikey
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/openapi/mailmodo-openapi.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
-      - type: Examples
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
-      - type: Examples
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
-      - type: Examples
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
-      - type: RateLimits
-        url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-campaigns-api
+  name: Mailmodo Campaigns API
+  description: List campaigns, fetch reports, and trigger sends to individuals or lists
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+  - type: Authentication
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+  - type: RateLimits
+    url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-contact-lists-api
+  name: Mailmodo Contact Lists API
+  description: Manage the named contact lists used for segmentation and campaigns
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Contact Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-contact-lists-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+  - type: Authentication
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+  - type: RateLimits
+    url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-contacts-api
+  name: Mailmodo Contacts API
+  description: Add, remove, archive, unsubscribe, resubscribe, and look up contacts
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+  - type: Authentication
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+  - type: RateLimits
+    url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-events-api
+  name: Mailmodo Events API
+  description: Send custom user events into Mailmodo journeys and segments
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-events-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+  - type: Authentication
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+  - type: RateLimits
+    url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-templates-api
+  name: Mailmodo Templates API
+  description: List interactive AMP email templates available on the workspace
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-templates-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/
+  - type: Authentication
+    url: https://manage.mailmodo.com/app/settings/apikey
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
+  - type: RateLimits
+    url: https://www.mailmodo.com/pricing/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/mailmodo/overview
   - type: AgenticAccess
     url: agentic-access/mailmodo-agentic-access.yml
   - type: TrustCenter
