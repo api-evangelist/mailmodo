@@ -1,0 +1,834 @@
+{
+  "info": {
+    "_postman_id": "b151b215-b153-4ce0-882f-db0e9a3a105a",
+    "name": "Mailmodo Campaigns Contacts API",
+    "description": "Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.\n\nContact Support:\n Name: Mailmodo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:33.000Z",
+    "updatedAt": "2026-07-28T02:08:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b151b215-b153-4ce0-882f-db0e9a3a105a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "addToList",
+              "item": [
+                {
+                  "name": "batch",
+                  "item": [
+                    {
+                      "name": "Add a Batch of Contacts to a List",
+                      "id": "232a8ccc-d823-4ecf-97cf-4515cb49d4f6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"values\": [\n    {\n      \"email\": \"<email>\",\n      \"listName\": \"<string>\",\n      \"data\": {\n        \"reprehenderit_f\": \"nulla enim ex\",\n        \"proident5\": true,\n        \"culpa_2b\": \"consectetur consequat voluptate velit aute\"\n      }\n    },\n    {\n      \"email\": \"<email>\",\n      \"listName\": \"<string>\",\n      \"data\": {\n        \"reprehenderit9a\": true\n      }\n    }\n  ],\n  \"listName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/addToList/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "addToList",
+                            "batch"
+                          ]
+                        },
+                        "description": "Add (or update) up to several thousand contacts to a list in a single request."
+                      },
+                      "response": [
+                        {
+                          "id": "1dea8723-dc39-4524-b054-04517fbd34b3",
+                          "name": "Batch accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"values\": [\n    {\n      \"email\": \"<email>\",\n      \"listName\": \"<string>\",\n      \"data\": {\n        \"reprehenderit_f\": \"nulla enim ex\",\n        \"proident5\": true,\n        \"culpa_2b\": \"consectetur consequat voluptate velit aute\"\n      }\n    },\n    {\n      \"email\": \"<email>\",\n      \"listName\": \"<string>\",\n      \"data\": {\n        \"reprehenderit9a\": true\n      }\n    }\n  ],\n  \"listName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/addToList/batch",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "addToList",
+                                "batch"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:08:34.000Z",
+                          "updatedAt": "2026-07-28T02:08:34.000Z",
+                          "uid": "35240-1dea8723-dc39-4524-b054-04517fbd34b3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-232a8ccc-d823-4ecf-97cf-4515cb49d4f6"
+                    }
+                  ],
+                  "id": "5a3beab9-18f7-4347-b31f-102a8aef8c64",
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-5a3beab9-18f7-4347-b31f-102a8aef8c64"
+                },
+                {
+                  "name": "Add a Single Contact to a List",
+                  "id": "4d3a2a19-c21c-473f-9534-c17f937ad0d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"listName\": \"<string>\",\n  \"data\": {\n    \"consectetur4cf\": \"aute Lorem consectetur\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/addToList",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "addToList"
+                      ]
+                    },
+                    "description": "Add (or update) one contact in a named contact list with optional custom attributes used for segmentation and personalization."
+                  },
+                  "response": [
+                    {
+                      "id": "9c51ad1c-33c6-4c27-b9a8-50d11ff51795",
+                      "name": "Contact added or updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"listName\": \"<string>\",\n  \"data\": {\n    \"consectetur4cf\": \"aute Lorem consectetur\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/addToList",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "addToList"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-9c51ad1c-33c6-4c27-b9a8-50d11ff51795"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-4d3a2a19-c21c-473f-9534-c17f937ad0d6"
+                }
+              ],
+              "id": "fa1f9371-4d66-4897-ab60-389f09ac9ab5",
+              "createdAt": "2026-07-28T02:08:34.000Z",
+              "updatedAt": "2026-07-28T02:08:34.000Z",
+              "uid": "35240-fa1f9371-4d66-4897-ab60-389f09ac9ab5"
+            },
+            {
+              "name": "removeFromList",
+              "item": [
+                {
+                  "name": "Remove a Contact From a List",
+                  "id": "0c2275f9-2126-41b7-90ec-c47bdae80056",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"listName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/removeFromList",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "removeFromList"
+                      ]
+                    },
+                    "description": "Remove a single contact from the named list but keep the contact record on the workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "b3b5822a-27dd-4bfa-a1fe-68e691ced804",
+                      "name": "Contact removed from list",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"listName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/removeFromList",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "removeFromList"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-b3b5822a-27dd-4bfa-a1fe-68e691ced804"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-0c2275f9-2126-41b7-90ec-c47bdae80056"
+                }
+              ],
+              "id": "04e5fa11-0c75-413d-85b4-1c36e9f93d40",
+              "createdAt": "2026-07-28T02:08:34.000Z",
+              "updatedAt": "2026-07-28T02:08:34.000Z",
+              "uid": "35240-04e5fa11-0c75-413d-85b4-1c36e9f93d40"
+            },
+            {
+              "name": "contacts",
+              "item": [
+                {
+                  "name": "unsubscribe",
+                  "item": [
+                    {
+                      "name": "Unsubscribe a Contact",
+                      "id": "2eed01cd-d506-4a36-b64e-9257739906d4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/contacts/unsubscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "contacts",
+                            "unsubscribe"
+                          ]
+                        },
+                        "description": "Mark a contact as unsubscribed across the workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "a816c146-96e4-4a3f-b4ca-c45010aaa838",
+                          "name": "Contact unsubscribed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/contacts/unsubscribe",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "contacts",
+                                "unsubscribe"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:08:34.000Z",
+                          "updatedAt": "2026-07-28T02:08:34.000Z",
+                          "uid": "35240-a816c146-96e4-4a3f-b4ca-c45010aaa838"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-2eed01cd-d506-4a36-b64e-9257739906d4"
+                    }
+                  ],
+                  "id": "ef1368ea-d8d0-495c-b37b-d72f02203d6f",
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-ef1368ea-d8d0-495c-b37b-d72f02203d6f"
+                },
+                {
+                  "name": "resubscribe",
+                  "item": [
+                    {
+                      "name": "Resubscribe a Contact",
+                      "id": "108cade7-c2bc-4795-8c97-c596781bb15b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/contacts/resubscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "contacts",
+                            "resubscribe"
+                          ]
+                        },
+                        "description": "Reverse the unsubscribed status for a contact."
+                      },
+                      "response": [
+                        {
+                          "id": "ea7ecdcd-a72d-4d3d-ae1b-98f4c761cd42",
+                          "name": "Contact resubscribed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/contacts/resubscribe",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "contacts",
+                                "resubscribe"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:08:34.000Z",
+                          "updatedAt": "2026-07-28T02:08:34.000Z",
+                          "uid": "35240-ea7ecdcd-a72d-4d3d-ae1b-98f4c761cd42"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-108cade7-c2bc-4795-8c97-c596781bb15b"
+                    }
+                  ],
+                  "id": "965f57cd-c350-4db3-9219-216c07ead6e0",
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-965f57cd-c350-4db3-9219-216c07ead6e0"
+                },
+                {
+                  "name": "Archive a Contact",
+                  "id": "2553f135-154c-46e3-9dff-ffc14e91535e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/contacts?email=<email>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "contacts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "email",
+                          "value": "<email>"
+                        }
+                      ]
+                    },
+                    "description": "Archive (soft-delete) a contact from the workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "8da33dd3-dd04-4408-926a-e6a2028e8d29",
+                      "name": "Contact archived",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/contacts?email=<email>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "contacts"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "email",
+                              "value": "<email>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"officia069\": \"occaecat in Excepteur eu\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-8da33dd3-dd04-4408-926a-e6a2028e8d29"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-2553f135-154c-46e3-9dff-ffc14e91535e"
+                }
+              ],
+              "id": "34828623-3711-4f53-bbd2-fbe9e358a6b3",
+              "createdAt": "2026-07-28T02:08:34.000Z",
+              "updatedAt": "2026-07-28T02:08:34.000Z",
+              "uid": "35240-34828623-3711-4f53-bbd2-fbe9e358a6b3"
+            },
+            {
+              "name": "getContactDetails",
+              "item": [
+                {
+                  "name": "Get Contact Details",
+                  "id": "cc6b492f-6bca-4798-a563-c0638052f4cc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/getContactDetails?email=<email>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "getContactDetails"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "email",
+                          "value": "<email>"
+                        }
+                      ]
+                    },
+                    "description": "Return profile information and list membership for a contact."
+                  },
+                  "response": [
+                    {
+                      "id": "7efcf345-d7a6-4081-8435-8a0dc810860e",
+                      "name": "Contact details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/getContactDetails?email=<email>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "getContactDetails"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "email",
+                              "value": "<email>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"subscriptionStatus\": \"archived\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data\": {\n    \"proident_9\": 99086092.98075473,\n    \"aliquip4a\": -31535921,\n    \"sint_1\": 3282023\n  }\n}",
+                      "createdAt": "2026-07-28T02:08:34.000Z",
+                      "updatedAt": "2026-07-28T02:08:34.000Z",
+                      "uid": "35240-7efcf345-d7a6-4081-8435-8a0dc810860e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:34.000Z",
+                  "updatedAt": "2026-07-28T02:08:34.000Z",
+                  "uid": "35240-cc6b492f-6bca-4798-a563-c0638052f4cc"
+                }
+              ],
+              "id": "6c499f28-1f5b-4f05-82c0-5abf6584e38f",
+              "createdAt": "2026-07-28T02:08:34.000Z",
+              "updatedAt": "2026-07-28T02:08:34.000Z",
+              "uid": "35240-6c499f28-1f5b-4f05-82c0-5abf6584e38f"
+            }
+          ],
+          "id": "e6ad390a-b614-4c45-9cd9-30f2b262bf4b",
+          "createdAt": "2026-07-28T02:08:34.000Z",
+          "updatedAt": "2026-07-28T02:08:34.000Z",
+          "uid": "35240-e6ad390a-b614-4c45-9cd9-30f2b262bf4b"
+        }
+      ],
+      "id": "2c367cb8-1a0a-4fdb-acbd-8935468cf66f",
+      "createdAt": "2026-07-28T02:08:34.000Z",
+      "updatedAt": "2026-07-28T02:08:34.000Z",
+      "uid": "35240-2c367cb8-1a0a-4fdb-acbd-8935468cf66f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "mmApiKey",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.mailmodo.com"
+    }
+  ]
+}

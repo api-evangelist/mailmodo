@@ -1,0 +1,558 @@
+{
+  "info": {
+    "_postman_id": "deb0e1bb-d93f-41f2-bdfc-c1c90a0b6783",
+    "name": "Mailmodo Campaigns API",
+    "description": "Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.\n\nContact Support:\n Name: Mailmodo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:15.000Z",
+    "updatedAt": "2026-07-28T02:08:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-deb0e1bb-d93f-41f2-bdfc-c1c90a0b6783"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "triggerCampaign",
+              "item": [
+                {
+                  "name": "{campaignId}",
+                  "item": [
+                    {
+                      "name": "Trigger a Transactional Campaign for One Recipient",
+                      "id": "018aaf99-fac6-4024-93e6-05764521db8c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"data\": {\n    \"eiusmod_b33\": \"amet nisi\",\n    \"adipisicing0\": \"Duis\"\n  },\n  \"addToList\": \"<boolean>\",\n  \"listName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/triggerCampaign/:campaignId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "triggerCampaign",
+                            ":campaignId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d5dc19a4-0561-4e50-a921-be70a6be9628",
+                              "key": "campaignId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Send a configured campaign to a single recipient with merge data for personalization. Used for transactional sends and journey triggers."
+                      },
+                      "response": [
+                        {
+                          "id": "2c2c460d-fdb4-4bdd-b267-d05e071004e4",
+                          "name": "Campaign triggered",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"data\": {\n    \"eiusmod_b33\": \"amet nisi\",\n    \"adipisicing0\": \"Duis\"\n  },\n  \"addToList\": \"<boolean>\",\n  \"listName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/triggerCampaign/:campaignId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "triggerCampaign",
+                                ":campaignId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "campaignId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"ref\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:08:16.000Z",
+                          "updatedAt": "2026-07-28T02:08:16.000Z",
+                          "uid": "35240-2c2c460d-fdb4-4bdd-b267-d05e071004e4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:16.000Z",
+                      "updatedAt": "2026-07-28T02:08:16.000Z",
+                      "uid": "35240-018aaf99-fac6-4024-93e6-05764521db8c"
+                    }
+                  ],
+                  "id": "67f4fc81-91c1-4a0b-8ba5-a34dd95ed56c",
+                  "createdAt": "2026-07-28T02:08:16.000Z",
+                  "updatedAt": "2026-07-28T02:08:16.000Z",
+                  "uid": "35240-67f4fc81-91c1-4a0b-8ba5-a34dd95ed56c"
+                }
+              ],
+              "id": "3dc606b4-7ad1-4383-a74c-6f03c30c2dbc",
+              "createdAt": "2026-07-28T02:08:16.000Z",
+              "updatedAt": "2026-07-28T02:08:16.000Z",
+              "uid": "35240-3dc606b4-7ad1-4383-a74c-6f03c30c2dbc"
+            },
+            {
+              "name": "bulktriggerCampaign",
+              "item": [
+                {
+                  "name": "{campaignId}",
+                  "item": [
+                    {
+                      "name": "Bulk Trigger a Campaign to Multiple Recipients",
+                      "id": "11f6f695-1f92-48a6-9a2a-30233cfdbad7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"data\": {\n        \"ut3e1\": 2343902.2248884737\n      }\n    },\n    {\n      \"email\": \"<email>\",\n      \"data\": {\n        \"mollitc\": -87278478,\n        \"id_3\": -36514239\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/bulktriggerCampaign/:campaignId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "bulktriggerCampaign",
+                            ":campaignId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a0b19168-f947-455a-ba05-89a1fe27f8a8",
+                              "key": "campaignId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Trigger a campaign for a list of recipients in a single request, with per-recipient merge data."
+                      },
+                      "response": [
+                        {
+                          "id": "784f8cd2-cffc-4fa7-a451-5ac2b0976031",
+                          "name": "Bulk send accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"recipients\": [\n    {\n      \"email\": \"<email>\",\n      \"data\": {\n        \"ut3e1\": 2343902.2248884737\n      }\n    },\n    {\n      \"email\": \"<email>\",\n      \"data\": {\n        \"mollitc\": -87278478,\n        \"id_3\": -36514239\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/bulktriggerCampaign/:campaignId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "bulktriggerCampaign",
+                                ":campaignId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "campaignId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"ref\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:08:16.000Z",
+                          "updatedAt": "2026-07-28T02:08:16.000Z",
+                          "uid": "35240-784f8cd2-cffc-4fa7-a451-5ac2b0976031"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:16.000Z",
+                      "updatedAt": "2026-07-28T02:08:16.000Z",
+                      "uid": "35240-11f6f695-1f92-48a6-9a2a-30233cfdbad7"
+                    }
+                  ],
+                  "id": "659a3198-d175-474f-b3ab-bca5e4f14975",
+                  "createdAt": "2026-07-28T02:08:16.000Z",
+                  "updatedAt": "2026-07-28T02:08:16.000Z",
+                  "uid": "35240-659a3198-d175-474f-b3ab-bca5e4f14975"
+                }
+              ],
+              "id": "5af094cd-b95a-4f01-9db6-7757afc159a3",
+              "createdAt": "2026-07-28T02:08:16.000Z",
+              "updatedAt": "2026-07-28T02:08:16.000Z",
+              "uid": "35240-5af094cd-b95a-4f01-9db6-7757afc159a3"
+            },
+            {
+              "name": "campaigns",
+              "item": [
+                {
+                  "name": "List Campaigns",
+                  "id": "a90bf21b-4de5-4f2e-b97e-d51f6da8271a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/campaigns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "campaigns"
+                      ]
+                    },
+                    "description": "Return campaigns configured on the workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "223fa7b9-12b4-4d50-b310-93ec4e8fefa3",
+                      "name": "Campaign list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/campaigns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "campaigns"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": [\n    {\n      \"campaignId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"journey\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"campaignId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"journey\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:16.000Z",
+                      "updatedAt": "2026-07-28T02:08:16.000Z",
+                      "uid": "35240-223fa7b9-12b4-4d50-b310-93ec4e8fefa3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:16.000Z",
+                  "updatedAt": "2026-07-28T02:08:16.000Z",
+                  "uid": "35240-a90bf21b-4de5-4f2e-b97e-d51f6da8271a"
+                }
+              ],
+              "id": "6227f074-65cf-40f8-a525-c9e453a54539",
+              "createdAt": "2026-07-28T02:08:16.000Z",
+              "updatedAt": "2026-07-28T02:08:16.000Z",
+              "uid": "35240-6227f074-65cf-40f8-a525-c9e453a54539"
+            },
+            {
+              "name": "campaignReports",
+              "item": [
+                {
+                  "name": "{campaignId}",
+                  "item": [
+                    {
+                      "name": "Get Campaign Report",
+                      "id": "98e29430-ceec-4c82-bf70-26b299a5c20a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/campaignReports/:campaignId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "campaignReports",
+                            ":campaignId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2789aa12-749b-4aa9-b1ca-a7142455a3c3",
+                              "key": "campaignId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Return delivery and engagement metrics for the given campaign."
+                      },
+                      "response": [
+                        {
+                          "id": "fa3f0fb5-6c07-4c3c-9570-2a8218bff5ec",
+                          "name": "Campaign report",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "mmApiKey",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/campaignReports/:campaignId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "campaignReports",
+                                ":campaignId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "campaignId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"campaignId\": \"<string>\",\n  \"sent\": \"<integer>\",\n  \"delivered\": \"<integer>\",\n  \"opened\": \"<integer>\",\n  \"clicked\": \"<integer>\",\n  \"bounced\": \"<integer>\",\n  \"unsubscribed\": \"<integer>\",\n  \"formSubmissions\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:08:16.000Z",
+                          "updatedAt": "2026-07-28T02:08:16.000Z",
+                          "uid": "35240-fa3f0fb5-6c07-4c3c-9570-2a8218bff5ec"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:16.000Z",
+                      "updatedAt": "2026-07-28T02:08:16.000Z",
+                      "uid": "35240-98e29430-ceec-4c82-bf70-26b299a5c20a"
+                    }
+                  ],
+                  "id": "2907e990-57ec-4d4d-a2cf-c39891c9fb26",
+                  "createdAt": "2026-07-28T02:08:16.000Z",
+                  "updatedAt": "2026-07-28T02:08:16.000Z",
+                  "uid": "35240-2907e990-57ec-4d4d-a2cf-c39891c9fb26"
+                }
+              ],
+              "id": "a5b16ad7-1c0f-4dd3-afe3-acacea4db706",
+              "createdAt": "2026-07-28T02:08:16.000Z",
+              "updatedAt": "2026-07-28T02:08:16.000Z",
+              "uid": "35240-a5b16ad7-1c0f-4dd3-afe3-acacea4db706"
+            }
+          ],
+          "id": "37caf885-60b8-48e0-b3fd-bfd6a1efd0de",
+          "createdAt": "2026-07-28T02:08:16.000Z",
+          "updatedAt": "2026-07-28T02:08:16.000Z",
+          "uid": "35240-37caf885-60b8-48e0-b3fd-bfd6a1efd0de"
+        }
+      ],
+      "id": "52d3ccd1-69be-4d86-b9dd-2ac9fe26d60b",
+      "createdAt": "2026-07-28T02:08:16.000Z",
+      "updatedAt": "2026-07-28T02:08:16.000Z",
+      "uid": "35240-52d3ccd1-69be-4d86-b9dd-2ac9fe26d60b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "mmApiKey",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.mailmodo.com"
+    }
+  ]
+}

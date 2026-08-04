@@ -1,0 +1,144 @@
+{
+  "info": {
+    "_postman_id": "d3fc895e-b8f5-4d1a-ab41-d912b6542857",
+    "name": "Mailmodo Campaigns Contact Lists API",
+    "description": "Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.\n\nContact Support:\n Name: Mailmodo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:32.000Z",
+    "updatedAt": "2026-07-28T02:08:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d3fc895e-b8f5-4d1a-ab41-d912b6542857"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "getAllContactLists",
+              "item": [
+                {
+                  "name": "Get All Contact Lists",
+                  "id": "fa7d5d2e-3119-4edb-97fc-1e7cf08f1779",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/getAllContactLists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "getAllContactLists"
+                      ]
+                    },
+                    "description": "Return the workspace's named contact lists with size and metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "b47a62a3-71ba-4971-b783-34e17fd12246",
+                      "name": "Contact lists",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "mmApiKey",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/getAllContactLists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "getAllContactLists"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": [\n    {\n      \"listId\": \"<string>\",\n      \"listName\": \"<string>\",\n      \"contactsCount\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"listId\": \"<string>\",\n      \"listName\": \"<string>\",\n      \"contactsCount\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:32.000Z",
+                      "updatedAt": "2026-07-28T02:08:32.000Z",
+                      "uid": "35240-b47a62a3-71ba-4971-b783-34e17fd12246"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:32.000Z",
+                  "updatedAt": "2026-07-28T02:08:32.000Z",
+                  "uid": "35240-fa7d5d2e-3119-4edb-97fc-1e7cf08f1779"
+                }
+              ],
+              "id": "2bf2485c-68b8-4922-ae65-61dc89a42228",
+              "createdAt": "2026-07-28T02:08:32.000Z",
+              "updatedAt": "2026-07-28T02:08:32.000Z",
+              "uid": "35240-2bf2485c-68b8-4922-ae65-61dc89a42228"
+            }
+          ],
+          "id": "1118d6d7-32da-4f32-8ef9-3f90efedc0ad",
+          "createdAt": "2026-07-28T02:08:32.000Z",
+          "updatedAt": "2026-07-28T02:08:32.000Z",
+          "uid": "35240-1118d6d7-32da-4f32-8ef9-3f90efedc0ad"
+        }
+      ],
+      "id": "be224352-39e9-4ad8-9f1c-245500770e13",
+      "createdAt": "2026-07-28T02:08:32.000Z",
+      "updatedAt": "2026-07-28T02:08:32.000Z",
+      "uid": "35240-be224352-39e9-4ad8-9f1c-245500770e13"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "mmApiKey",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.mailmodo.com"
+    }
+  ]
+}

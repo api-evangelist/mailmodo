@@ -1,0 +1,22 @@
+{
+  "provider": "mailmodo",
+  "sources": [
+    "mailmodo-campaigns-api-openapi.yml",
+    "mailmodo-contact-lists-api-openapi.yml",
+    "mailmodo-contacts-api-openapi.yml",
+    "mailmodo-events-api-openapi.yml",
+    "mailmodo-templates-api-openapi.yml"
+  ],
+  "outputs": [
+    "mailmodo-campaigns-api-openapi.yml",
+    "mailmodo-contact-lists-api-openapi.yml",
+    "mailmodo-contacts-api-openapi.yml",
+    "mailmodo-events-api-openapi.yml",
+    "mailmodo-templates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
