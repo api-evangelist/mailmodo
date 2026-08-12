@@ -286,6 +286,13 @@ apis:
   - type: RateLimits
     url: https://www.mailmodo.com/pricing/
 common:
+  - type: IssueTracker
+    url: https://github.com/mailmodo/mailmodo-mcp/issues
+  - type: Releases
+    url: https://github.com/mailmodo/mailmodo-mcp/releases
+  - type: License
+    name: GPL-3.0
+    url: https://github.com/mailmodo/mailmodo-mcp/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/mailmodo/overview
   - type: AgenticAccess
