@@ -32,7 +32,7 @@ tags:
   - Customer Engagement
 url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/apis.yml
 created: '2026-05-25'
-modified: '2026-05-25'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: mailmodo:mailmodo-campaigns-api
@@ -45,6 +45,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mailmodo-campaigns-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-campaigns-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/
   - type: APIReference
@@ -95,6 +99,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mailmodo-contact-lists-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-contact-lists-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/
   - type: APIReference
@@ -145,6 +153,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mailmodo-contacts-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-contacts-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/
   - type: APIReference
@@ -195,6 +207,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mailmodo-events-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-events-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/
   - type: APIReference
@@ -245,6 +261,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mailmodo-templates-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-templates-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/
   - type: APIReference
@@ -285,6 +305,66 @@ apis:
       https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
   - type: RateLimits
     url: https://www.mailmodo.com/pricing/
+- aid: mailmodo:mailmodo-user-journeys-api
+  name: Mailmodo User Journeys API
+  description: Add a contact to an automated email journey, or abort that journey for a contact
+  humanURL: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Journeys
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-user-journeys-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-user-journeys-api-overlay.yaml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+- aid: mailmodo:mailmodo-dynamic-form-api
+  name: Mailmodo Dynamic Form API
+  description: Trigger a campaign whose AMP email carries a form generated at runtime from the request payload
+  humanURL: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Dynamic Form
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-dynamic-form-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-dynamic-form-api-overlay.yaml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+- aid: mailmodo:mailmodo-repeatable-block-api
+  name: Mailmodo Repeatable Block API
+  description: Trigger a campaign whose AMP email repeats a content block once per item in the payload
+  humanURL: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Repeatable Block
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-repeatable-block-api-openapi.yml
+  - type: Overlay
+    url: overlays/mailmodo-repeatable-block-api-overlay.yaml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
 common:
   - type: IssueTracker
     url: https://github.com/mailmodo/mailmodo-mcp/issues
@@ -339,6 +419,46 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rate-limits/mailmodo-rate-limits.yml
   - type: FinOps
     url: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/finops/mailmodo-finops.yml
+  - type: Packages
+    url: packages/mailmodo-packages.yml
+  - type: SDKs
+    url: packages/mailmodo-packages.yml
+  - type: CLI
+    url: cli/mailmodo-cli.yml
+  - type: MCPServer
+    url: mcp/mailmodo-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/mailmodo-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/mailmodo-llms.txt
+  - type: Conventions
+    url: conventions/mailmodo-conventions.yml
+  - type: ErrorCatalog
+    url: errors/mailmodo-problem-types.yml
+  - type: DataModel
+    url: data-model/mailmodo-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/mailmodo-lifecycle.yml
+  - type: StatusPage
+    url: https://status.mailmodo.com/
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Conformance
+    url: conformance/mailmodo-conformance.yml
+  - type: Compliance
+    url: security/mailmodo-trust-center.yml
+  - type: Webhooks
+    url: asyncapi/mailmodo-webhooks.yml
+  - type: DeveloperPortal
+    url: https://www.mailmodo.com/developers/
+  - type: GettingStarted
+    url: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api
+  - type: HelpCenter
+    url: https://support.mailmodo.com/
+  - type: Postman
+    url: https://www.postman.com/kinlaneapi/mailmodo/overview
   - type: Features
     data:
       - name: Interactive AMP-for-Email
@@ -414,3 +534,8 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 39
+  pass: local-v1
