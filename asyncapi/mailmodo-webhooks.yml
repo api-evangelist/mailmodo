@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.npmjs.com/package/@mailmodo/cli (README, read verbatim 2026-08-13) —
+  `settings.webhookUrl` on each product and the `report --event` / `logs` event vocabulary.
+name: Mailmodo Webhooks
+description: >-
+  Mailmodo emits outbound delivery events to a customer-configured webhook URL, but publishes no
+  payload schema, no signature/verification scheme, no retry policy and no AsyncAPI document. The
+  event NAMES below are published — they are the filter values Mailmodo's own CLI accepts on
+  `report --event` and reports back in `logs` — so the catalog is real; the message contract is not.
+  NOTHING here is invented: where Mailmodo publishes no payload, this file says so rather than
+  modelling one.
+asyncapi_published: false
+asyncapi_probed:
+  - url: https://api.mailmodo.com/asyncapi.yaml
+    status: 404
+  - url: https://developers.mailmodo.com/asyncapi.json
+    status: 404
+    note: Returns the Stoplight SPA HTML shell.
+transport: https
+direction: outbound
+configuration:
+  surface: mailmodo.dev (the @mailmodo/cli + @mailmodo/sdk lifecycle-email product)
+  field: settings/products[].webhookUrl in mailmodo.yaml
+  command: mailmodo settings --set webhook_url=<url>
+  note: >-
+    Configured per product. The api.mailmodo.com REST API documented in openapi/ has NO outbound
+    webhook surface of its own — its "webhook" documentation is INBOUND (third-party webhooks
+    triggering a Mailmodo campaign), which is the opposite direction.
+events:
+  - name: sent
+    description: The message was handed to the sending infrastructure.
+  - name: delivered
+    description: The receiving mail server accepted the message.
+  - name: opened
+    description: The recipient opened the message.
+  - name: clicked
+    description: The recipient clicked a link in the message.
+  - name: bounced
+    description: Delivery failed at the receiving server.
+  - name: complained
+    description: The recipient marked the message as spam.
+  - name: skipped
+    description: >-
+      The send was suppressed — e.g. a conditional rule on the sequence evaluated false, or the
+      contact is on the suppression list.
+  - name: unsubscribed
+    description: The recipient unsubscribed.
+event_record_shape:
+  source: '`mailmodo logs --json` output documented in the CLI README'
+  fields:
+    - timestamp (ISO 8601)
+    - emailId
+    - status (one of the event names above)
+    - contact (email address)
+    - reason (nullable — populated on failure/bounce)
+  caveat: >-
+    This is the shape of a log ENTRY returned by the CLI's own read API. Mailmodo does not state that
+    the outbound webhook payload uses the same shape, so it must not be relied on as the message
+    schema. Confirm against a live delivery before coding to it.
+gaps:
+  - No payload schema published for the outbound webhook.
+  - No signature header, shared secret or verification procedure published.
+  - No retry, backoff or dead-letter policy published.
+  - No event-catalog page on mailmodo.com; the vocabulary is only discoverable via the CLI README.
+  - No AsyncAPI document, so no machine-readable event contract exists.
+pointer: >-
+  type Webhooks only. No AsyncAPI pointer is emitted — there is no AsyncAPI document to point at, and
+  emitting one would credit Mailmodo with an event contract it has not published.

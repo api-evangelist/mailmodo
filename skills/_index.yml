@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  openapi/*.yml (provider-published Mailmodo specs harvested from developers.mailmodo.com on
+  2026-08-13), conventions/mailmodo-conventions.yml and errors/mailmodo-problem-types.yml.
+name: Mailmodo Agent Skills
+description: >-
+  Packaged Agent Skills for the marquee Mailmodo flows. Every skill is grounded in operationIds that
+  exist in the published specs — no invented operations — and carries the conventions an agent will
+  otherwise get wrong on this API: HTTP 200 can mean failure, there is no idempotency key, there is
+  no pagination, and there is no test mode, so a retry sends a real second email.
+searched_for_provider_skills: true
+provider_published_skills: none
+provider_published_agents_md: none
+provider_probe_note: >-
+  No AGENTS.md, /skills, or agent-instruction file found in github.com/mailmodo or on
+  www.mailmodo.com. Mailmodo's only published agent-facing material is the @mailmodo/cli README's
+  "AI Agent Support" section (captured in cli/mailmodo-cli.yml) and its MCP server.
+skills:
+  - name: mailmodo-send-transactional-email
+    file: skills/mailmodo-send-transactional-email.md
+    api: mailmodo:mailmodo-campaigns-api
+    operations:
+      - listTemplates
+      - listCampaigns
+      - triggerCampaign
+  - name: mailmodo-broadcast-campaign-to-list
+    file: skills/mailmodo-broadcast-campaign-to-list.md
+    api: mailmodo:mailmodo-campaigns-api
+    operations:
+      - getAllContactLists
+      - listCampaigns
+      - bulkTriggerCampaign
+  - name: mailmodo-sync-contacts
+    file: skills/mailmodo-sync-contacts.md
+    api: mailmodo:mailmodo-contacts-api
+    operations:
+      - getAllContactLists
+      - addContactToList
+      - addContactsToListBatch
+      - getContactDetails
+      - removeContactFromList
+  - name: mailmodo-manage-subscriptions
+    file: skills/mailmodo-manage-subscriptions.md
+    api: mailmodo:mailmodo-contacts-api
+    operations:
+      - getContactDetails
+      - unsubscribeContact
+      - resubscribeContact
+      - archiveContact
+  - name: mailmodo-event-driven-journey
+    file: skills/mailmodo-event-driven-journey.md
+    api: mailmodo:mailmodo-events-api
+    operations:
+      - addContactToList
+      - addEvent
+      - post-hooks-start-journey-id
+      - post-hooks-abort-journey-id
+  - name: mailmodo-campaign-reporting
+    file: skills/mailmodo-campaign-reporting.md
+    api: mailmodo:mailmodo-campaigns-api
+    operations:
+      - listCampaigns
+      - getCampaignReport
+count: 6
+shared_rules:
+  - Authenticate with the mmApiKey HEADER on every request.
+  - Branch on the response body's `success` field; HTTP 200 does not mean the operation succeeded.
+  - No Idempotency-Key exists — never blind-retry a send.
+  - No pagination — list endpoints return unbounded arrays.
+  - Pace requests against the plan's per-second ceiling (5 / 10 / 50 req/s); no 429 contract is published.
+  - There is no test mode; use the Stoplight Prism mocks in sandbox/mailmodo-sandbox.yml to dry-run.

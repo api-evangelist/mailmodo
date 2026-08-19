@@ -1,0 +1,100 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://status.mailmodo.com/ (probed 200), https://www.mailmodo.com/developers/,
+  https://registry.npmjs.org/@mailmodo/mcp, and the provider-published OpenAPI in openapi/_original/.
+name: Mailmodo API Lifecycle
+description: >-
+  Mailmodo runs a public status page and versions its REST API in the URI path, but publishes no
+  deprecation policy, no sunset commitment, no changelog and no SLA. The specs carry no `deprecated`
+  flags. The strongest lifecycle signal available is release cadence in the npm registry, which shows
+  the api.mailmodo.com surface and its MCP server going quiet while a second, newer product line
+  (mailmodo.dev) ships weekly.
+
+versioning:
+  scheme: uri-path
+  current: v1
+  since: '2021'
+  breaking_change_policy: none-published
+  note: >-
+    Every published spec has been at version 1.0 since the docs project was created in July 2021. No
+    v2 exists and no migration guidance is published.
+
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  evidence: >-
+    Grepped all eight provider-published specs for `deprecated: true` and for Sunset/Deprecation
+    header declarations — zero hits. No deprecation or end-of-life page exists on mailmodo.com.
+
+status_page:
+  url: https://status.mailmodo.com/
+  status: 200
+  probed: '2026-08-13'
+  machine_readable: false
+  note: >-
+    Custom single-page status site, not Statuspage/Instatus — /api/v2/status.json and /summary.json
+    both return the SPA HTML shell rather than JSON, so there is no subscribable status feed.
+
+sla:
+  published: false
+  uptime_target: null
+  support_tiers:
+    - plan: Lite
+      support: Chat & email
+    - plan: Pro
+      support: Chat & email
+    - plan: Max
+      support: Dedicated chat, email & call
+
+changelog:
+  url: null
+  probed:
+    - url: https://www.mailmodo.com/changelog/
+      status: 404
+  note: >-
+    Mailmodo publishes no dated API changelog. The nearest substitute is npm release history for the
+    first-party packages and GitHub releases on mailmodo/mailmodo-mcp.
+
+release_signals:
+  - artifact: '@mailmodo/sdk'
+    version: 2.0.4
+    published: '2026-08-12'
+    surface: api.mailmodo.dev
+  - artifact: '@mailmodo/cli'
+    version: 1.0.16
+    published: '2026-08-12'
+    surface: api.mailmodo.dev
+  - artifact: '@mailmodo/a2a'
+    version: 0.3.7
+    published: '2026-01-05'
+    surface: agent tooling
+  - artifact: '@mailmodo/mjml2json'
+    version: 1.1.2
+    published: '2025-11-26'
+    surface: authoring tool
+  - artifact: '@mailmodo/mcp'
+    version: 0.3.0
+    published: '2025-05-20'
+    surface: api.mailmodo.com
+    note: >-
+      Fifteen months without a release. This is the only agent-facing wrapper over the documented
+      REST API, and it is the least-maintained first-party package Mailmodo ships.
+  - artifact: developers.mailmodo.com Stoplight project
+    updated: '2025-11-06'
+    note: default_branch.updated_at reported by the Stoplight project API for prj:73897.
+
+observations:
+  - >-
+    Mailmodo is effectively running two API products at once. api.mailmodo.com (this repo's OpenAPI)
+    is documented and stable-but-static; api.mailmodo.dev (the @mailmodo/sdk + @mailmodo/cli
+    lifecycle-email product) is shipping constantly and has NO published contract of any kind — no
+    OpenAPI, no llms.txt, no reference. Probed api.mailmodo.dev/openapi.json -> 404,
+    api.mailmodo.dev/ -> 200 {"data":"I am healthy"}.
+  - >-
+    User Journeys endpoints (/hooks/start, /hooks/abort) sit outside the /api/v1 prefix, so a future
+    v2 cut of the versioned surface would leave them stranded on an unversioned path.

@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "51f1e476-093f-463e-8aa5-6f2a76c088fd",
+      "name": "Email",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "ff748cf5-7df2-4ee9-82bc-4efc3ad1e4cd",
+      "name": "Dynamic Form",
+      "description": {
+        "content": "Create dynamic forms that add or change questions based on triggers in your website or app. For example, a purchase on your website would trigger an email with form questions relat",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cda11b5-709a-4b59-938e-47ccf78b38f6",
+          "name": "Send email with dynamic form",
+          "request": {
+            "name": "Send email with dynamic form",
+            "description": {
+              "content": "This API allows you to send an email with adding form questions at the runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "triggerCampaign",
+                ":campaign-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign-id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Please input your API key available at https://manage.mailmodo.com/app/settings/apikey",
+                "key": "mmApiKey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"data\": \"<object>\",\n  \"forms\": [\n    {\n      \"formId\": \"<string>\"\n    },\n    {\n      \"formId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eccc2539-8ab0-41ee-b888-2784a71ae463",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "triggerCampaign",
+                    ":campaign-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign-id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "mmApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Please input your API key available at https://manage.mailmodo.com/app/settings/apikey",
+                    "key": "mmApiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"data\": \"<object>\",\n  \"forms\": [\n    {\n      \"formId\": \"<string>\"\n    },\n    {\n      \"formId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"john@example.com\",\n  \"subject\": \"Sample Subject Line\",\n  \"data\": {},\n  \"addToList\": \"\",\n  \"forms\": [\n    {\n      \"formId\": \"form120tm57\",\n      \"steps\": [\n        {\n          \"stepId\": \"step4r57953\",\n          \"buttonText\": \"<p><strong>Next</strong></p>\",\n          \"elements\": [\n            {\n              \"type\": \"single-line\",\n              \"inputType\": \"text\",\n              \"properties\": {\n                \"border-color\": \"#5858e0\",\n                \"border-width\": \"1px\"\n              },\n              \"elementId\": \"element8wcnc657\",\n              \"title\": \"<p><strong>Name</strong></p>\",\n              \"required\": null,\n              \"placeholder\": \"Your name\"\n            },\n            {\n              \"type\": \"single-line\",\n              \"inputType\": \"text\",\n              \"properties\": {\n                \"border-color\": \"#5858e0\",\n                \"border-width\": \"1px\"\n              },\n              \"elementId\": \"element6tvhd658\",\n              \"title\": \"<p><strong>Phone Number</strong></p>\",\n              \"required\": false,\n              \"placeholder\": \"+91\"\n            }\n          ]\n        },\n        {\n          \"stepId\": \"stepbnmby54\",\n          \"buttonText\": \"<p><strong>Submit</strong></p>\",\n          \"elements\": [\n            {\n              \"type\": \"single-select\",\n              \"inputType\": \"radio\",\n              \"properties\": {\n                \"border-color\": \"#5858e0\",\n                \"border-width\": \"1px\"\n              },\n              \"elementId\": \"element2qmq9659\",\n              \"title\": \"<p><strong>What is your annual income?</strong></p>\",\n              \"required\": false,\n              \"choices\": [\n                \"less than 5 lakh\",\n                \"less than 10 lakh\",\n                \"less than 15 lakh\"\n              ]\n            },\n            {\n              \"type\": \"date-picker\",\n              \"properties\": {\n                \"border-color\": \"#5858e0\",\n                \"border-width\": \"1px\"\n              },\n              \"elementId\": \"element5rbrf660\",\n              \"title\": \"<p><strong>What is your date of birth?</strong></p>\",\n              \"required\": false\n            }\n          ]\n        },\n        {\n          \"stepId\": \"success\",\n          \"buttonText\": \"Success\",\n          \"elements\": [\n            {\n              \"type\": \"success\",\n              \"inputType\": \"text\",\n              \"properties\": {\n                \"border-color\": \"#5858e0\",\n                \"border-width\": \"1px\"\n              },\n              \"elementId\": \"elementwhtdx661\",\n              \"title\": \"<p style=\\\"text-align: center;\\\">Thank you for submitting the form</p>\",\n              \"required\": false\n            }\n          ],\n          \"btnRequired\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mailmodo.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "mmApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a0999f4a-3c6f-4d0c-b97d-9f867891f907",
+    "name": "Dynamic form",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create dynamic forms that add or change questions based on triggers in your website or app. For example, a purchase on your website would trigger an email with form questions related to the product purchased by the user. \n\nYou would require mmAPI key, campaign id, form id to configure this API. Follow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/146-how-to-get-the-mmapi-key-form-id-and-campaign-id )",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/mailmodo-*-openapi.json|.yaml (the eight provider-published specs harvested from
+  developers.mailmodo.com on 2026-08-13), plus live 404 responses observed on api.mailmodo.com.
+name: Mailmodo Error Catalog
+description: >-
+  Mailmodo does not publish an error reference page and does not use RFC 9457 problem+json. Errors
+  arrive as a two-field JSON object — {success, message} — where `message` is free English prose with
+  no stable machine-readable code. This catalog enumerates every 4xx/5xx response declared across the
+  eight published specs and every distinct message string the specs give as an example, so an agent
+  has something to match on. There is no error-code taxonomy to derive because the provider does not
+  publish one.
+format: proprietary
+rfc9457: false
+error_code_field: null
+envelope:
+  success: boolean
+  message: string
+status_codes:
+  - status: 200
+    meaning: >-
+      Request accepted OR business-rule failure. Mailmodo returns 200 with "success": false for
+      several validation failures — see problem_types below.
+  - status: 400
+    meaning: Bad Request. The only error status declared anywhere in the published specs.
+  - status: 401
+    meaning: >-
+      Not declared in any spec, but the Prism mocks and the MCP endpoint both return 401/400 when the
+      mmApiKey credential is missing. Behaviour of the live API on a bad key is undocumented.
+  - status: 404
+    meaning: >-
+      Emitted by the api.mailmodo.com gateway for unrouted paths, with a DIFFERENT envelope:
+      {"error":"error","message":"Some Internal Error Occurred: 404"}.
+  - status: 429
+    meaning: >-
+      Undocumented. Per-second limits exist by plan (5/10/50 req/s) but no exhaustion status, header
+      or body is published.
+problem_types:
+  - id: invalid-email
+    status: 200
+    envelope_success: false
+    message: The provided email is not a valid email id
+    operations:
+      - post-triggerCampaign-campaign-id
+      - post-hooks-abort-journey-id
+    remediation: Validate the address before sending; the HTTP status will still be 200.
+    source: openapi/_original/mailmodo-dynamic-form-openapi.json
+  - id: static-segmentation-list
+    status: 400
+    envelope_success: false
+    message: Cannot add users to static segmentation list
+    operations:
+      - addContactsToListBatch
+    remediation: >-
+      Target a regular contact list. Static segments are computed and cannot be written to.
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: bad-request-add-batch
+    status: 400
+    message: Bad Request
+    operations:
+      - addContactsToListBatch
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: bad-request-update-subscription
+    status: 400
+    message: null
+    operations:
+      - updateSubscription
+    note: >-
+      Declared with application/json, application/xml and multipart/form-data content types and no
+      description or example — Stoplight scaffolding rather than documented behaviour.
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: bad-request-get-contact-details
+    status: 400
+    message: Bad Request
+    operations:
+      - getContactDetails
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: bad-request-remove-from-list
+    status: 400
+    message: Bad Request
+    operations:
+      - removeContactFromList
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: email-does-not-exist
+    status: 400
+    message: Email address doesn't exist
+    operations:
+      - archiveContact
+    remediation: >-
+      Look the contact up with getContactDetails first; archiving an unknown address is an error, not
+      a no-op.
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - id: bad-request-add-event
+    status: 400
+    message: Bad Request
+    operations:
+      - addEvent
+    source: openapi/_original/mailmodo-custom-events-openapi.json
+  - id: missing-required-information
+    status: 400
+    message: Missing Required Information
+    operations:
+      - post-triggerCampaign-campaign-id
+    note: Declared on the Repeatable Block variant with no response content type at all.
+    source: openapi/_original/mailmodo-repeatable-block-openapi.json
+  - id: bad-request-trigger-campaign
+    status: 400
+    message: Bad Request
+    operations:
+      - triggerCampaign
+      - bulkTriggerCampaign
+    source: openapi/_original/mailmodo-sending-emails-openapi.json
+  - id: bad-request-journey
+    status: 400
+    message: Bad Request
+    operations:
+      - post-hooks-start-journey-id
+      - post-hooks-abort-journey-id
+    source: openapi/_original/mailmodo-user-journeys-openapi.json
+  - id: gateway-not-found
+    status: 404
+    envelope: '{"error":"error","message":"Some Internal Error Occurred: 404"}'
+    operations: []
+    note: >-
+      Observed live on 2026-08-13 for any unrouted path on api.mailmodo.com (e.g. /openapi.json,
+      /.well-known/security.txt). A SECOND error envelope shape, incompatible with {success,message}.
+    source: probed https://api.mailmodo.com/openapi.json
+undeclared:
+  - >-
+    No 401, 403, 409, 422, 429 or 5xx response is declared on ANY operation in ANY of the eight
+    published specs. An agent has no published contract for authentication failure, permission
+    failure, conflict, rate-limit exhaustion or server error.
+  - >-
+    Campaign Data (/api/v1/campaigns, /api/v1/campaignReports/{campaignId}) and Templates
+    (/api/v1/getAllTemplates) declare NO error responses at all — only 200.
+counts:
+  operations_with_declared_errors: 11
+  operations_without_declared_errors: 8
+  distinct_status_codes: 2
+  distinct_messages: 6

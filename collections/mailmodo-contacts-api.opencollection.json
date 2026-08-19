@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailmodo Campaigns Contacts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "mmApiKey",
+      "value": "{{mmApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a Single Contact to a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/addToList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add (or update) one contact in a named contact list with optional custom attributes used for segmentation and personalization."
+        },
+        {
+          "info": {
+            "name": "Add a Batch of Contacts to a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/addToList/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add (or update) up to several thousand contacts to a list in a single request."
+        },
+        {
+          "info": {
+            "name": "Remove a Contact From a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/removeFromList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a single contact from the named list but keep the contact record on the workspace."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/contacts/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark a contact as unsubscribed across the workspace."
+        },
+        {
+          "info": {
+            "name": "Resubscribe a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/contacts/resubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reverse the unsubscribed status for a contact."
+        },
+        {
+          "info": {
+            "name": "Archive a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.mailmodo.com/api/v1/contacts",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Archive (soft-delete) a contact from the workspace."
+        },
+        {
+          "info": {
+            "name": "Get Contact Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mailmodo.com/api/v1/getContactDetails",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return profile information and list membership for a contact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

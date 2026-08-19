@@ -1,50 +1,122 @@
 apiCommonsPlans: "0.1"
+generated: '2026-08-13'
+method: searched
+source: https://www.mailmodo.com/pricing/
 provider: mailmodo
 name: Mailmodo Plans & Pricing
 description: >-
-  Mailmodo packages its interactive email platform into four self-service
-  plan tiers plus a custom Enterprise tier. All plans include AI email
-  template generation, automation builder, segment generator, marketing
-  planner, and performance analyzer. Annual billing saves 20%.
-source:
-  - https://www.mailmodo.com/pricing/
+  Mailmodo publishes three self-service tiers on its pricing page — Lite, Pro and Max — priced from a
+  500-contact base, with annual billing saving 20%. Max is the custom/enterprise tier. Every tier
+  includes the full AI feature set (template generator, automation builder, marketing planner,
+  performance analyzer, segment generator) and API access; what actually scales across tiers is
+  sending credits, team seats, active journeys, custom domains and the API request-per-second
+  ceiling. Re-read from the live pricing page on 2026-08-13: the tier lineup has changed since this
+  file was first written (a "Starter" tier is gone and "Enterprise" is now "Max").
+currency: USD
+billing_note: Prices shown are the annual-billing monthly rate at the 500-contact base tier.
+plan_count: 3
 plans:
   - id: lite
     name: Lite
-    billing: monthly
+    price: 149
+    currency: USD
+    period: month
+    billing: annual
+    baseContacts: 500
     sendingCredits: 2000
     teamMembers: 1
     activeJourneys: 1
     activeContactsPerJourney: 500
     customDomains: 1
     apiRateLimit: 5 req/s
-    support: Chat & email
-  - id: starter
-    name: Starter
-    billing: monthly
+    integrations: Basic
+    support: Chat & Email
+    exclusions:
+      - Add to calendar widget
+      - Zoom Webinar Registration widget
+  - id: pro
+    name: Pro
+    price: 199
+    currency: USD
+    period: month
+    billing: annual
+    baseContacts: 500
     sendingCredits: 3000
     teamMembers: 3
     activeJourneys: 10
     activeContactsPerJourney: 500
     customDomains: 2
     apiRateLimit: 10 req/s
-    support: Chat & email
-  - id: pro
-    name: Pro
-    billing: monthly
+    integrations: All
+    support: Chat & Email
+  - id: max
+    name: Max
+    price: custom
+    currency: USD
+    period: month
+    billing: custom
+    baseContacts: 500
     sendingCredits: unlimited
     teamMembers: 5
     activeJourneys: unlimited
     activeContactsPerJourney: 100000
     customDomains: 4
     apiRateLimit: 50 req/s
-    support: Dedicated chat, email & call
-  - id: enterprise
-    name: Enterprise
-    billing: custom
-    sendingCredits: custom
-    teamMembers: custom
-    activeJourneys: custom
-    customDomains: custom
-    apiRateLimit: custom
-    support: Dedicated CSM
+    integrations: All
+    support: Dedicated Chat, Email & Call
+included_in_all_plans:
+  ai:
+    - AI Email Template Builder
+    - AI Email Campaign Generator
+    - AI Email Segment Generator
+    - AI Email Automation Builder
+    - AI Email Marketing Planner
+    - AI Email Performance Analyzer
+    - AI Email Template Remixer
+    - AI Email Marketing Assistant
+  api_relevant:
+    - Send Triggered Campaign Via API & Webhook
+    - Send Triggered Campaign Via Bulk List Trigger
+    - API Import (Individual and Batch)
+    - Export Campaign Data via API
+    - Webhook / API integration
+  contact_management:
+    - CSV Import
+    - Import via Form Action URL
+    - Suppression List
+    - Static Segment
+    - Dynamic Segment
+contact_tier_pricing:
+  note: >-
+    Mailmodo publishes an annual price ladder by contact volume in its comparison table. The first
+    column is Mailmodo's own price.
+  ladder:
+    - contacts: 10000
+      price: 59
+    - contacts: 25000
+      price: 119
+    - contacts: 50000
+      price: 199
+    - contacts: 75000
+      price: 343
+    - contacts: 100000
+      price: 399
+free_tier:
+  signup: https://manage.mailmodo.com/auth/signup
+  credit_card_required: false
+  note: >-
+    Mailmodo's free-tier copy is inconsistent across its own properties: the developer landing page
+    advertises 10,000 free emails/month, the transactional-email FAQ says up to 1,000 emails/day, and
+    the @mailmodo/cli login flow reports totalFreeRemaining of 500. Not resolvable from public pages.
+second_product_line:
+  name: mailmodo.dev (@mailmodo/cli + @mailmodo/sdk)
+  billing_model: >-
+    Free tier plus prepaid "email blocks" of 1,000 emails each, purchased via Stripe checkout from
+    the CLI (`mailmodo billing --purchase <n>`), with an optional monthly cap and auto-refill.
+  price_per_block: not-published
+  note: >-
+    This product has NO pricing page. Its billing surface is documented only in the CLI README, and
+    the block price is nowhere public. Recorded as a gap, not guessed.
+discounts:
+  - NGO / not-for-profit discounted plans (terms apply)
+  - 20% saving on annual billing

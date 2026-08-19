@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Stoplight project prj:73897 behind developers.mailmodo.com — links.mock_url on each http_service
+  node, probed live on 2026-08-13.
+name: Mailmodo Sandbox & Test Surface
+description: >-
+  Mailmodo publishes NO test mode, no test-vs-live key prefixes, no test cards and no fixture tooling
+  on api.mailmodo.com. There is one real pre-integration test surface and Mailmodo does not advertise
+  it: its Stoplight docs project exposes a Prism mock server per API service, reachable without a
+  Mailmodo account. Each mock validates requests against the published spec and returns the spec's
+  own examples, which makes it usable for contract testing before a key is issued. Free-tier signup
+  (500–5,000 free emails depending on plan copy) is the only way to exercise the real API.
+test_mode:
+  supported: false
+  key_prefixes: none
+  note: >-
+    One credential class only. Keys are issued at Settings > API Keys in the format
+    XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX, with no live/test distinction — every call sends real email
+    against real sending quota.
+test_data:
+  test_cards: null
+  test_bank_accounts: null
+  test_tokens: null
+  time_simulation: null
+  fixtures: null
+  note: Not a payments API; no such fixtures exist and none are claimed.
+mock_servers:
+  provider: Stoplight Prism (hosted with the provider's own docs project)
+  auth: >-
+    Requires the mmApiKey header to be PRESENT, but does not validate its value — any non-empty
+    string passes the security check.
+  behaviour: >-
+    Validates the request body against the published schema and returns the spec's declared example.
+    A request missing the header gets 401; a structurally invalid body gets 422 with a Prism
+    validation payload naming the offending field.
+  evidence:
+    - fetched: '2026-08-13'
+      url: https://stoplight.io/mocks/mailmodo/api-docs/78896831/getAllTemplates
+      http_status: 401
+      note: Without the mmApiKey header — Prism UNAUTHORIZED.
+    - fetched: '2026-08-13'
+      url: https://stoplight.io/mocks/mailmodo/api-docs/78896831/getAllTemplates
+      request_header: 'mmApiKey: test'
+      http_status: 422
+      note: >-
+        With a dummy header the security gate passes and Prism moves on to schema validation —
+        confirming the mock is live and reachable with no Mailmodo account.
+  endpoints:
+    - service: Sending Emails
+      url: https://stoplight.io/mocks/mailmodo/api-docs/47320650
+      operations:
+        - POST /triggerCampaign/{campaign-id}
+        - POST /bulktriggerCampaign/{campaign-id}
+    - service: User Journeys
+      url: https://stoplight.io/mocks/mailmodo/api-docs/47320651
+      operations:
+        - POST /hooks/start/{journey-id}
+        - POST /hooks/abort/{journey-id}
+    - service: Dynamic Form
+      url: https://stoplight.io/mocks/mailmodo/api-docs/47320653
+      operations:
+        - POST /triggerCampaign/{campaign-id}
+    - service: Repeatable Block
+      url: https://stoplight.io/mocks/mailmodo/api-docs/47320654
+      operations:
+        - POST /triggerCampaign/{campaign-id}
+    - service: Contact Management
+      url: https://stoplight.io/mocks/mailmodo/api-docs/47320655
+      operations:
+        - POST /addToList
+        - POST /addToList/batch
+        - GET /getAllContactLists
+        - POST /contacts/unsubscribe
+        - POST /contacts/updateSubscription
+        - GET /getContactDetails
+        - POST /contacts/resubscribe
+        - POST /removeFromList
+        - DELETE /contacts
+    - service: Custom Events
+      url: https://stoplight.io/mocks/mailmodo/api-docs/48184007
+      operations:
+        - POST /addEvent
+    - service: Campaign Data
+      url: https://stoplight.io/mocks/mailmodo/api-docs/207977183
+      operations:
+        - GET /api/v1/campaigns
+        - POST /api/v1/campaignReports/{campaignId}
+    - service: Templates
+      url: https://stoplight.io/mocks/mailmodo/api-docs/78896831
+      operations:
+        - GET /getAllTemplates
+free_tier:
+  signup: https://manage.mailmodo.com/auth/signup
+  credit_card_required: false
+  allowance: >-
+    Mailmodo's own copy is inconsistent: the developer landing page offers "10,000 free emails/month",
+    the transactional-email FAQ says the free plan sends "up to 1K emails per day", and the
+    @mailmodo/cli login flow reports totalFreeRemaining 500 on the mailmodo.dev product.
+  note: Free-tier sends are real sends against real recipients — there is no suppressed test outbox.
+caveats:
+  - >-
+    The Prism mocks are Stoplight infrastructure, not a Mailmodo-operated environment. They are as
+    accurate as the published spec and no more, they can disappear whenever Mailmodo changes docs
+    plan, and Mailmodo does not document or support them.
+  - >-
+    Because there is no test mode on the live API, an agent has no safe way to exercise
+    triggerCampaign or bulktriggerCampaign end to end. Every successful call delivers mail.

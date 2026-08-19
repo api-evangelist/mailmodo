@@ -1,17 +1,87 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/mailmodo-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api (provider's own
+  getting-started guide) and the eight provider-published OpenAPI documents in openapi/_original/,
+  harvested 2026-08-13. Key format confirmed from https://www.npmjs.com/package/@mailmodo/cli.
+docs: https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api
+console: https://manage.mailmodo.com/app/settings/apikey
+name: Mailmodo Authentication
+description: >-
+  One credential class, one mechanism: a workspace API key sent in the `mmApiKey` header. There is no
+  OAuth, no OpenID Connect, no mutual TLS, no scopes, no permissions model and no test/live key
+  split. A Mailmodo API key is a single account-wide bearer of full API authority — anything holding
+  it can read every contact and send mail as the workspace.
 summary:
   types:
-  - apiKey
+    - apiKey
   api_key_in:
-  - header
+    - header
+    - query
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  scopes: false
 schemes:
-- name: ApiKeyAuth
-  type: apiKey
-  in: header
-  parameter: mmApiKey
-  description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey.
-    Sent as the `mmApiKey` request header on every call.
-  sources:
-  - openapi/mailmodo-openapi.yml
+  - name: mmApiKey
+    type: apiKey
+    in: header
+    parameter: mmApiKey
+    description: >-
+      API key issued from the Mailmodo dashboard at Settings > API Keys. Sent as the `mmApiKey`
+      request header on every call. This is the canonical form, used by seven of the eight published
+      specs and by Mailmodo's own MCP server and SDKs.
+    sources:
+      - openapi/_original/mailmodo-sending-emails-openapi.json
+      - openapi/_original/mailmodo-contact-management-openapi.json
+      - openapi/_original/mailmodo-custom-events-openapi.json
+      - openapi/_original/mailmodo-templates-openapi.json
+      - openapi/_original/mailmodo-user-journeys-openapi.json
+      - openapi/_original/mailmodo-dynamic-form-openapi.json
+      - openapi/_original/mailmodo-repeatable-block-openapi.json
+  - name: mmApiKey (query variant)
+    type: apiKey
+    in: query
+    parameter: mmApiKey
+    description: >-
+      The Campaign Data spec declares the SAME credential as a query parameter rather than a header.
+      Treat this as a spec defect and send the header — putting a long-lived credential in a URL
+      leaks it into logs, proxies and referrers.
+    sources:
+      - openapi/_original/mailmodo-campaign-data-openapi.yaml
+    status: inconsistent
+key_management:
+  obtain: Settings > API Keys > "Show API Key" in https://manage.mailmodo.com/app/settings/apikey
+  multiple_keys: true
+  create: '"Add new API Key" button in the dashboard'
+  format: 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX — four hyphen-separated groups of 7 uppercase alphanumerics'
+  format_source: https://www.npmjs.com/package/@mailmodo/cli
+  environment_variable: MAILMODO_API_KEY
+  expiry: none-published
+  rotation_policy: none-published
+  revocation: not-documented
+  test_keys: false
+  scoping: >-
+    None. There is no read-only key, no per-list key and no per-operation restriction. The dashboard
+    has role-based access control (admin / read-write / read-only) for HUMANS, per
+    https://www.mailmodo.com/security/, but that model does not extend to API keys.
+transport:
+  tls_required: true
+  minimum_tls: 'TLS 1.2+ (stated on https://www.mailmodo.com/security/)'
+agent_surfaces:
+  - surface: MCP (remote)
+    endpoint: https://mcp.app.mailmodo.com/mcp
+    credential: same mmApiKey, passed as a header via mcp-remote
+    probed: '2026-08-13 — HTTP 400 {"code":-32000,"message":"Bad Request: No valid mmApiKey provided"}'
+  - surface: MCP (local stdio)
+    credential: MAILMODO_API_KEY environment variable
+  - surface: '@mailmodo/cli'
+    credential: MAILMODO_API_KEY env var or ~/.mailmodo/config
+    note: Targets api.mailmodo.dev, not api.mailmodo.com.
+gaps:
+  - >-
+    No OAuth means no delegated authorization: a third-party integration cannot act for a Mailmodo
+    customer without holding that customer's full-authority key.
+  - No published expiry, rotation or revocation procedure.
+  - No 401/403 response is declared on ANY operation in ANY published spec.
+  - No /.well-known/oauth-authorization-server or openid-configuration on any host (all 404).

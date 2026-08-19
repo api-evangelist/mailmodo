@@ -1,0 +1,176 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.npmjs.com/package/@mailmodo/cli (README read verbatim from
+  registry.npmjs.org/@mailmodo/cli on 2026-08-13) and https://github.com/Mailmodo/mailmodo-cli
+name: Mailmodo CLI
+description: >-
+  `@mailmodo/cli` is a first-party command-line tool for Mailmodo's newer AI-native lifecycle-email
+  product. It analyses a product URL, generates a complete onboarding/lifecycle email sequence with
+  AI, and deploys it — covering domain setup, template generation, deployment, monitoring, contact
+  management and billing from the terminal. It is explicitly designed to be driven by agents: every
+  command supports --json (clean stdout, spinners to stderr) and --yes (no prompts).
+  IMPORTANT: this CLI targets api.mailmodo.dev / app.mailmodo.dev, a DIFFERENT surface from the
+  api.mailmodo.com REST API the OpenAPI documents in this repo describe. There is no published
+  contract for that surface — the CLI README and the SDK README are currently its only documentation.
+package: '@mailmodo/cli'
+version: 1.0.16
+published: '2026-08-12'
+license: MIT
+binary: mailmodo
+runtime: Node.js >= 18
+repository: https://github.com/Mailmodo/mailmodo-cli
+install:
+  - method: npm
+    command: npm install -g @mailmodo/cli
+authentication:
+  command: mailmodo login
+  credential: Mailmodo API key
+  obtain: https://app.mailmodo.dev
+  storage: ~/.mailmodo/config
+  env_override: MAILMODO_API_KEY
+  key_format: 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX (four hyphen-separated 7-character uppercase groups)'
+global_flags:
+  - flag: '--json'
+    description: All output as valid JSON on stdout; progress text goes to stderr.
+  - flag: '--yes / -y'
+    description: Skip every confirmation prompt; proceed with inferred defaults.
+command_groups:
+  - group: auth
+    commands:
+      - name: login
+        description: Validate the API key, save credentials, back up any existing mailmodo.yaml.
+      - name: logout
+        description: Delete ~/.mailmodo/config. Does not affect the server-side account.
+  - group: authoring
+    commands:
+      - name: init
+        description: >-
+          Analyse a product URL with AI, detect business model and brand, generate a lifecycle email
+          sequence, write mailmodo.yaml and a mailmodo/ template directory.
+        flags:
+          - '--url <product-url>'
+      - name: emails
+        description: List and inspect configured email sequences from mailmodo.yaml.
+        flags:
+          - '--product / -p'
+      - name: edit
+        description: Edit an email with a natural-language instruction; previews a field-level diff.
+        flags:
+          - '--change <instruction>'
+          - '--product / -p'
+      - name: preview
+        description: Render an email in the browser (localhost:3421), as plain text, or send a test.
+        flags:
+          - '--text'
+          - '--send <email>'
+          - '--product / -p'
+  - group: deployment
+    commands:
+      - name: deploy
+        description: >-
+          Validate config, check domain verification, show a pre-deploy diff, deploy sequences, and
+          print the @mailmodo/sdk track()/identify() snippets to wire into the app.
+        flags:
+          - '--pause <sequenceId>'
+          - '--resume <sequenceId>'
+          - '--product / -p'
+      - name: deployments
+        description: List every deployed sequence with status, email count and sequence ID.
+      - name: sdk
+        description: Print the track()/identify() reference for deployed sequences.
+        flags:
+          - '--sequence-id <id>'
+          - '--product / -p'
+  - group: sending-domain
+    commands:
+      - name: domain
+        description: >-
+          Register a sending domain and print the DNS records to add; verify SPF/DKIM/DMARC; show
+          domain health. Requires a physical business address (CAN-SPAM).
+        flags:
+          - '--verify'
+          - '--status'
+  - group: configuration
+    commands:
+      - name: settings
+        description: View or update project settings (project info, branding, domain/sending, billing).
+        flags:
+          - '--set key=value'
+          - '--product / -p'
+      - name: use
+        description: Set the default product when mailmodo.yaml holds more than one.
+  - group: observability
+    commands:
+      - name: status
+        description: Per-email metrics (sent, open, click, conversion) plus monthly quota usage.
+      - name: logs
+        description: Delivery event log with pagination.
+        flags:
+          - '--email <address>'
+          - '--failed'
+          - '--limit <n> (max 200)'
+          - '--page <n>'
+      - name: report
+        description: >-
+          Analytics report with date presets or explicit ranges, grouping, event-type filters and
+          three output shapes (summary, entries, timeseries).
+        flags:
+          - '--preset today|yesterday|last7d|last30d|last90d|thisMonth|lastMonth'
+          - '--from YYYY-MM-DD / --to YYYY-MM-DD'
+          - '--group-by none|emailId|sequenceId|day|hour|contact|status'
+          - '--output summary|entries|timeseries'
+          - '--email-id / --contact / --sequence / --event (repeatable)'
+          - '--limit <n> (max 200) / --page <n>'
+  - group: contacts-and-billing
+    commands:
+      - name: contacts
+        description: Contact counts, lookup, GDPR CSV export, and hard delete (right to erasure).
+        flags:
+          - '--search <email>'
+          - '--export'
+          - '--delete <email>'
+      - name: billing
+        description: >-
+          Billing status, Stripe checkout for a payment method, purchase email blocks, set a monthly
+          cap, and configure auto-refill. One block = 1,000 emails.
+        flags:
+          - '--status'
+          - '--checkout'
+          - '--purchase <blocks>'
+          - '--cap <blocks>'
+          - '--auto-charge-block-count <blocks>'
+key_flows:
+  - name: zero-to-deployed
+    steps:
+      - mailmodo login
+      - mailmodo init --url https://yourapp.com
+      - mailmodo preview welcome
+      - mailmodo domain  (then mailmodo domain --verify once DNS propagates)
+      - mailmodo deploy
+      - mailmodo status
+  - name: non-interactive-agent-loop
+    steps:
+      - 'mailmodo init --url https://yourapp.com --yes --json'
+      - 'mailmodo edit welcome --change "add a P.S. linking the docs" --yes --json'
+      - 'mailmodo deploy --yes --json'
+project_files:
+  - path: mailmodo.yaml
+    description: >-
+      Source of truth for the sequence — top-level `settings` (domain, sender identity, monthly cap,
+      default product) and `products[]` (name, url, business metadata, branding, webhookUrl, emails[]
+      with id/trigger/delay/subject/template/style/condition). Intended to be committed.
+    note: >-
+      Files written before v1.0.13 used a flat `project:`/`emails:` shape; the CLI auto-migrates them
+      in memory and rewrites on the next save.
+  - path: mailmodo/{productSlug}/{emailId}.html
+    description: One HTML template per configured email, synced to Mailmodo cloud as a backup.
+  - path: ~/.mailmodo/config
+    description: Saved credentials. Never commit.
+agent_support:
+  json_output: true
+  non_interactive: true
+  env_credential: MAILMODO_API_KEY
+  note: >-
+    The README documents an explicit "AI Agent Support" section and an example agent loop, which is
+    unusual and worth crediting: this is a CLI designed to be a machine surface, not just a human one.

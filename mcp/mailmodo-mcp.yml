@@ -1,0 +1,224 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://github.com/mailmodo/mailmodo-mcp (README + src/server.ts, read verbatim) and
+  https://www.npmjs.com/package/@mailmodo/mcp; the remote endpoint was probed live on 2026-08-13.
+name: Mailmodo MCP Server
+description: >-
+  Mailmodo ships a first-party Model Context Protocol server for its public REST API. It is available
+  BOTH as a hosted remote endpoint an MCP client can POST to today and as a local stdio package
+  (npx / Docker / Smithery). Tools and resources below are transcribed from the provider's own
+  TypeScript source, not inferred: the live schema could not be introspected because the endpoint
+  rejects unauthenticated JSON-RPC.
+status: published
+vendor: Mailmodo
+repository: https://github.com/mailmodo/mailmodo-mcp
+license: GPL-3.0
+package_version: 0.3.0
+package_published: '2025-05-20'
+protocol: mcp
+sdk: '@modelcontextprotocol/sdk ^1.10.1'
+
+deployment:
+  mode: both
+  endpoint: https://mcp.app.mailmodo.com/mcp
+  install: npx -y @mailmodo/mcp
+  package: https://www.npmjs.com/package/@mailmodo/mcp
+  auth: api-key
+  verified: probed
+
+server:
+  url: https://mcp.app.mailmodo.com/mcp
+  transport: streamable-http
+  auth:
+    type: api-key
+    header: mmApiKey
+    obtain: https://manage.mailmodo.com/app/settings/apikey
+    note: >-
+      The provider's README wires the remote endpoint through mcp-remote with
+      `--header mmApiKey:${MAILMODO_API_KEY}`. Same credential as the REST API.
+
+evidence:
+  - fetched: '2026-08-13'
+    url: https://mcp.app.mailmodo.com/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 400
+    response: '{"jsonrpc":"2.0","error":{"code":-32000,"message":"Bad Request: No valid mmApiKey provided"}}'
+    conclusion: >-
+      The endpoint is LIVE and speaks JSON-RPC — it answers with a well-formed MCP error object rather
+      than an HTML 404 — but tools/list is auth-gated, so the live inputSchemas could not be captured.
+      Tool names, descriptions and parameters below come from src/server.ts in the provider's repo.
+  - fetched: '2026-08-13'
+    url: https://registry.npmjs.org/@mailmodo/mcp
+    http_status: 200
+    conclusion: Latest version 0.3.0, published 2025-05-20. Six versions since 2025-04-19.
+
+install_methods:
+  - method: Hosted endpoint
+    config: |-
+      {
+        "mcpServers": {
+          "mailmodo": {
+            "command": "npx",
+            "args": ["-y", "mcp-remote", "https://mcp.app.mailmodo.com/mcp", "--header", "mmApiKey:${MAILMODO_API_KEY}"],
+            "env": { "MAILMODO_API_KEY": "<your Mailmodo API key>" }
+          }
+        }
+      }
+  - method: npm
+    config: npx -y @mailmodo/mcp
+    env: MAILMODO_API_KEY
+  - method: Docker
+    config: docker run --platform linux/amd64 -i --rm -e MAILMODO_API_KEY avneesh001/mailmodo-mcp
+    note: >-
+      The image the provider's README names is published under a personal Docker Hub account
+      (avneesh001), not a mailmodo/ namespace.
+  - method: Smithery
+    config: npx -y @smithery/cli install @mailmodo/mailmodo-mcp --client claude
+    url: https://smithery.ai/server/@mailmodo/mailmodo-mcp
+    transport: stdio
+
+tools:
+  - name: userDetails
+    description: Tool to get all details of a contact
+    parameters:
+      - name: email
+        type: string
+        required: true
+  - name: MailmodoCampainReportTool
+    description: >-
+      Tool to get the campaign reports for a particular campaign like open, click submission count etc
+    parameters:
+      - name: campaignId
+        type: string
+        format: uuid
+        required: true
+      - name: fromDate
+        type: string
+        pattern: YYYY-MM-DD
+        required: true
+      - name: toDate
+        type: string
+        pattern: YYYY-MM-DD
+        required: true
+    note: Tool name carries a typo in the provider's source ("Campain"), transcribed verbatim.
+  - name: currentDateTime
+    description: >-
+      Get current date and time for a timezone. Defaults to UTC when no timezone is passed.
+    parameters:
+      - name: timezone
+        type: string
+        required: false
+        description: A valid IANA timezone name, e.g. America/New_York or Asia/Kolkata
+    note: Local utility tool — no backing REST operation.
+  - name: sendEvent
+    description: Send custom events with email, event name and event properties
+    parameters:
+      - name: email
+        type: string
+        required: true
+      - name: event_name
+        type: string
+        required: true
+      - name: ts
+        type: number
+        required: false
+  - name: addContactToList
+    description: Add contact to list
+    parameters:
+      - name: email
+        type: string
+        required: true
+      - name: listName
+        type: string
+        required: true
+  - name: addBulkContactToList
+    description: Add many contacts to a list in a single API call
+    parameters:
+      - name: listName
+        type: string
+        required: true
+      - name: values
+        type: array
+        required: true
+        description: Array of contact objects, each carrying at least an email
+  - name: unsubscribeContact
+    description: Unsubscribe or suppress a contact in Mailmodo
+    parameters:
+      - name: email
+        type: string
+        required: true
+  - name: resubscribeContact
+    description: Resubscribe a contact in Mailmodo
+    parameters:
+      - name: email
+        type: string
+        required: true
+  - name: archiveContact
+    description: Permanently archive a contact in Mailmodo
+    parameters:
+      - name: email
+        type: string
+        required: true
+  - name: removeContactFromList
+    description: Remove a particular contact from a contact list
+    parameters:
+      - name: email
+        type: string
+        required: true
+      - name: listName
+        type: string
+        required: true
+  - name: sendEmailToCampaign
+    description: >-
+      Trigger an email for a campaign with personalization parameters merged into the email template
+    parameters:
+      - name: campaignId
+        type: string
+        required: true
+      - name: email
+        type: string
+        required: true
+      - name: data
+        type: object
+        required: false
+        description: Merge/personalization key-value pairs
+  - name: broadcastCampaignToList
+    description: >-
+      Trigger a campaign to an entire contact list using a single API request
+    parameters:
+      - name: campaignId
+        type: string
+        required: true
+      - name: listId
+        type: string
+        required: true
+
+resources:
+  - name: Mailmodo Templates
+    uri: mailmodo://templates
+    mimeType: application/json
+    backing_operation: listTemplates
+  - name: Mailmodo Campaigns
+    uri: mailmodo://campaigns
+    mimeType: application/json
+    backing_operation: listCampaigns
+  - name: Mailmodo Contact Lists
+    uri: mailmodo://contact-lists
+    mimeType: application/json
+    backing_operation: getAllContactLists
+
+counts:
+  tools: 12
+  resources: 3
+  prompts: 0
+
+notes:
+  - >-
+    DECAY: the MCP server's last npm release is 2025-05-20, fifteen months before Mailmodo shipped
+    @mailmodo/sdk 2.0.4 and @mailmodo/cli 1.0.16 (both 2026-08-12). The server wraps the
+    api.mailmodo.com REST surface only; nothing in it reaches the newer mailmodo.dev product.
+  - >-
+    The server exposes no tool for the User Journeys, Dynamic Form or Repeatable Block APIs, which
+    Mailmodo does publish OpenAPI for. See mcp/mailmodo-tool-crosswalk.yml rest_only[].

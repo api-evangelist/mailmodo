@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "5eacf3b2-a913-4dfd-b298-02a8ef9c903f",
+      "name": "Contact Lists",
+      "description": {
+        "content": "Manage the named contact lists used for segmentation and campaigns",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "538cb1f4-fb73-4040-a774-cbc40dc5bf2f",
+          "name": "Get All Contact Lists",
+          "request": {
+            "name": "Get All Contact Lists",
+            "description": {
+              "content": "Return the workspace's named contact lists with size and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "getAllContactLists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92815a62-5a12-4dea-8a9f-c71a98d08b0b",
+              "name": "Contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "getAllContactLists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "mmApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"listId\": \"string\",\n      \"listName\": \"string\",\n      \"contactsCount\": 2323,\n      \"createdAt\": \"1982-02-23T09:27:15.980Z\"\n    },\n    {\n      \"listId\": \"string\",\n      \"listName\": \"string\",\n      \"contactsCount\": 7320,\n      \"createdAt\": \"2018-01-04T20:22:12.808Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mailmodo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "mmApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b222332-bd38-4ebd-a020-0794999ad0f7",
+    "name": "Mailmodo Campaigns Contact Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.\n\nContact Support:\n Name: Mailmodo",
+      "type": "text/plain"
+    }
+  }
+}

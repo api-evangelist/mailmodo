@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "User Journeys",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "mmApiKey",
+      "value": "{{mmApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Journeys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a new user to the journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/hooks/start/:journey-id",
+            "headers": [
+              {
+                "name": "mmApiKey",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "journey-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new user to the journey"
+        },
+        {
+          "info": {
+            "name": "Abort the journey for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/hooks/abort/:journey-id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "mmApiKey",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "journey-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Abort the journey for a user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

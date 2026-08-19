@@ -1,0 +1,136 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/ (eight provider-published specs harvested 2026-08-13), security/, conventions/,
+  https://www.mailmodo.com/security/, https://www.mailmodo.com/developers/, and live probes.
+name: Mailmodo Standards Conformance
+description: >-
+  What Mailmodo does and does not conform to across the cross-cutting standards this catalog tracks.
+  Each entry carries the evidence it was decided on. Mailmodo's conformance profile is narrow by
+  design: it publishes OpenAPI and implements MCP, and that is nearly the whole list. There is no
+  OAuth, no OpenID Connect, no RFC 9457, no idempotency, no pagination standard and no A2A card.
+standards:
+  - id: openapi
+    name: OpenAPI Specification
+    conforms: true
+    version: '3.1.0 (seven services), 3.0.0 (Campaign Data)'
+    evidence: >-
+      Eight provider-published documents exported from the Stoplight project behind
+      developers.mailmodo.com, all parsing as OpenAPI with servers[] on api.mailmodo.com. Saved
+      verbatim to openapi/_original/.
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    version: '@modelcontextprotocol/sdk ^1.10.1'
+    evidence: >-
+      First-party server at github.com/mailmodo/mailmodo-mcp; hosted endpoint
+      https://mcp.app.mailmodo.com/mcp answered a JSON-RPC error object (HTTP 400, code -32000) on
+      2026-08-13, confirming a live MCP listener. 12 tools + 3 resources.
+  - id: a2a
+    name: Agent2Agent Protocol
+    conforms: false
+    evidence: >-
+      Mailmodo publishes and maintains @mailmodo/a2a, a fork of the official A2A JS SDK implementing
+      protocol v0.3.0 — but exposes NO agent card of its own. /.well-known/agent-card.json and
+      /.well-known/agent.json return 404 on all six Mailmodo hosts. Shipping the SDK is not shipping
+      the surface.
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: false
+    evidence: >-
+      Every securityScheme in every published spec is `type: apiKey`. No authorization endpoint, no
+      token endpoint, no oauth-authorization-server metadata document.
+  - id: oidc
+    name: OpenID Connect
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 or an SPA HTML shell on every host.
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      No application/problem+json content type anywhere in the eight specs. Errors use a proprietary
+      {success, message} envelope, and the gateway uses a second {error, message} envelope for 404s.
+  - id: rfc8594
+    name: RFC 8594 Sunset HTTP Header
+    conforms: false
+    evidence: No Sunset or Deprecation header declared; no deprecation policy published.
+  - id: idempotency
+    name: Idempotency keys (draft-ietf-httpapi-idempotency-key-header)
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header on any operation. triggerCampaign, bulktriggerCampaign and addEvent
+      are non-idempotent POSTs that send real email per call.
+  - id: pagination
+    name: Pagination
+    conforms: false
+    evidence: >-
+      /api/v1/campaigns, /getAllContactLists and /getAllTemplates return unbounded arrays with no
+      limit/offset/cursor parameter and no next-page field.
+  - id: rfc6749-scopes
+    name: Scoped authorization
+    conforms: false
+    evidence: A single account-wide API key. No scopes, no permissions model on the API.
+  - id: json-schema
+    name: JSON Schema
+    conforms: true
+    version: '2020-12 (via OpenAPI 3.1) / Draft-04-flavoured (Campaign Data, OpenAPI 3.0)'
+    evidence: >-
+      Request and response bodies are described with inline JSON Schema throughout. Only one named
+      component schema exists across all eight documents (`Form`, in the Dynamic Form spec) — every
+      other schema is inlined, which is why $ref reuse is effectively absent.
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >-
+      No AsyncAPI document published. Mailmodo does emit delivery webhooks on the mailmodo.dev
+      product (see asyncapi/mailmodo-webhooks.yml) but publishes no payload schema for them.
+  - id: rfc8615-well-known
+    name: RFC 8615 Well-Known URIs
+    conforms: false
+    evidence: 36 well-known paths probed across 6 hosts on 2026-08-13; zero documents returned.
+  - id: rfc9116-security-txt
+    name: RFC 9116 security.txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on every Mailmodo host.
+  - id: soc2
+    name: SOC 2 Type 2
+    conforms: true
+    evidence: >-
+      https://www.mailmodo.com/security/ states an annual SOC 2 Type 2 audit by third-party
+      assessors. Report available on request via support@mailmodo.com; no self-serve trust portal.
+  - id: gdpr
+    name: GDPR
+    conforms: true
+    evidence: >-
+      Dedicated GDPR compliance pages at mailmodo.com/gdpr/privacypolicy/ and
+      mailmodo.com/gdpr/termsandconditions/; the trust page claims GDPR compliance directly.
+  - id: can-spam
+    name: CAN-SPAM
+    conforms: true
+    evidence: >-
+      The @mailmodo/cli domain setup flow requires a physical business address before a sending
+      domain can be verified, stating it is required by CAN-SPAM.
+  - id: amp-for-email
+    name: AMP for Email
+    conforms: true
+    evidence: >-
+      Core product capability. Sender addresses go through Google/Yahoo AMP whitelisting (5–7 business
+      days) per the provider's getting-started guide.
+  - id: spf-dkim-dmarc
+    name: SPF / DKIM / DMARC email authentication
+    conforms: true
+    evidence: >-
+      Required of every customer sending domain and verified by `mailmodo domain --verify`; the
+      provider's own domain records are probed in security/mailmodo-domain-security.yml.
+  - id: hipaa
+    name: HIPAA
+    conforms: false
+    evidence: No HIPAA claim anywhere on mailmodo.com.
+  - id: iso27001
+    name: ISO/IEC 27001
+    conforms: false
+    evidence: Not claimed on the trust page; only SOC 2 Type 2 and GDPR are named.
+counts:
+  evaluated: 20
+  conforms: 8
+  does_not_conform: 12

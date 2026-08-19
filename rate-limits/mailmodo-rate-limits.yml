@@ -1,39 +1,47 @@
 apiCommonsRateLimits: "0.1"
+generated: '2026-08-13'
+method: searched
+source: https://www.mailmodo.com/pricing/
 provider: mailmodo
 name: Mailmodo Rate Limits
 description: >-
-  Mailmodo enforces request-per-second limits that scale with the plan
-  tier. Limits are applied on the API key and are documented on the
-  pricing page rather than per endpoint.
-source:
-  - https://www.mailmodo.com/pricing/
+  Mailmodo publishes per-second API request ceilings, but only on its PRICING page as a plan feature
+  ("5 / 10 / 50 API Request / Sec") — never in the API documentation and never as a response header.
+  Re-read from the live pricing page on 2026-08-13. The runtime side of rate limiting is entirely
+  undocumented: no X-RateLimit-* headers, no RateLimit-* headers, no Retry-After, and no declared
+  status code on exhaustion in any of the eight provider-published OpenAPI documents. An agent
+  therefore has no way to detect that it is approaching a limit — it can only pace itself against the
+  number printed on the pricing page.
+limit_count: 3
+scope: api-key
+response_headers:
+  published: false
+  x_ratelimit: none-documented
+  ratelimit_draft: none-documented
+  retry_after: none-documented
+status_on_exhaustion: undocumented
+evidence:
+  - url: https://www.mailmodo.com/pricing/
+    status: 200
+    fetched: '2026-08-13'
+    quote: '"5 API Request / Sec" (Lite), "10 API Request / Sec" (Pro), "50 API Request / Sec" (Max)'
+  - note: >-
+      Grepped all eight provider-published specs in openapi/_original/ for 429, RateLimit, Retry-After
+      and X-RateLimit — zero occurrences.
 policies:
   - id: rps-by-plan
     type: requestRate
     unit: requests-per-second
     scope: api-key
+    window: 1s
+    burst: not-published
     tiers:
       - plan: lite
         limit: 5
-      - plan: starter
+      - plan: pro
         limit: 10
-      - plan: pro
+      - plan: max
         limit: 50
-      - plan: enterprise
-        limit: custom
-  - id: active-journey-contacts
-    type: quota
-    unit: contacts-per-journey
-    scope: workspace
-    tiers:
-      - plan: lite
-        limit: 500
-      - plan: starter
-        limit: 500
-      - plan: pro
-        limit: 100000
-      - plan: enterprise
-        limit: custom
   - id: sending-credits
     type: quota
     unit: emails-per-month
@@ -41,9 +49,52 @@ policies:
     tiers:
       - plan: lite
         limit: 2000
-      - plan: starter
-        limit: 3000
       - plan: pro
+        limit: 3000
+      - plan: max
         limit: unlimited
-      - plan: enterprise
-        limit: custom
+  - id: active-journey-contacts
+    type: quota
+    unit: contacts-per-journey
+    scope: workspace
+    tiers:
+      - plan: lite
+        limit: 500
+      - plan: pro
+        limit: 500
+      - plan: max
+        limit: 100000
+  - id: active-journeys
+    type: quota
+    unit: journeys
+    scope: workspace
+    tiers:
+      - plan: lite
+        limit: 1
+      - plan: pro
+        limit: 10
+      - plan: max
+        limit: unlimited
+free_tier_send_limit:
+  value: 1000
+  unit: emails-per-day
+  source: >-
+    https://www.mailmodo.com/developers/a8e5135f8fc12-mailmodo-api-for-transactional-email — FAQ:
+    "In the free plan, you can send upto 1K emails per day".
+second_product_line:
+  name: mailmodo.dev CLI/SDK surface
+  pagination_limits:
+    - endpoint: logs
+      max_limit: 200
+      default: 50
+    - endpoint: report (entries output)
+      max_limit: 200
+      default: 50
+  ai_usage:
+    note: '`mailmodo init --json` returns aiUsage {limit, remaining}; the free-tier limit observed in the CLI README example is 5.'
+  source: https://www.npmjs.com/package/@mailmodo/cli
+gaps:
+  - No rate-limit response headers of any kind.
+  - No documented status code, body or Retry-After on exhaustion.
+  - No per-endpoint limits; the ceiling is uniform across all operations on the key.
+  - No published burst allowance or averaging window beyond "per second".

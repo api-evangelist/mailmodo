@@ -1,15 +1,66 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: searched
 probe: true
 source: https://www.mailmodo.com/security/
 url: https://www.mailmodo.com/security/
+name: Mailmodo Trust & Security
+description: >-
+  Mailmodo publishes a single trust page naming SOC 2 Type 2 and GDPR, an annual third-party audit
+  cadence, annual third-party penetration testing, and an itemised control set across product,
+  application, infrastructure, corporate and physical security. There is no separate trust portal, no
+  downloadable report request flow beyond an email address, and no security.txt.
 certifications:
-- SOC 2
-- GDPR
+  - name: SOC 2 Type 2
+    status: compliant
+    audit_cadence: annual
+    auditor: third-party assessors (not named)
+  - name: GDPR
+    status: compliant
+    reference: https://www.mailmodo.com/gdpr/privacypolicy/
+controls:
+  product_security:
+    - Role-Based Access Control — admin, read-write and read-only roles
+    - TLS 1.2+ only, modern cipher suites
+  application_security:
+    - Secure development lifecycle — linting, unit + integration tests, static analysis and vulnerable-dependency scanning on every commit
+    - Vulnerability classes removed by architectural design
+    - Passwords hashed; sensitive columns stored with application-level encryption
+  infrastructure_security:
+    - 100% of data encrypted in transit and at rest
+    - Infrastructure as code, reviewed
+    - Least-privilege IAM policies, credentials, permissions and roles
+    - Network segregation — production, sandbox and staging in separate accounts, constrained by VPCs
+  risk_and_compliance:
+    - Annual SOC 2 Type 2 audit by third-party assessors
+    - Annual third-party penetration tests
+    - Subprocessor security evaluation and monitoring
+  corporate_security:
+    - 2FA enforced via Google Accounts with password complexity requirements
+    - Security awareness training at onboarding and annually
+    - Standardized onboarding/offboarding with minimum default permissions
+    - Regular access reviews
+    - VPN required for internal services
+  physical_security:
+    - No on-premise data storage
+    - Badge or fingerprint building access, CCTV on premises
+contact:
+  compliance: support@mailmodo.com
+  general: enquiries@mailmodo.com
+documents:
+  terms_of_service: https://www.mailmodo.com/gdpr/termsandconditions/
+  privacy_policy: https://www.mailmodo.com/gdpr/privacypolicy/
+gaps:
+  - No security.txt on any Mailmodo host (see well-known/mailmodo-well-known.yml — 36 paths, 0 hits).
+  - No published vulnerability disclosure policy and no bug bounty program found.
+  - No subprocessor list published at a stable URL.
+  - SOC 2 report is available only by emailing support; no self-serve trust portal.
 evidence:
-- source: https://www.mailmodo.com/security/
-  keywords:
-  - soc 2
-  - soc2
-  - compliance certification
-  - gdpr
+  - source: https://www.mailmodo.com/security/
+    status: 200
+    fetched: '2026-08-13'
+    keywords:
+      - SOC 2 Type 2
+      - GDPR
+      - penetration tests
+      - TLS 1.2+
+      - encrypted in transit and at rest

@@ -1,0 +1,189 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/ (eight provider-published specs harvested 2026-08-13) — request/response schemas
+  and their inline examples; cross-checked against json-schema/ already in this repo.
+name: Mailmodo Data Model
+description: >-
+  The entity graph behind the Mailmodo REST API, recovered from the published specs. Mailmodo inlines
+  almost every schema — across all eight documents there is exactly ONE named component schema
+  (`Form`) — so the relationships below are reconstructed from id-reference FIELDS and from the shapes
+  of the example payloads, not from $ref edges. Identifiers are bare UUID v4 with no type prefix, so
+  an id alone does not tell an agent (or a human) which entity it belongs to.
+identifier_convention:
+  format: UUID v4
+  prefixes: none
+  note: >-
+    campaignId, listId, journey-id, templateId, contactIdentifier and the returned `ref` are all
+    undifferentiated UUIDs. Contacts are addressed by EMAIL in every write operation; contactIdentifier
+    appears only as an output of getContactDetails.
+entities:
+  - name: Contact
+    description: A subscriber record, keyed by email address.
+    key: email
+    surrogate_key: contactIdentifier (UUID, read-only)
+    fields:
+      - email
+      - contactIdentifier
+      - data (free-form object of custom attributes)
+      - status (derived from subscribe/unsubscribe/archive operations)
+      - currentUnsubscribedEmailTypes[]
+    operations:
+      - addContactToList
+      - addContactsToListBatch
+      - getContactDetails
+      - unsubscribeContact
+      - resubscribeContact
+      - updateSubscription
+      - removeContactFromList
+      - archiveContact
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - name: ContactList
+    description: A named list contacts are added to and removed from.
+    key: id (UUID)
+    fields:
+      - id
+      - name
+      - created_at
+      - contacts_count
+    operations:
+      - getAllContactLists
+      - addContactToList
+      - addContactsToListBatch
+      - removeContactFromList
+    note: >-
+      Write operations address a list by NAME (listName), while getAllContactLists returns it by id.
+      Bulk trigger addresses it by listId. Three different handles for one entity.
+    source: openapi/_original/mailmodo-contact-management-openapi.json
+  - name: Template
+    description: An AMP or HTML email template built in the Mailmodo editor.
+    key: id (UUID)
+    fields:
+      - id
+      - name
+      - created_at
+      - updated_at
+      - format
+      - type
+      - thumbnail_url
+      - created_by
+      - state
+      - is_uploaded
+    operations:
+      - listTemplates
+    source: openapi/_original/mailmodo-templates-openapi.json
+  - name: Campaign
+    description: A configured send built from a template; triggerable per recipient or per list.
+    key: id (UUID)
+    fields:
+      - id
+      - campaignName
+      - campaignType (e.g. CONTACT_LIST)
+      - templateId
+      - status (e.g. Processed)
+      - scheduledAt (epoch millis)
+    operations:
+      - listCampaigns
+      - triggerCampaign
+      - bulkTriggerCampaign
+      - getCampaignReport
+    source: openapi/_original/mailmodo-campaign-data-openapi.yaml
+  - name: CampaignReport
+    description: Aggregated engagement summary for one campaign over a date window.
+    key: campaignId
+    fields:
+      - campaignId
+      - campaignName
+      - campaignType
+      - status
+      - senderEmail
+      - subjects[]
+      - createdAt
+    operations:
+      - getCampaignReport
+    source: openapi/_original/mailmodo-campaign-data-openapi.yaml
+  - name: Journey
+    description: A multi-step automated email flow a contact can be started into or aborted from.
+    key: journey-id (UUID, path parameter)
+    operations:
+      - post-hooks-start-journey-id
+      - post-hooks-abort-journey-id
+    note: >-
+      There is no read operation for journeys — no list, no get, no status. A journey id must be
+      obtained from the Mailmodo UI. The instance created by hooks/start is returned only as `ref`.
+    source: openapi/_original/mailmodo-user-journeys-openapi.json
+  - name: JourneyInstance
+    description: One contact's run through a journey.
+    key: ref (UUID, returned by hooks/start)
+    operations:
+      - post-hooks-start-journey-id
+    source: openapi/_original/mailmodo-user-journeys-openapi.json
+  - name: Event
+    description: A custom behavioural event attributed to a contact, used to drive journeys/segments.
+    key: ref (UUID, returned by addEvent)
+    fields:
+      - email
+      - event_name
+      - event_properties (free-form object)
+      - ts (optional epoch)
+    operations:
+      - addEvent
+    source: openapi/_original/mailmodo-custom-events-openapi.json
+  - name: Form
+    description: >-
+      The only NAMED component schema in the entire published surface. Describes a runtime-generated
+      dynamic form embedded in an AMP email.
+    key: null
+    operations:
+      - post-triggerCampaign-campaign-id (Dynamic Form variant)
+    source: openapi/_original/mailmodo-dynamic-form-openapi.json
+relationships:
+  - from: ContactList
+    to: Contact
+    type: has_many
+    via: listName / listId
+  - from: Contact
+    to: ContactList
+    type: belongs_to
+    via: listName
+  - from: Campaign
+    to: Template
+    type: belongs_to
+    via: templateId
+  - from: Campaign
+    to: ContactList
+    type: belongs_to
+    via: listId
+    note: Only for campaignType CONTACT_LIST / bulkTriggerCampaign.
+  - from: Campaign
+    to: CampaignReport
+    type: has_one
+    via: campaignId
+  - from: Journey
+    to: JourneyInstance
+    type: has_many
+    via: journey-id
+  - from: JourneyInstance
+    to: Contact
+    type: belongs_to
+    via: email
+  - from: Event
+    to: Contact
+    type: belongs_to
+    via: email
+  - from: Campaign
+    to: Form
+    type: has_one
+    via: form (Dynamic Form payload variant)
+gaps:
+  - >-
+    No read operation exists for Journey, and no write operation exists for Template or Campaign —
+    both are created only in the Mailmodo UI. An agent can trigger and report, but cannot author.
+  - >-
+    Contact has no update operation other than the implicit upsert inside addToList: posting an
+    existing email with a new `data` object is how attributes are changed.
+  - >-
+    Because schemas are inlined rather than $ref'd, the same Contact shape is redeclared in at least
+    six places with slightly different required fields. There is no single authoritative Contact
+    schema in the published specs.
+render: null

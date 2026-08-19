@@ -1,0 +1,190 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every Mailmodo host named in apis.yml and in the OpenAPI servers[] blocks
+name: Mailmodo Well-Known Probe
+description: >-
+  Every RFC 8615 /.well-known/ path this pipeline checks was probed against all six Mailmodo hosts on
+  2026-08-13. NOTHING WAS FOUND. Mailmodo serves no security.txt, no OpenID/OAuth discovery document,
+  no api-catalog, no ai-plugin manifest and no A2A agent card. Two hosts return misleading 200s:
+  manage.mailmodo.com is a single-page app whose catch-all route answers 200 with the same 7,278-byte
+  HTML shell for any /.well-known/* path, and api.mailmodo.dev returns 200 only at its root health
+  endpoint. Neither is a document, so neither counts as a hit and NO WellKnown / SecurityTxt / AgentCard
+  pointer is emitted in apis.yml.
+result: none
+hosts_probed:
+  - www.mailmodo.com
+  - api.mailmodo.com
+  - developers.mailmodo.com
+  - manage.mailmodo.com
+  - api.mailmodo.dev
+  - app.mailmodo.dev
+probes:
+  - host: www.mailmodo.com
+    path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: Next.js 404 page (HTML).
+  - host: www.mailmodo.com
+    path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - host: www.mailmodo.com
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: 'API gateway JSON error envelope: {"error":"error","message":"Some Internal Error Occurred: 404"}'
+  - host: api.mailmodo.com
+    path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - host: api.mailmodo.com
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: Stoplight-hosted docs portal; 404 body is the full SPA shell.
+  - host: developers.mailmodo.com
+    path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - host: developers.mailmodo.com
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+  - host: manage.mailmodo.com
+    path: /.well-known/security.txt
+    status: 404
+    file: null
+  - host: manage.mailmodo.com
+    path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: >-
+      FALSE POSITIVE — SPA catch-all. Returns the 7,278-byte application HTML shell
+      (Content-Type text/html), not an OpenID Provider Metadata document. Treated as a miss.
+  - host: manage.mailmodo.com
+    path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: FALSE POSITIVE — identical SPA HTML shell. Treated as a miss.
+  - host: manage.mailmodo.com
+    path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: FALSE POSITIVE — identical SPA HTML shell. Treated as a miss.
+  - host: manage.mailmodo.com
+    path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: FALSE POSITIVE — identical SPA HTML shell. Treated as a miss.
+  - host: manage.mailmodo.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - host: manage.mailmodo.com
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - host: manage.mailmodo.com
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+  - host: api.mailmodo.dev
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    note: Express default error page.
+  - host: api.mailmodo.dev
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+  - host: app.mailmodo.dev
+    path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    note: '{"error":"Not found"}'
+  - host: app.mailmodo.dev
+    path: /.well-known/agent.json
+    status: 404
+    file: null
+summary:
+  paths_probed: 36
+  documents_found: 0
+  false_positive_200s: 4
+  security_txt: false
+  openid_configuration: false
+  oauth_metadata: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+pointer_emitted: false
+pointer_note: >-
+  No WellKnown, SecurityTxt or AgentCard pointer is written to apis.yml. This file records a verified
+  ABSENCE, and a pointer would assert that Mailmodo serves a surface it does not serve.

@@ -1,0 +1,122 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://registry.npmjs.org/-/v1/search?text=mailmodo — npm scope @mailmodo, cross-checked against
+  github.com/mailmodo and each package's registry metadata endpoint on 2026-08-13.
+name: Mailmodo Packages
+description: >-
+  Mailmodo publishes its client libraries exclusively to npm under the @mailmodo scope. There are no
+  first-party packages on PyPI, RubyGems, Maven Central, NuGet, crates.io, Packagist or pkg.go.dev —
+  each registry was queried and returned no Mailmodo-authored package. The @mailmodo scope splits
+  across two product lines: the long-running mailmodo.com REST API (MCP server, MJML tool) and the
+  newer AI-native lifecycle-email product on mailmodo.dev (SDK + CLI), which is where the active
+  release cadence now sits.
+registries_checked:
+  - registry: npm
+    result: 6 packages under @mailmodo (5 first-party, 1 third-party @pipedream/mailmodo)
+  - registry: pypi
+    result: no first-party package (pypi.org/pypi/mailmodo/json -> 404)
+  - registry: rubygems
+    result: no first-party package
+  - registry: maven-central
+    result: no first-party package
+  - registry: nuget
+    result: no first-party package
+  - registry: crates.io
+    result: no first-party package
+  - registry: packagist
+    result: no first-party package
+  - registry: pkg.go.dev
+    result: no first-party package
+packages:
+  - name: '@mailmodo/sdk'
+    registry: npm
+    language: javascript
+    official: true
+    version: 2.0.4
+    published: '2026-08-12'
+    url: https://www.npmjs.com/package/@mailmodo/sdk
+    repository: https://github.com/mailmodo/sdk
+    homepage: https://mailmodo.com/docs/sdk
+    description: >-
+      Zero-dependency Node.js SDK for firing lifecycle events (track) and updating contact
+      properties (identify) to trigger automated transactional email.
+    api: mailmodo:mailmodo-events-api
+    note: >-
+      Targets the newer mailmodo.dev product surface — its documented default baseUrl is
+      https://api.mailmodo.dev, NOT the api.mailmodo.com REST API the OpenAPI specs in this repo
+      describe. Requires Node >= 18. The most recently published Mailmodo package of any kind.
+      The homepage it declares (mailmodo.com/docs/sdk) returned HTTP 404 on 2026-08-13.
+  - name: '@mailmodo/cli'
+    registry: npm
+    language: javascript
+    official: true
+    version: 1.0.16
+    published: '2026-08-12'
+    url: https://www.npmjs.com/package/@mailmodo/cli
+    repository: https://github.com/Mailmodo/mailmodo-cli
+    description: >-
+      First-party command-line tool that analyzes a product URL, generates a full lifecycle email
+      sequence with AI, and deploys it. Ships an explicit agent mode (--json / --yes).
+    bin: mailmodo
+    note: Detailed command surface captured in cli/mailmodo-cli.yml.
+  - name: '@mailmodo/mcp'
+    registry: npm
+    language: javascript
+    official: true
+    version: 0.3.0
+    published: '2025-05-20'
+    url: https://www.npmjs.com/package/@mailmodo/mcp
+    repository: https://github.com/mailmodo/mailmodo-mcp
+    description: Mailmodo MCP server for the public Mailmodo APIs (stdio transport).
+    note: >-
+      DECAY SIGNAL — last published 2025-05-20, roughly fifteen months before the @mailmodo/sdk and
+      @mailmodo/cli releases of 2026-08-12. The MCP server wraps the api.mailmodo.com REST API and
+      has not been updated for the mailmodo.dev product line. Six versions total (0.0.2 -> 0.3.0),
+      first published 2025-04-19.
+  - name: '@mailmodo/a2a'
+    registry: npm
+    language: javascript
+    official: true
+    version: 0.3.7
+    published: '2026-01-05'
+    url: https://www.npmjs.com/package/@mailmodo/a2a
+    repository: https://github.com/mailmodo/a2a-js
+    description: >-
+      Mailmodo's fork of the official Agent2Agent (A2A) JavaScript SDK, adding CommonJS support and
+      backwards-compatible TypeScript typesVersions. Implements A2A protocol v0.3.0.
+    note: >-
+      This is agent-protocol TOOLING, not a Mailmodo agent surface. Mailmodo publishes no A2A agent
+      card of its own — /.well-known/agent-card.json and /.well-known/agent.json return 404 on every
+      Mailmodo host probed (see well-known/mailmodo-well-known.yml). No AgentCard pointer is emitted.
+  - name: '@mailmodo/mjml2json'
+    registry: npm
+    language: javascript
+    official: true
+    version: 1.1.2
+    published: '2025-11-26'
+    url: https://www.npmjs.com/package/@mailmodo/mjml2json
+    repository: https://github.com/mailmodo/mjml2json
+    description: Converts an MJML email template from XML syntax to JSON.
+    bin: mjml2json
+    note: Email-authoring utility, not an API client.
+third_party:
+  - name: '@pipedream/mailmodo'
+    registry: npm
+    official: false
+    version: 0.2.0
+    published: '2026-05-29'
+    url: https://www.npmjs.com/package/@pipedream/mailmodo
+    description: Pipedream components for Mailmodo. Published by Pipedream, not Mailmodo.
+  - name: analytics-plugin-mailmodo
+    registry: npm
+    official: false
+    version: 1.0.2
+    published: '2024-03-25'
+    url: https://www.npmjs.com/package/analytics-plugin-mailmodo
+    description: Community plugin for getanalytics.io. Last published 2024-03-25.
+counts:
+  official: 5
+  third_party: 2
+  languages:
+    - javascript

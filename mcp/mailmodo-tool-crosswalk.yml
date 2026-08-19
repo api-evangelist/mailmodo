@@ -1,0 +1,170 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/mailmodo-mcp.yml (tools transcribed from github.com/mailmodo/mailmodo-mcp src/server.ts) bound
+  against the operationIds in openapi/*.yml and the provider-published specs in openapi/_original/.
+name: Mailmodo MCP -> REST Tool Crosswalk
+description: >-
+  Binds every tool and resource in Mailmodo's first-party MCP server to the OpenAPI operation that
+  backs it, so an agent can recover the real request/response contract for each tool. Mailmodo's MCP
+  server is a thin wrapper over api.mailmodo.com/api/v1 — the HTTP calls are visible in
+  src/apicalls/*.ts — so nearly every binding is direct and high confidence. The live MCP schema is
+  auth-gated (tools/list returns "No valid mmApiKey provided"), so bindings are established from the
+  provider's source plus path/verb identity, not from an introspected schema.
+
+surfaces:
+  openapi:
+    files:
+      - openapi/mailmodo-campaigns-api-openapi.yml
+      - openapi/mailmodo-contacts-api-openapi.yml
+      - openapi/mailmodo-contact-lists-api-openapi.yml
+      - openapi/mailmodo-events-api-openapi.yml
+      - openapi/mailmodo-templates-api-openapi.yml
+      - openapi/mailmodo-user-journeys-api-openapi.yml
+      - openapi/mailmodo-dynamic-form-api-openapi.yml
+      - openapi/mailmodo-repeatable-block-api-openapi.yml
+    gated: false
+  mcp:
+    url: https://mcp.app.mailmodo.com/mcp
+    gated: true
+    gate: 'HTTP 400 {"code":-32000,"message":"Bad Request: No valid mmApiKey provided"}'
+  graphql:
+    endpoint: null
+    note: Mailmodo publishes no GraphQL surface.
+
+crosswalk:
+  - tool: userDetails
+    category: contacts
+    rest:
+      - getContactDetails
+    binding: GET https://api.mailmodo.com/api/v1/getContactDetails?email=
+    confidence: high
+    note: src/apicalls/contactManagement.ts calls the same path.
+  - tool: MailmodoCampainReportTool
+    category: reporting
+    rest:
+      - getCampaignReport
+    binding: POST https://api.mailmodo.com/api/v1/campaignReports/{campaignId}
+    confidence: high
+    note: >-
+      The tool's fromDate/toDate parameters map to the report request body window in the
+      Campaign Data spec.
+  - tool: sendEvent
+    category: events
+    rest:
+      - addEvent
+    binding: POST https://api.mailmodo.com/api/v1/addEvent
+    confidence: high
+  - tool: addContactToList
+    category: contacts
+    rest:
+      - addContactToList
+    binding: POST https://api.mailmodo.com/api/v1/addToList
+    confidence: high
+  - tool: addBulkContactToList
+    category: contacts
+    rest:
+      - addContactsToListBatch
+    binding: POST https://api.mailmodo.com/api/v1/addToList/batch
+    confidence: high
+  - tool: unsubscribeContact
+    category: contacts
+    rest:
+      - unsubscribeContact
+    binding: POST https://api.mailmodo.com/api/v1/contacts/unsubscribe
+    confidence: high
+  - tool: resubscribeContact
+    category: contacts
+    rest:
+      - resubscribeContact
+    binding: POST https://api.mailmodo.com/api/v1/contacts/resubscribe
+    confidence: high
+  - tool: archiveContact
+    category: contacts
+    rest:
+      - archiveContact
+    binding: DELETE https://api.mailmodo.com/api/v1/contacts
+    confidence: high
+  - tool: removeContactFromList
+    category: contacts
+    rest:
+      - removeContactFromList
+    binding: POST https://api.mailmodo.com/api/v1/removeFromList
+    confidence: high
+  - tool: sendEmailToCampaign
+    category: campaigns
+    rest:
+      - triggerCampaign
+    binding: POST https://api.mailmodo.com/api/v1/triggerCampaign/{campaignId}
+    confidence: high
+    note: Verified in src/apicalls/sendCampaign.ts.
+  - tool: broadcastCampaignToList
+    category: campaigns
+    rest:
+      - bulkTriggerCampaign
+    binding: POST https://api.mailmodo.com/api/v1/bulktriggerCampaign/{campaignId}
+    confidence: high
+    note: Verified in src/apicalls/sendCampaign.ts.
+  - tool: 'resource: mailmodo://templates'
+    category: templates
+    rest:
+      - listTemplates
+    binding: GET https://api.mailmodo.com/api/v1/getAllTemplates
+    confidence: high
+    note: Exposed as an MCP RESOURCE, not a tool.
+  - tool: 'resource: mailmodo://campaigns'
+    category: campaigns
+    rest:
+      - listCampaigns
+    binding: GET https://api.mailmodo.com/api/v1/campaigns
+    confidence: high
+    note: Exposed as an MCP RESOURCE, not a tool.
+  - tool: 'resource: mailmodo://contact-lists'
+    category: contact-lists
+    rest:
+      - getAllContactLists
+    binding: GET https://api.mailmodo.com/api/v1/getAllContactLists
+    confidence: high
+    note: Exposed as an MCP RESOURCE, not a tool.
+
+mcp_only:
+  - tool: currentDateTime
+    reason: >-
+      Local helper computed inside the server with Intl.DateTimeFormat. No Mailmodo API call, no
+      backing REST operation. Present so an agent can resolve relative dates before building the
+      fromDate/toDate window for MailmodoCampainReportTool.
+
+rest_only:
+  - operation: post-hooks-start-journey-id
+    api: User Journeys
+    binding: POST https://api.mailmodo.com/hooks/start/{journey-id}
+    note: Adding a user to an automated journey has no MCP tool.
+  - operation: post-hooks-abort-journey-id
+    api: User Journeys
+    binding: POST https://api.mailmodo.com/hooks/abort/{journey-id}
+    note: Aborting a journey for a user has no MCP tool.
+  - operation: post-triggerCampaign-campaign-id
+    api: Dynamic Form
+    binding: POST https://api.mailmodo.com/api/v1/triggerCampaign/{campaign-id}
+    note: >-
+      Same path as sendEmailToCampaign, but the dynamic-form payload variant (a `form` object) is not
+      expressible through the MCP tool's parameter set.
+  - operation: post-triggerCampaign-campaign-id
+    api: Repeatable Block
+    binding: POST https://api.mailmodo.com/api/v1/triggerCampaign/{campaign-id}
+    note: Repeatable-block payload variant is not reachable from any MCP tool.
+  - operation: updateSubscription
+    api: Contact Management
+    binding: POST https://api.mailmodo.com/api/v1/contacts/updateSubscription
+    note: >-
+      Granular per-email-type subscription updates have no MCP tool; only the blunt
+      unsubscribe/resubscribe pair is exposed.
+
+coverage:
+  mcp_tools: 12
+  mcp_resources: 3
+  mapped_to_rest: 14
+  mcp_only: 1
+  rest_operations_total: 19
+  rest_only: 5
+  tool_coverage_of_rest: '74%'

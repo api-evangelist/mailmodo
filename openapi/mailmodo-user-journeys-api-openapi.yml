@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: User Journeys
+  version: '1.0'
+  summary: Send users to a series of emails
+  description: 'Use the API to trigger or abort the journey for a contact directly from your system.
+
+
+    Users require mmAPI key and journey id in respective cases to configure this API.
+
+
+    Follow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/204-how-to-get-the-mmapi-key-and-journey-id )'
+  x-source: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+servers:
+- url: https://api.mailmodo.com
+paths:
+  /hooks/start/{journey-id}:
+    parameters:
+    - schema:
+        type: string
+        format: uuid
+      name: journey-id
+      in: path
+      required: true
+    post:
+      summary: Add a new user to the journey
+      tags:
+      - User Journeys
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    message: string
+                properties:
+                  success:
+                    type: boolean
+                    description: 'true'
+                  message:
+                    type: string
+                    minLength: 1
+                  ref:
+                    type: string
+                    format: uuid
+                    description: Instance Id of the started journey
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: false
+                    message: string
+                properties:
+                  success:
+                    type: boolean
+                    description: 'false'
+                  message:
+                    type: string
+                    minLength: 1
+                    readOnly: true
+      operationId: post-hooks-start-journey-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: email for journey
+                  data: {}
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                  format: email
+                  writeOnly: true
+                data:
+                  type: object
+                  description: key value pairs for the personalization
+                allowDuplicateEmail:
+                  type: boolean
+                  default: false
+                  description: Set true to allow multiple instances of the journey for the same email id.
+              required:
+              - email
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+      parameters:
+      - schema:
+          type: string
+        in: header
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        name: mmApiKey
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+  /hooks/abort/{journey-id}:
+    parameters:
+    - schema:
+        type: string
+        format: uuid
+      name: journey-id
+      in: path
+      required: true
+    post:
+      summary: Abort the journey for a user
+      tags:
+      - User Journeys
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    message: The provided email is not a valid email id
+                properties:
+                  success:
+                    type: boolean
+                    description: 'true'
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: false
+                    status: error
+                    message: The provided email is not a valid email id
+                properties:
+                  success:
+                    type: boolean
+                    description: 'false'
+                    default: false
+                  message:
+                    type: string
+                    minLength: 1
+                    readOnly: true
+                required:
+                - success
+                - message
+      operationId: post-hooks-abort-journey-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: email for journey
+                  reason: reason for abort
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                  format: email
+                  example: john@example.com
+                  writeOnly: true
+                reason:
+                  type: string
+                  minLength: 1
+                  example: purchase completed
+                  description: abort reason
+                instanceId:
+                  type: string
+                  format: uuid
+                  description: Instance Id of the journey instance to be cancelled
+        description: 'Note: Either email or the instanceId should be provided to cancel the jouney'
+      parameters:
+      - schema:
+          type: string
+        in: header
+        description: application/json
+        name: Content-Type
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+components:
+  schemas: {}
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+security:
+- mmApiKey: []
+tags:
+- name: User Journeys
+  description: Send users to a series of emails

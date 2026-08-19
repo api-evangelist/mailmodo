@@ -1,0 +1,145 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api plus the
+  provider-published OpenAPI in openapi/_original/ (harvested from the Stoplight project behind
+  developers.mailmodo.com on 2026-08-13).
+name: Mailmodo API Conventions
+description: >-
+  Cross-cutting runtime semantics for the Mailmodo REST API. Mailmodo runs a deliberately small,
+  flat, RPC-flavoured API: verb-named paths under /api/v1, a single API-key header, and a uniform
+  {success, message} envelope. Several conventions an agent would normally rely on are simply not
+  published — there is no idempotency key, no pagination, no request-id header and no rate-limit
+  response header documented anywhere in the specs or the docs. Those absences are recorded here as
+  absences, not guessed at.
+
+auth:
+  style: api-key
+  transport: header
+  header: mmApiKey
+  obtain: https://manage.mailmodo.com/app/settings/apikey
+  key_format: 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX (four hyphen-separated 7-character uppercase groups)'
+  key_format_source: https://www.npmjs.com/package/@mailmodo/cli
+  scopes: false
+  oauth: false
+  rotation: >-
+    Multiple keys can be created from Settings > API Keys ("Add new API Key"), which makes rotation
+    possible, but no expiry or rotation policy is published.
+  inconsistency: >-
+    The Campaign Data spec declares mmApiKey as a QUERY parameter (in: query) while every other
+    Mailmodo spec declares it as a header. Callers hitting /api/v1/campaigns and
+    /api/v1/campaignReports/{campaignId} should follow the header form used everywhere else and
+    treat the query declaration as a spec defect.
+  detail: authentication/mailmodo-authentication.yml
+
+base_urls:
+  - url: https://api.mailmodo.com/api/v1
+    used_by: Sending Emails, Contact Management, Custom Events, Templates, Dynamic Form, Repeatable Block
+  - url: https://api.mailmodo.com
+    used_by: >-
+      User Journeys (paths are /hooks/start/{journey-id} and /hooks/abort/{journey-id}, OUTSIDE the
+      /api/v1 prefix) and Campaign Data (paths carry the /api/v1 prefix inline)
+  - url: https://api.mailmodo.dev
+    used_by: '@mailmodo/sdk 2.x — a separate product surface, not the REST API documented here'
+
+versioning:
+  style: uri-path
+  current: v1
+  pattern: https://api.mailmodo.com/api/v1/{operation}
+  spec_versions:
+    Sending Emails: '1.0'
+    User Journeys: '1.0'
+    Dynamic form: '1.0'
+    Repeatable Block: '1.0'
+    Contact Management: '1.0'
+    Custom Events: '1.0'
+    Campaign Data: '1.0.0'
+    Templates: '1.0'
+  note: >-
+    Every service has sat at 1.0 since the docs project was created in 2021. The User Journeys
+    endpoints are not versioned at all — /hooks/start/{journey-id} has no /api/v1 segment.
+  negotiation_header: null
+
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  evidence: >-
+    No Idempotency-Key header appears in any of the eight provider-published OpenAPI documents, and
+    the getting-started guide does not mention retry-safety. triggerCampaign, bulktriggerCampaign and
+    addEvent are all non-idempotent POSTs that send real email on each call.
+  agent_guidance: >-
+    Treat every send operation as at-most-once by construction: a retried triggerCampaign will send a
+    second email. The response `ref` (a UUID returned by triggerCampaign, bulktriggerCampaign and
+    addEvent) is the only correlation handle available — record it before retrying anything.
+
+pagination:
+  supported: false
+  style: none
+  evidence: >-
+    /api/v1/campaigns, /api/v1/getAllContactLists and /api/v1/getAllTemplates each return a single
+    unbounded array (campaigns[], listDetails[], templateDetails[]) with no limit/offset/cursor
+    parameter and no next-page field in the response.
+  note: >-
+    The separate @mailmodo/cli product DOES paginate (--limit up to 200, --page), but that is the
+    mailmodo.dev surface, not this REST API.
+
+field_expansion:
+  supported: false
+sparse_fields:
+  supported: false
+
+metadata:
+  supported: true
+  mechanism: >-
+    Arbitrary contact attributes are carried in a free-form `data` object on addToList and
+    triggerCampaign, and read back in the `data` object of getContactDetails. Event properties ride
+    in `event_properties` on addEvent. There is no declared key namespace, no type coercion rule and
+    no documented size limit.
+
+request_tracing:
+  request_id_header: null
+  correlation: >-
+    No request-id or trace header is documented on request or response. The only server-issued
+    identifier is the `ref` UUID in the success body of triggerCampaign, bulktriggerCampaign,
+    addEvent and hooks/start.
+
+error_envelope:
+  format: proprietary
+  rfc9457: false
+  content_type: application/json
+  shape:
+    success: boolean
+    message: string
+  example_failure: '{"success": false, "message": "The provided email is not a valid email id"}'
+  quirk: >-
+    Mailmodo returns HTTP 200 with `"success": false` for several validation failures — the Dynamic
+    Form spec's own 200 example is a FAILURE body. An agent must branch on the `success` field, not
+    on the HTTP status alone. The api.mailmodo.com gateway also emits a second, different envelope
+    for unrouted paths: {"error":"error","message":"Some Internal Error Occurred: 404"}.
+  detail: errors/mailmodo-problem-types.yml
+
+rate_limit_signaling:
+  response_headers: none-documented
+  status_on_exhaustion: undocumented
+  retry_after: undocumented
+  published_limits: >-
+    Per-second request ceilings are published on the pricing page by plan tier (5 / 10 / 50 req/s),
+    not in the API docs and not as response headers.
+  detail: rate-limits/mailmodo-rate-limits.yml
+
+content_types:
+  request: application/json
+  response: application/json
+  note: >-
+    The Contact Management spec's updateSubscription operation additionally declares application/xml
+    and multipart/form-data on its 400 response — almost certainly Stoplight scaffolding rather than
+    a real behaviour.
+
+cross_links:
+  errors: errors/mailmodo-problem-types.yml
+  lifecycle: lifecycle/mailmodo-lifecycle.yml
+  authentication: authentication/mailmodo-authentication.yml
+  rate_limits: rate-limits/mailmodo-rate-limits.yml
+  sandbox: sandbox/mailmodo-sandbox.yml

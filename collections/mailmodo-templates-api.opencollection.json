@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailmodo Campaigns Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "mmApiKey",
+      "value": "{{mmApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mailmodo.com/api/v1/getAllTemplates"
+          },
+          "docs": "Return interactive AMP email templates available on the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

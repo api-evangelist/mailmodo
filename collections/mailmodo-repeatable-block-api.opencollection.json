@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Repeatable Block",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "mmApiKey",
+      "value": "{{mmApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repeatable Block",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send email with repeatable block",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/triggerCampaign/:campaign-id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "mmApiKey",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "campaign-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows you to send data for repeatable block in the campaign.  "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

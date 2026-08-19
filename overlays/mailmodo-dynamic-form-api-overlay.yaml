@@ -1,0 +1,57 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist Overlay — Dynamic form
+  version: 1.0.0
+  x-generated: '2026-08-13'
+  x-method: generated
+  x-source: openapi/mailmodo-dynamic-form-api-openapi.yml (provider-published spec harvested from developers.mailmodo.com)
+  x-description: Captures API Evangelist enhancements on top of the provider-published Mailmodo spec. Applies cleanly
+    to the file named in extends; never mutates it.
+extends: https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/openapi/mailmodo-dynamic-form-api-openapi.yml
+actions:
+- target: $.info
+  description: Record API Evangelist provenance and the auth/idempotency facts the source spec omits.
+  update:
+    x-apis-io:
+      provider: mailmodo
+      profile: https://apis.io/provider/mailmodo/
+      harvested: '2026-08-13'
+      harvest_source: Stoplight project prj:73897 behind developers.mailmodo.com (public table-of-contents + node
+        export_url)
+      auth:
+        type: apiKey
+        in: header
+        name: mmApiKey
+        obtain: https://manage.mailmodo.com/app/settings/apikey
+      idempotency: false
+      pagination: false
+      rfc9457: false
+      error_envelope: '{"success": boolean, "message": string}'
+      warning: 'Some validation failures return HTTP 200 with "success": false. Branch on the body, not the status.'
+      rate_limits: Per-second ceilings are set by plan tier (5 / 10 / 50 req/s) and published only on https://www.mailmodo.com/pricing/.
+        No rate-limit response headers are documented.
+      sandbox: A Stoplight Prism mock exists per service; see sandbox/mailmodo-sandbox.yml. There is no test mode
+        on the live API — every successful send delivers real email.
+- target: $.info
+  description: Point at the artifacts derived from this spec.
+  update:
+    x-artifacts:
+      errors: errors/mailmodo-problem-types.yml
+      conventions: conventions/mailmodo-conventions.yml
+      authentication: authentication/mailmodo-authentication.yml
+      lifecycle: lifecycle/mailmodo-lifecycle.yml
+      data_model: data-model/mailmodo-data-model.yml
+      rate_limits: rate-limits/mailmodo-rate-limits.yml
+      mcp: mcp/mailmodo-mcp.yml
+      tool_crosswalk: mcp/mailmodo-tool-crosswalk.yml
+      skills: skills/_index.yml
+- target: $.paths['/triggerCampaign/{campaign-id}'].post
+  description: Annotate post-triggerCampaign-campaign-id with runtime semantics not present in the published spec.
+  update:
+    x-idempotent: false
+    x-undeclared-responses:
+    - '401'
+    - '403'
+    - '429'
+    - '500'
+    x-agent-note: No published contract for auth failure, rate-limit exhaustion or server error on this operation.

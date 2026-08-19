@@ -1,0 +1,416 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Sending Emails",
+        "version": "1.0",
+        "description": "Use the API to send an email template, trigger a campaign or add a contact into a list directly from your system. \n\nUsers require mmAPI key, template id and campaign id in respective cases to configure this API. \n\nFollow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/145-how-to-get-the-mmapi-key-template-id-and-campaign-id ) \n"
+    },
+    "servers": [
+        {
+            "url": "https://api.mailmodo.com/api/v1"
+        }
+    ],
+    "paths": {
+        "/triggerCampaign/{campaign-id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "campaign-id",
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "post": {
+                "summary": "Send campaign email",
+                "tags": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "x-examples": {
+                                        "example-1": {
+                                            "success": true,
+                                            "message": "Email scheduled successfully",
+                                            "ref": "be2bab1a-e0a6-419c-8fe0-1d3557c2af63"
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message"
+                                    ],
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "minLength": 1
+                                        },
+                                        "listId": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "qcwldto2a8xfi"
+                                            },
+                                            "description": "ID of the list created or updated in the API call. "
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "example-1": {
+                                        "value": {
+                                            "success": true,
+                                            "message": "Email scheduled successfully",
+                                            "ref": "be2bab1a-e0a6-419c-8fe0-1d3557c2af63"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "failure reason": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "x-examples": {
+                                        "example-1": {
+                                            "Status": "400",
+                                            "message": "other error message",
+                                            "errors": [
+                                                {
+                                                    "email": "string",
+                                                    "failure reason": "string"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-triggerCampaign-campaign-id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "x-examples": {
+                                    "example-1": {
+                                        "email": "john@example.com",
+                                        "subject": "string",
+                                        "data": {
+                                            "first_name": "string"
+                                        },
+                                        "campaign_data": {
+                                            "transient_variable": "string"
+                                        },
+                                        "addToList": "string"
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Provide email address of the contact to whom you want to send email"
+                                    },
+                                    "subject": {
+                                        "type": "string",
+                                        "description": "Send this value if you want to override the default subject line provided at the time of creating the campaign."
+                                    },
+                                    "replyTo": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "nr1lazc9stjvk"
+                                        },
+                                        "description": "Send this value if you want to override the default replyTo provided at the time of creating the campaign."
+                                    },
+                                    "fromName": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "zxnfqvdbc86pp"
+                                        },
+                                        "description": "Send this value if you want to override the default fromName provided at the time of creating the campaign."
+                                    },
+                                    "campaign_data": {
+                                        "type": "object",
+                                        "description": "Personalization parameters sent inside the \"campaign_data\" block will not be added / update against the contact profile i.e. they works as transient variables.",
+                                        "properties": {
+                                            "key": {
+                                                "type": "string",
+                                                "x-stoplight": {
+                                                    "id": "8ua30i3j3sid2"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "data": {
+                                        "type": "object",
+                                        "description": "Personalization parameters sent inside the \"data\" block will be added / update as user attributed against the contact profile.\n",
+                                        "properties": {
+                                            "key": {
+                                                "type": "string",
+                                                "x-stoplight": {
+                                                    "id": "pey6r5qid3bv3"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "addToList": {
+                                        "type": "string",
+                                        "description": "Optional parameters if you want to add users to the list as part of triggering the campaign"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "description": "The send campaign API provides two type of data blocks for sending personalization parameters aka `campaign_data` and `data`. Given below is the difference between the two:\r\n\r\n`campaign_data` - Personalization parameters sent inside the \"campaign data\" block will not be added / update against the contact profile i.e. they works as transient variables.\r\n\r\n`data`- Personalization parameters sent inside the \"data\" block will be added / update as user attributed against the contact profile.\r\n\r\n> Handling of different scenarios:\r\n>\r\n> **Data object sent, Campaign Data object not sent**\r\n>\r\n> Personalization uses values from the `data` object or contact properties (if parameter is not sent in payload)\r\n> \r\n> Update the contact profile with values from the `data` object.\r\n> \r\n> **Campaign Data object sent, Data object not sent**\r\n> \r\n> Personalization uses values from the `campaign_data` object or contact properties (if parameter is not sent in payload).\r\n>\r\n> Do not update the user profile with `campaign_data` object information.\r\n> \r\n> **Both Data and Campaign data object sent**\r\n> \r\n> If the same variable is in both, `campaign_data` object will be used.\r\n>\r\n> Use contact properties if personalization is missing from the payload.\r\n> \r\n> Update the user profile with values from the `data` object \r\n"
+                },
+                "description": "The send campaign API allows the user to trigger campaigns with personalization parameter added to the email template. To call this API, you will need the campaign id.",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "application/json",
+                        "required": true
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "mmApiKey",
+                        "description": "Please input your API key available at https://manage.mailmodo.com/app/settings/apikey",
+                        "required": true
+                    }
+                ],
+                "x-internal": false
+            }
+        },
+        "/bulktriggerCampaign/{campaign-id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "campaign-id",
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "post": {
+                "summary": "Broadcast campaign to a list",
+                "tags": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "",
+                                    "type": "object",
+                                    "x-examples": {
+                                        "example-1": {
+                                            "success": true,
+                                            "message": "Email scheduled successfully",
+                                            "ref": "be2bab1a-e0a6-419c-8fe0-1d3557c2af63"
+                                        }
+                                    },
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "minLength": 1
+                                        }
+                                    },
+                                    "required": [
+                                        "success",
+                                        "message"
+                                    ]
+                                },
+                                "examples": {
+                                    "example-1": {
+                                        "value": {
+                                            "success": true,
+                                            "message": "Email scheduled successfully",
+                                            "ref": "be2bab1a-e0a6-419c-8fe0-1d3557c2af63"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "failure reason": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "x-examples": {
+                                        "example-1": {
+                                            "Status": "400",
+                                            "message": "other error message",
+                                            "errors": [
+                                                {
+                                                    "email": "string",
+                                                    "failure reason": "string"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-bulkTriggerCampaign",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "x-examples": {
+                                    "Example 1": {
+                                        "list_id": "3e7040d1-4100-4768-8c4a-6154c3560a41",
+                                        "Subject": "This is test email",
+                                        "campaign_data": {
+                                            "first_name": "<Value for first_name>",
+                                            "personalization_text": "<Value for personalization_text>"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "listId"
+                                ],
+                                "properties": {
+                                    "listId": {
+                                        "type": "string",
+                                        "description": "Id of the contact list or segment for which campaign has to be triggered. \r\nTo get listId, use the [Get All Contact List API](https://www.mailmodo.com/developers/b96e0fec94c2b-get-all-contact-lists)"
+                                    },
+                                    "subject": {
+                                        "type": "string",
+                                        "description": "subject line of the campaign"
+                                    },
+                                    "idempotencyKey": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "2d5zxfydcils9"
+                                        },
+                                        "description": "Use idempotencyKey to trigger the same campaign multiple times to the same audience within 24 hours. By default, a campaign can't be resent to the same list within 24 hour window. The key ensures each API call is unique, even for repeated campaigns. Any unique value (e.g., a timestamp) can be used. For e.g. \"idempotencyKey\": \"2024-09-05T17:00:00Z\""
+                                    },
+                                    "campaign_data": {
+                                        "type": "object",
+                                        "description": "All personalisation parameters are sent in the campaign_data block. If no or only some of the personalisation parameters are sent, the missing parameters are fetched from the contact properties in the database and if not found it passes it as an empty string.",
+                                        "properties": {
+                                            "personalisation_parameter": {
+                                                "type": "string",
+                                                "description": "example: first_name"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "description": "For example: You can broadcast a campaign (with some personalization parameter added to the email template like Newsletter content - which is common to all users in the list) to the entire contact list using a single API request. "
+                },
+                "description": "The broadcast campaign API allows the user to trigger campaigns to the entire contact list using a single API request. To call this API, you will need the campaign id. It allows you to send a campaign with some personalisation parameters which is common to all users in the list. Once the campaign is sent, you can see the analytics for the same in the campaign dashboard. \n\nPLEASE NOTE - You will need to create a triggered campaign on the Mailmodo triggered before using this API. This API won't work for Bulk Campaign. ",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "Content-Type",
+                        "description": "application/json",
+                        "required": true
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "mmApiKey",
+                        "description": "Please input your API key available at https://manage.mailmodo.com/app/settings/apikey",
+                        "required": true
+                    }
+                ],
+                "x-internal": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {},
+        "securitySchemes": {
+            "mmApiKey": {
+                "name": "mmApiKey",
+                "type": "apiKey",
+                "in": "header",
+                "description": "Please get it from the portal"
+            }
+        }
+    },
+    "security": [
+        {
+            "mmApiKey": []
+        }
+    ],
+    "x-internal": false
+}

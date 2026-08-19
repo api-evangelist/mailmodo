@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailmodo Campaigns Events API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "mmApiKey",
+      "value": "{{mmApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a Custom Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.mailmodo.com/api/v1/addEvent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a custom user event into Mailmodo to drive journey enrollment, segmentation, and conditional logic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
