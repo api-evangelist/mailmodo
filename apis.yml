@@ -203,6 +203,8 @@ apis:
   humanURL: https://www.mailmodo.com/developers/
   baseURL: https://api.mailmodo.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
