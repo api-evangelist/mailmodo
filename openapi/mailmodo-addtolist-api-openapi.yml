@@ -1,0 +1,496 @@
+openapi: 3.2.0
+info:
+  title: Contact Management Add To List API
+  version: '1.0'
+  description: "Steps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: AddToList
+paths:
+  /addToList:
+    parameters: []
+    post:
+      summary: Add contact to a list
+      operationId: post-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+                x-examples:
+                  example-1:
+                    success: true
+                    message: The contact is successfully added/updated
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    message: string
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  email: janedoe@example.com
+                  data:
+                    first_name: Jane
+                    last_name: Doe
+                    name: Jane Doe
+                    gender: female
+                    age: 27
+                    birthday: 1222849003
+                    phone: '+19159969739'
+                    address1: 6649 N
+                    address2: Blue Gum St
+                    city: New Orleans
+                    state: Orleans
+                    country: Los Angeles
+                    postal_code: '70116'
+                    designation: Video Producer
+                    company: Pixar Technologies
+                    industry: SaaS
+                    description: Collects testimonials from customers. Likes to volunteer during weekends
+                    anniversary_date: 1632849253
+                  created_at: 1642849352
+                  last_click: 1652849851
+                  last_open: 1652849400
+                  listName: New List
+              properties:
+                email:
+                  type: string
+                  description: Email Address of the user
+                data:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      description: First name of the user
+                    last_name:
+                      type: string
+                      description: Last name of the user
+                    name:
+                      type: string
+                      description: Full name of the user
+                    gender:
+                      type: string
+                      description: Gender of the user
+                    age:
+                      type: integer
+                      description: Age of the user in numbers
+                    birthday:
+                      description: Birthdate of the user in ISO format (Can also sent as UNIX timestamp)
+                    phone:
+                      type: string
+                      description: Primary phone number of the user
+                    address1:
+                      type: string
+                      description: Line 1 of the address of the user
+                    address2:
+                      type: string
+                      description: Line 2 of the address of the user
+                    city:
+                      type: string
+                      description: Name of the city (or district, village or town) of the user
+                    state:
+                      type: string
+                      description: State, region or province of the user
+                    country:
+                      type: string
+                      description: Country of the user
+                    postal_code:
+                      type: string
+                      description: PIN/ZIP Code of the user
+                    designation:
+                      type: string
+                      description: 'Designation of the user, usually related to their position at a specific company. Example: “VP of Engineering”'
+                    company:
+                      type: string
+                      description: Company of the user
+                    industry:
+                      type: string
+                      description: Industry of the user
+                    description:
+                      type: string
+                      description: Description of the user
+                    anniversary_date:
+                      description: Anniversary date of the user in ISO format (Can also sent as UNIX timestamp)
+                created_at:
+                  description: The date and time, the user was originally created in ISO 8601 or UNIX format
+                last_click:
+                  description: The date and time of the user's last mail open in ISO 8601 or UNIX format
+                last_open:
+                  description: The date and time of the user's last mail click in ISO 8601 or UNIX format
+                listName:
+                  type: string
+                  description: Name of the list to which the user should be added
+                timezone:
+                  type: string
+                  x-stoplight:
+                    id: q3snqefb816q7
+                  description: Timezone of the user in [region format](https://support.mailmodo.com/support/solutions/articles/84000384417-supported-timezone-format-and-values-in-mailmodo)
+              required:
+              - email
+              - listName
+            examples: {}
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  data:
+                    first_name: John
+                    last_name: Doe
+                    company: ACME Inc
+                  listName: string
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                data:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      minLength: 1
+                    last_name:
+                      type: string
+                      minLength: 1
+                    company:
+                      type: string
+                      minLength: 1
+                listName:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              - listName
+          multipart/form-data:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  data:
+                    First Name: John
+                    Last Name: Doe
+                    Contact: ACME Inc
+                  listName: string
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                data:
+                  type: object
+                  required:
+                  - Contact
+                  properties:
+                    First Name:
+                      type: string
+                      minLength: 1
+                    Last Name:
+                      type: string
+                      minLength: 1
+                    Contact:
+                      type: string
+                      minLength: 1
+                listName:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              - listName
+        description: Post the necessary fields for the API to create a new user.
+      description: 'Add contacts to a list without sending an email. The list will be available at Mailmodo portal so that you can send them ad-hoc emails.
+
+
+        Numbers, Booleans, Strings and Dates (in UNIX or ISO 8601) are supported inside the data object'
+      x-internal: false
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        required: true
+        description: 'Please input your API key available at https://manage.mailmodo.com/app/settings/apikey '
+      - schema:
+          type: string
+        in: header
+      security: []
+      tags:
+      - AddToList
+  /addToList/batch:
+    parameters: []
+    post:
+      summary: Bulk add contact to a list
+      operationId: post-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    message: string
+                properties:
+                  message:
+                    type: string
+              examples:
+                Example 1:
+                  value:
+                    message: All contacts were added to the list
+                    listId: f6d0ad54-b0b1-49cc-803e-016af1b7852c
+        '207':
+          description: Multi-Status (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: string
+                  message:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        failure reason:
+                          type: string
+                  warnings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        warning:
+                          type: string
+                x-examples:
+                  example-1:
+                    Status: 207 Multi-Status
+                    message: Some contacts were not added to the list
+                    errors:
+                    - email: string
+                      failure reason: string
+                    - email: string
+                      failure reason: string
+                    - email: string
+                      failure reason: string
+                    warnings:
+                    - email: string
+                      warning: string
+                    - email: string
+                      warning: string
+                    - email: string
+                      warning: string
+              examples:
+                Example 1:
+                  value:
+                    message: Some contacts were not added to the list
+                    errors:
+                    - email: test@com
+                      failure reason: email" is invalid. Enter a valid email!
+                    - email: invalidemail.com
+                      failure reason: email" is invalid. Enter a valid email!
+                    listId: f6d0ad54-b0b1-49cc-803e-016af1b7852c
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    error: ValidationError
+                    success: false
+                    status: error
+                    message: email should be unique in values. Found duplicates for 'example@mailmodo.com'
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                Example 1:
+                  value:
+                    success: false
+                    message: Cannot add users to static segmentation list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  listName: Bulk Api Test
+                  values:
+                  - email: ritesh+bulk4@mailmodo.com
+                    data:
+                      first_name: Ritesh 4
+                  - email: ritesh+bulk4@mailmodo.com
+                    data:
+                      first_name: Ritesh 4
+              required:
+              - listName
+              properties:
+                listName:
+                  type: string
+                values:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - email
+                    properties:
+                      email:
+                        type: string
+                      data:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+            examples:
+              example-1:
+                value:
+                  listName: string
+                  values:
+                  - email: string
+                    data:
+                      first_name: string
+                  - email: string
+                    data:
+                      first_name: string
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  data:
+                    first_name: John
+                    last_name: Doe
+                    company: ACME Inc
+                  listName: string
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                data:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      minLength: 1
+                    last_name:
+                      type: string
+                      minLength: 1
+                    company:
+                      type: string
+                      minLength: 1
+                listName:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              - listName
+          multipart/form-data:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  data:
+                    First Name: John
+                    Last Name: Doe
+                    Contact: ACME Inc
+                  listName: string
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                data:
+                  type: object
+                  required:
+                  - Contact
+                  properties:
+                    First Name:
+                      type: string
+                      minLength: 1
+                    Last Name:
+                      type: string
+                      minLength: 1
+                    Contact:
+                      type: string
+                      minLength: 1
+                listName:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              - listName
+        description: Post the necessary fields for the API to create a new user. For more fields you can refer to https://www.mailmodo.com/developers/7b8b1353db9d0-add-contact-to-a-list/d0914bddd0919-add-contact-to-a-list.
+      description: "1. The bulk add to  list API provides you the ability to add multiple contacts to a list in one API call. \n2. There is a limit of adding 100 contacts in a single API call.\n3. If the contact already exists, API updates the existing contact properties in the system or else a new contact is created in the system. \n4. If some contacts are not imported successfully. Error for individual email id will be sent in the response payload.\n5. You can only make 1 call to the API at a time. So, if you are trying to make parallel API calls, you will receive an error.\n\n> Please note - contacts added to a list via the `/addToList/Batch` API will not get enrolled to the journey (where trigger is set to contact added to a list ). You will have to use `/addToList` API to enroll users to the journey."
+      x-internal: false
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        required: true
+        description: 'Please input your API key available at https://manage.mailmodo.com/app/settings/apikey '
+      security: []
+      tags:
+      - AddToList
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: ''

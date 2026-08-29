@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: Campaign Data Campaign Reports API
+  version: 1.0.0
+  description: 'Use the API to get list of campaign and engagement data for the individual campaigns.
+
+
+    Users require mmAPI key and campaign id (for individual campaign) in respective cases to configure this API.'
+servers:
+- url: https://api.mailmodo.com
+security:
+- apikeyAuth: []
+tags:
+- name: CampaignReports
+paths:
+  /api/v1/campaignReports/{campaignId}:
+    post:
+      summary: API to get summary data for an individual campaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  campaignId: 5508a05c-ff0e-4b61-9207-4c8cbffa97a3
+                  campaignType: TRIGGERED
+                  campaignName: Campaign - 26-04-2021 - 04:14
+                  status: Triggered
+                  senderEmail: rahul@mailmodo.com
+                  subjects:
+                  - Mailmodo example
+                  createdAt: '2021-04-26T10:44:51.085Z'
+                  scheduledAt: '2021-04-26T10:44:48.193Z'
+                  bounced: 0
+                  complaints: 0
+                  submission: 0
+                  unsubscribed: 0
+                  blocked: 0
+                  scheduled: 0
+                  sent: 0
+                  delivered: 0
+                  clicks: 0
+                  ampClicks: 0
+                  htmlClicks: 0
+                  ampOpens: 0
+                  htmlOpens: 0
+                  opens: 0
+              properties:
+                fromDate:
+                  type: string
+                  x-stoplight:
+                    id: lqcmjz9kq6es6
+                  description: Date in YYYY-MM-DD format
+                toDate:
+                  type: string
+                  x-stoplight:
+                    id: e7ehde18cpc21
+                  description: Date in YYYY-MM-DD format
+            examples:
+              Example 1:
+                value:
+                  fromDate: '2021-01-30'
+                  toDate: '2024-01-30'
+      parameters:
+      - name: campaignId
+        in: path
+        schema:
+          type: string
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaignId:
+                    type: string
+                  campaignType:
+                    type: string
+                  campaignName:
+                    type: string
+                  status:
+                    type: string
+                  senderEmail:
+                    type: string
+                  subjects:
+                    type: array
+                    items:
+                      type: string
+                  createdAt:
+                    type: string
+                  scheduledAt:
+                    type: string
+                  bounced:
+                    type: integer
+                  complaints:
+                    type: integer
+                  submission:
+                    type: integer
+                  unsubscribed:
+                    type: integer
+                  blocked:
+                    type: integer
+                  scheduled:
+                    type: integer
+                  sent:
+                    type: integer
+                  delivered:
+                    type: integer
+                  clicks:
+                    type: integer
+                  ampClicks:
+                    type: integer
+                  htmlClicks:
+                    type: integer
+                  ampOpens:
+                    type: integer
+                  htmlOpens:
+                    type: integer
+                  opens:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    campaignId: 5508a05c-ff0e-4b61-9207-4c8cbffa97a3
+                    campaignType: TRIGGERED
+                    campaignName: Campaign - 26-04-2021 - 04:14
+                    status: Triggered
+                    senderEmail: rahul@mailmodo.com
+                    subjects:
+                    - Mailmodo example
+                    createdAt: '2021-04-26T10:44:51.085Z'
+                    scheduledAt: '2021-04-26T10:44:48.193Z'
+                    bounced: 0
+                    complaints: 0
+                    submission: 0
+                    unsubscribed: 0
+                    blocked: 0
+                    scheduled: 0
+                    sent: 0
+                    delivered: 0
+                    clicks: 0
+                    ampClicks: 0
+                    htmlClicks: 0
+                    ampOpens: 0
+                    htmlOpens: 0
+                    opens: 0
+              example:
+                campaignId: fa0d4944-8645-46d9-b4f2-75ee9e4f86b6
+                campaignType: TRIGGERED
+                campaignName: Personalisation Campaign
+                status: Triggered
+                senderEmail: ritesh@restroid.in
+                subjects:
+                - Ignore
+                createdAt: '2021-10-06T06:18:58.099Z'
+                scheduledAt: '2021-10-06T06:18:56.667Z'
+                bounced: 0
+                complaints: 0
+                submission: 0
+                unsubscribed: 0
+                blocked: 0
+                scheduled: 0
+                sent: 0
+                delivered: 0
+                clicks: 0
+                ampClicks: 0
+                htmlClicks: 0
+                ampOpens: 0
+                htmlOpens: 0
+                opens: 0
+      description: 'API to get the summary data for an individual campaign
+
+
+        ❕This API supports Date range for Triggered and Journey campaigns only. For Bulk campaigns, it will always return full data regardless of date range.'
+      tags:
+      - CampaignReports
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: query
+x-stoplight:
+  id: a058e7501dfe7

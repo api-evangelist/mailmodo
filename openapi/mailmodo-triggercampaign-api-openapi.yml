@@ -1,0 +1,264 @@
+openapi: 3.2.0
+info:
+  title: Mailmodo Trigger Campaign API
+  version: '1.0'
+  description: 'Operations tagged TriggerCampaign across 3 of this provider''s published API definitions: mailmodo-dynamic-form-openapi.json, mailmodo-repeatable-block-openapi.json, mailmodo-sending-emails-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: TriggerCampaign
+paths:
+  /triggerCampaign/{campaign-id}:
+    parameters:
+    - schema:
+        type: string
+      name: campaign-id
+      in: path
+      required: true
+    post:
+      summary: Send email with dynamic form
+      tags:
+      - TriggerCampaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: false
+                    message: The provided email is not a valid email id
+                properties:
+                  success:
+                    type: boolean
+                    description: 'true'
+                  message:
+                    type: string
+                    minLength: 1
+              examples:
+                example-1:
+                  value:
+                    email: john@example.com
+                    subject: Sample Subject Line
+                    data: {}
+                    addToList: ''
+                    forms:
+                    - formId: form120tm57
+                      steps:
+                      - stepId: step4r57953
+                        buttonText: <p><strong>Next</strong></p>
+                        elements:
+                        - type: single-line
+                          inputType: text
+                          properties:
+                            border-color: '#5858e0'
+                            border-width: 1px
+                          elementId: element8wcnc657
+                          title: <p><strong>Name</strong></p>
+                          required: null
+                          placeholder: Your name
+                        - type: single-line
+                          inputType: text
+                          properties:
+                            border-color: '#5858e0'
+                            border-width: 1px
+                          elementId: element6tvhd658
+                          title: <p><strong>Phone Number</strong></p>
+                          required: false
+                          placeholder: '+91'
+                      - stepId: stepbnmby54
+                        buttonText: <p><strong>Submit</strong></p>
+                        elements:
+                        - type: single-select
+                          inputType: radio
+                          properties:
+                            border-color: '#5858e0'
+                            border-width: 1px
+                          elementId: element2qmq9659
+                          title: <p><strong>What is your annual income?</strong></p>
+                          required: false
+                          choices:
+                          - less than 5 lakh
+                          - less than 10 lakh
+                          - less than 15 lakh
+                        - type: date-picker
+                          properties:
+                            border-color: '#5858e0'
+                            border-width: 1px
+                          elementId: element5rbrf660
+                          title: <p><strong>What is your date of birth?</strong></p>
+                          required: false
+                      - stepId: success
+                        buttonText: Success
+                        elements:
+                        - type: success
+                          inputType: text
+                          properties:
+                            border-color: '#5858e0'
+                            border-width: 1px
+                          elementId: elementwhtdx661
+                          title: '<p style="text-align: center;">Thank you for submitting the form</p>'
+                          required: false
+                        btnRequired: true
+      operationId: post-triggerCampaign-campaign-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  subject: Sample Subject Line
+                  data: {}
+                  forms:
+                  - formId: form120tm57
+                    steps:
+                    - stepId: '10009'
+                      buttonText: Submit
+                      elements:
+                      - type: single-line
+                        inputType: text
+                        properties:
+                          border-color: '#5858e0'
+                          border-width: 1px
+                        elementId: '112'
+                        title: First question
+                        required: true
+                        placeholder: First answer
+                      - type: single-line
+                        inputType: text
+                        elementId: '113'
+                        title: Second question
+                        required: true
+                        placeholder: Second answer
+                      btnRequired: true
+                    - stepId: success
+                      buttonText: Know more
+                      elements:
+                      - type: success
+                        inputType: text
+                        properties:
+                          border-color: '#5858e0'
+                          border-width: 1px
+                        elementId: element805us8
+                        title: <p style="text-align:center;">Thank you for submitting the form</p>
+                        required: false
+                      btnRequired: true
+              properties:
+                email:
+                  type: string
+                subject:
+                  type: string
+                data:
+                  type: object
+                forms:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      formId:
+                        type: string
+                      steps:
+                        type: array
+                        items:
+                        - type: object
+                          properties:
+                            stepId:
+                              type: string
+                              description: Final stepId must be "success" message
+                            buttonText:
+                              type: string
+                            elements:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                  inputType:
+                                    type: string
+                                  properties:
+                                    type: object
+                                    properties:
+                                      border-color:
+                                        type: string
+                                      border-width:
+                                        type: string
+                                  elementId:
+                                    type: string
+                                  title:
+                                    type: string
+                                  required:
+                                    type: boolean
+                                  placeholder:
+                                    type: string
+                            btnRequired:
+                              type: boolean
+                        - type: object
+                          properties:
+                            stepId:
+                              type: string
+                            buttonText:
+                              type: string
+                            elements:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                  inputType:
+                                    type: string
+                                  properties:
+                                    type: object
+                                    properties:
+                                      border-color:
+                                        type: string
+                                      border-width:
+                                        type: string
+                                  elementId:
+                                    type: string
+                                  title:
+                                    type: string
+                                  required:
+                                    type: boolean
+                                  placeholder:
+                                    type: string
+                            btnRequired:
+                              type: boolean
+        description: Forms accept an array
+      description: This API allows you to send an email with adding form questions at the runtime.
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+    servers:
+    - url: https://api.mailmodo.com/api/v1
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: Please get it from the portal
+x-refined-from:
+- mailmodo-dynamic-form-openapi.json
+- mailmodo-repeatable-block-openapi.json
+- mailmodo-sending-emails-openapi.json
+x-stoplight:
+  id: a058e7501dfe7

@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  title: Contact Management Get Contact Details API
+  version: '1.0'
+  description: "Steps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: GetContactDetails
+paths:
+  /getContactDetails:
+    parameters: []
+    get:
+      summary: Get contact details
+      operationId: get-getContactDetails?email=gursahay@mailmodo.com
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    contactIdentifier: c6230a00-ad73-5f55-8184-fa8ef9589168
+                    email: tennisjoy19@gmail.com
+                    data:
+                      First Name: Mehak
+                      id: 9055cb5a-68fd-4c26-9e55-5cdc451fd112
+                      firstname: John
+                      subject: 'Welcome to our platform
+
+                        '
+                      listName: Hubspot list
+                      source: zapier
+                    blocked: true
+                    blockedReason: Unsubscribe Via CSV Upload
+                    unsubscribed: true
+                    unsubscribeReason: Uploaded Unsubscribe List via CSV
+                    unsubscribedEmailTypes:
+                    - Promotional
+                    - Transactional
+                properties:
+                  contactIdentifier:
+                    type: string
+                  email:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      firstname:
+                        type: string
+                      source:
+                        type: string
+                  blocked:
+                    type: boolean
+                  blockedReason:
+                    type: string
+                  unsubscribed:
+                    type: boolean
+                  unsubscribeReason:
+                    type: string
+                  unsubscribedEmailTypes:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  success:
+                    type: boolean
+                  status:
+                    type: string
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    error: ValidationError
+                    success: false
+                    status: error
+                    message: The provided email is not a valid email id
+      description: 'Retrieve the following data of a contact using the email address :
+
+
+        - email address
+
+        - unique identifier of the contact
+
+        - data object with contact properties as key:value pairs
+
+        - blocked status
+
+        - blockedReason (will be present only if the contact is blocked)
+
+        - unsubscribed status
+
+        - unsubscribedReason (will be present only if the contact is unsubscribed)
+
+        - unsubscribed email types
+
+
+        Note: Enter email address (of the contact) in the request URL.'
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      - schema:
+          type: string
+          format: email
+          enum:
+          - contactEmail
+        in: query
+        name: email
+        required: true
+        description: Enter contact email id
+      x-internal: false
+      tags:
+      - GetContactDetails
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: ''

@@ -1,0 +1,129 @@
+openapi: 3.2.0
+info:
+  title: Custom Events Add Event API
+  version: '1.0'
+  description: "## Hyper-personalize emails based on events data using the Events API\n\nUse the events data from your app or website in Mailmodo to hyper-personalize emails targeting the right audience, with right content, at the right time.\n\n> Dynamic segments + interactive emails = higher conversions\n  \n\nBoost your conversions by combining the events-based dynamic segments with Mailmodo's interactive AMP emails with just a few clicks.\n\n  \n\n### Use behavioral data to segment your audience\n\n⚡ Create audience segments based on real-time behaviors like clicks, page views, or scrolls\n\n⚡ Add or update contacts in real time and import historical data for accurate segmentation\n\n### Hyper personalize your campaigns \n\n⚡ Send interactive emails using events data with precise content personalization\n\n⚡ Create email drips for different points in the customer lifecycle\n\n### Trigger email campaigns \n\n⚡ Send email sequences and journeys with a wide range of triggers.\n\n⚡ Automate browse and cart abandonment, product recommendations, etc.\n\n\n> Need help getting started with Events API? Happy to help, [talk to us](https://meetings.hubspot.com/mailmodo/landing-pages-demo?utm_source=landing-page&utm_medium=developer-doc&utm_campaign=events-api). \n\n\nSteps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: AddEvent
+paths:
+  /addEvent:
+    parameters: []
+    post:
+      summary: Add Event
+      operationId: post-add-event
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    ref: 428ef507-ab45-4cea-8345-142d717646c3
+                properties:
+                  success:
+                    type: boolean
+                    description: Status of the event addition
+                  ref:
+                    type: string
+                    minLength: 1
+                    description: 'Reference ID for the event added '
+                required:
+                - success
+                - ref
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    message: <appropriate message sent as part of payload
+                properties:
+                  message:
+                    type: string
+                    description: Error message returned by the API call
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: testEventContact@mailmodo.com
+                  event_name: testEvent
+                  ts: 1646310059
+                  event_properties:
+                    testStringProperty1: testStringValue1
+                    testIntegerProperty1: 1
+                    testBooleanProperty1: true
+                    testStringProperty2: testStringValue2
+                    testIntegerProperty2: 2
+                    testBooleanProperty2: false
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                  description: Email address of the contact
+                event_name:
+                  type: string
+                  minLength: 1
+                  description: Name of the event
+                ts:
+                  type: number
+                  description: 'Timestamp of the occurrence of the event formatted as UNIX epoch in seconds. Ex: 1653303900. It''ll default to the current timestamp if not sent. '
+                  default: 0
+                event_properties:
+                  type: object
+                  description: 'Properties if any associated with the event. Passed as key : value pairs'
+                  properties:
+                    testStringProperty1:
+                      type: string
+                      minLength: 1
+                    testIntegerProperty1:
+                      type: number
+                    testBooleanProperty1:
+                      type: boolean
+              required:
+              - email
+              - event_name
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: "- The add event API provides you the ability to add custom events of a contact using email as an identifier\n\n- Adding events requires a POST request with a JSON payload specifying the email and the event information. \n\n- Please note that we only accept event names with type as string and event properties with types as either string, number, or boolean\n\n- One event can be sent per API call.\n\n> You can send us old events using the optional **ts** attribute which accepts the time of the occurence of the event as a UNIX timestamp. **Ex:** 1653304684 "
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      - schema:
+          type: string
+          default: application/json
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+      x-internal: false
+      tags:
+      - AddEvent
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header

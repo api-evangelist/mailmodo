@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  title: Sending Emails Bulktrigger Campaign API
+  version: '1.0'
+  description: "Use the API to send an email template, trigger a campaign or add a contact into a list directly from your system. \n\nUsers require mmAPI key, template id and campaign id in respective cases to configure this API. \n\nFollow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/145-how-to-get-the-mmapi-key-template-id-and-campaign-id ) \n"
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: BulktriggerCampaign
+paths:
+  /bulktriggerCampaign/{campaign-id}:
+    parameters:
+    - schema:
+        type: string
+      name: campaign-id
+      in: path
+      required: true
+    post:
+      summary: Broadcast campaign to a list
+      tags:
+      - BulktriggerCampaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    message: Email scheduled successfully
+                    ref: be2bab1a-e0a6-419c-8fe0-1d3557c2af63
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    message: Email scheduled successfully
+                    ref: be2bab1a-e0a6-419c-8fe0-1d3557c2af63
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: string
+                  message:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        failure reason:
+                          type: string
+                x-examples:
+                  example-1:
+                    Status: '400'
+                    message: other error message
+                    errors:
+                    - email: string
+                      failure reason: string
+      operationId: post-bulkTriggerCampaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  list_id: 3e7040d1-4100-4768-8c4a-6154c3560a41
+                  Subject: This is test email
+                  campaign_data:
+                    first_name: <Value for first_name>
+                    personalization_text: <Value for personalization_text>
+              required:
+              - listId
+              properties:
+                listId:
+                  type: string
+                  description: "Id of the contact list or segment for which campaign has to be triggered. \nTo get listId, use the [Get All Contact List API](https://www.mailmodo.com/developers/b96e0fec94c2b-get-all-contact-lists)"
+                subject:
+                  type: string
+                  description: subject line of the campaign
+                idempotencyKey:
+                  type: string
+                  x-stoplight:
+                    id: 2d5zxfydcils9
+                  description: 'Use idempotencyKey to trigger the same campaign multiple times to the same audience within 24 hours. By default, a campaign can''t be resent to the same list within 24 hour window. The key ensures each API call is unique, even for repeated campaigns. Any unique value (e.g., a timestamp) can be used. For e.g. "idempotencyKey": "2024-09-05T17:00:00Z"'
+                campaign_data:
+                  type: object
+                  description: All personalisation parameters are sent in the campaign_data block. If no or only some of the personalisation parameters are sent, the missing parameters are fetched from the contact properties in the database and if not found it passes it as an empty string.
+                  properties:
+                    personalisation_parameter:
+                      type: string
+                      description: 'example: first_name'
+        description: 'For example: You can broadcast a campaign (with some personalization parameter added to the email template like Newsletter content - which is common to all users in the list) to the entire contact list using a single API request. '
+      description: "The broadcast campaign API allows the user to trigger campaigns to the entire contact list using a single API request. To call this API, you will need the campaign id. It allows you to send a campaign with some personalisation parameters which is common to all users in the list. Once the campaign is sent, you can see the analytics for the same in the campaign dashboard. \n\nPLEASE NOTE - You will need to create a triggered campaign on the Mailmodo triggered before using this API. This API won't work for Bulk Campaign. "
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      x-internal: false
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: Please get it from the portal
+x-internal: false

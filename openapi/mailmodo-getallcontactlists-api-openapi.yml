@@ -1,0 +1,231 @@
+openapi: 3.2.0
+info:
+  title: Contact Management Get All Contact Lists API
+  version: '1.0'
+  description: "Steps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: GetAllContactLists
+paths:
+  /getAllContactLists:
+    parameters: []
+    get:
+      summary: Get all contact lists
+      tags:
+      - GetAllContactLists
+      operationId: get-getAllContatLists
+      description: "Retrieve the following data for all the lists in your Mailmodo account :\n\n- list ID \n- list name \n- list creation date and \n- contacts count"
+      x-internal: false
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: 'Please input your API key available at https://manage.mailmodo.com/app/settings/apikey '
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    listDetails:
+                    - id: 27a3594f-5a8a-41ee-96ea-2d61c562d9a4
+                      name: My Emails
+                      created_at: '2021-12-09T05:11:56.2950000Z'
+                      contacts_count: 2
+                    - id: a1a25a72-33fc-4785-8a4a-79585cfb78e9
+                      name: MIXPANEL_UTM
+                      created_at: '2022-01-14T06:55:47.9050000Z'
+                      contacts_count: 4099
+                    - id: 01aafa02-c293-47c2-8863-3f838db46e99
+                      name: MIXPANEL_allEmails
+                      created_at: '2022-01-14T06:55:48.4400000Z'
+                      contacts_count: 4099
+                    - id: b30138ca-272f-4535-af62-63e2c03e0651
+                      name: MIXPANEL_testCohort2
+                      created_at: '2022-01-14T06:56:05.9800000Z'
+                      contacts_count: 1
+                    - id: ad112944-4fb0-49f4-8935-f4cd86fb3f7a
+                      name: MIXPANEL_testCohort1
+                      created_at: '2022-01-14T06:57:09.6540000Z'
+                      contacts_count: 3
+                    - id: 4fbb1523-e81f-4a64-bdc0-4207970b099e
+                      name: MIXPANEL_Mailmodo 1
+                      created_at: '2022-01-14T06:57:19.8320000Z'
+                      contacts_count: 1
+                    - id: 96c839ee-36bd-479a-80b9-c5a50b952fd5
+                      name: MIXPANEL_cohort2
+                      created_at: '2022-01-14T06:58:53.7150000Z'
+                      contacts_count: 1
+                    - id: 9ce2ca07-a19c-49ed-a0b0-18e7962d61e4
+                      name: SHOPIFY_CONTACTS
+                      created_at: '2022-01-15T11:00:49.6870000Z'
+                    - id: b8e6e6bf-d58b-4743-99b3-5d301b434d16
+                      name: CE-2
+                      created_at: '2022-02-17T10:54:41.9420000Z'
+                      contacts_count: 0
+                    - id: dd79dcfd-7864-4f6b-acf4-0b11bc89356f
+                      name: CE-3
+                      created_at: '2022-02-17T11:24:58.5980000Z'
+                      contacts_count: 0
+                    - id: c3cb4693-2516-4962-91ba-eea10ac5e5bf
+                      name: Campaign-Testing zap flow
+                      created_at: '2022-02-21T08:41:49.9770000Z'
+                      contacts_count: 1
+                    - id: 2e454d60-e16a-47ce-8252-1c1205973e32
+                      name: Custom Event New Contacts
+                      created_at: '2022-02-22T10:12:11.3830000Z'
+                      contacts_count: 0
+                    - id: 45001c98-7bcb-4720-81c3-23df87fc87e5
+                      name: testEventOccuredAtLeastOnce
+                      created_at: '2022-02-22T10:19:22.5030000Z'
+                      contacts_count: 4
+                    - id: 1b0cf34b-fc4b-49d2-9205-cb2e8037551b
+                      name: testEventOccuredOnceBetweenDates
+                      created_at: '2022-02-22T11:16:22.1870000Z'
+                      contacts_count: 1
+                    - id: 9e8487ee-c309-468e-afe9-3473912069e8
+                      name: testEvent2OccuredAtleast1TimeWithBoolPropTRUE
+                      created_at: '2022-02-23T00:43:38.0520000Z'
+                      contacts_count: 0
+                    - id: 445a1990-353c-4096-804e-580202b0b551
+                      name: Test Event 2 Occurred At least 1 Time Where Integer Property Equal to 1
+                      created_at: '2022-02-23T00:50:23.7580000Z'
+                      contacts_count: 5
+                    - id: dde65871-d885-4d6a-ae2a-e617971ac550
+                      name: Test Between Dates Segment
+                      created_at: '2022-02-23T01:04:07.9690000Z'
+                      contacts_count: 3
+                    - id: ca10d5ab-cda7-43e0-9358-04c318460525
+                      name: 'Test Between '
+                      created_at: '2022-02-23T01:13:34.2290000Z'
+                      contacts_count: 4
+                    - id: 504f4b9a-ab33-4ce6-bf69-a66e9422d066
+                      name: Test Combination 1
+                      created_at: '2022-02-23T01:32:20.4630000Z'
+                      contacts_count: 1
+                    - id: fb909bca-1ad2-471c-9a1c-71ee15161713
+                      name: Test Combination 2
+                      created_at: '2022-02-23T01:33:02.1290000Z'
+                      contacts_count: 1
+                    - id: e3f394c0-03cf-4e3d-b74f-10839409b418
+                      name: Test Combination 3
+                      created_at: '2022-02-23T01:33:48.0390000Z'
+                      contacts_count: 0
+                    - id: d9009c1e-7ab8-4ea1-ab6f-08a09beb2df0
+                      name: Test Combination 4
+                      created_at: '2022-02-23T01:34:24.5200000Z'
+                      contacts_count: 0
+                    - id: 11cef6ce-c898-43b6-acd6-25a6467bffb1
+                      name: Test Combination 5
+                      created_at: '2022-02-23T01:35:00.7200000Z'
+                      contacts_count: 2
+                    - id: 8af6c5a3-6ed6-4d5a-b9de-1f40823fa3a1
+                      name: Test Combination 6
+                      created_at: '2022-02-23T01:35:32.1350000Z'
+                      contacts_count: 5
+                    - id: 1c1e5b00-d862-4b93-a0af-40d1df33271d
+                      name: Test Combination 7
+                      created_at: '2022-02-23T01:36:37.0640000Z'
+                      contacts_count: 0
+                    - id: 1f8ff551-2f40-4944-bd5a-f47a4daf1511
+                      name: Test Between Dates
+                      created_at: '2022-02-24T01:36:23.7950000Z'
+                      contacts_count: 4
+                    - id: 9954da9a-4522-4fc3-8f5f-3d2b69377856
+                      name: Test Betqween Dates
+                      created_at: '2022-02-24T01:38:50.5960000Z'
+                      contacts_count: 4
+                    - id: 56640a1a-0fac-415a-8cd8-e6ff9486a054
+                      name: cevent-test-boolean
+                      created_at: '2022-02-28T07:08:14.9310000Z'
+                      contacts_count: 1
+                    - id: ac8c752a-1a77-4762-a234-968a63912571
+                      name: cevent-test-b/w dates
+                      created_at: '2022-02-28T07:48:54.1020000Z'
+                      contacts_count: 1
+                    - id: 3fade3fd-7e5c-4ce8-80a7-1cfd498ab641
+                      name: Test Count
+                      created_at: '2022-03-01T17:14:30.7280000Z'
+                      contacts_count: 3
+                    - id: 0453d43f-78f6-4c9e-8e44-b952c1a5f0df
+                      name: 'Users who have purchased an order at least two times between Jan 1, 2022 and Feb 28, 2022 where order amount is greater than 1000 '
+                      created_at: '2022-03-03T20:27:32.9620000Z'
+                    - id: 27ece3cc-c79b-4964-b550-8c77cd8481fe
+                      name: Order purchased at least 2 times between Jan 1 and Feb 28 where Order Amount > 1000
+                      created_at: '2022-03-03T20:30:45.0480000Z'
+                    - id: 2532b6a2-f953-4338-853f-19a2ca119dd6
+                      name: Sample
+                      created_at: '2022-03-04T08:40:46.8900000Z'
+                      contacts_count: 281
+                    - id: 9afab8cd-571c-4820-8b2d-050d09f8717f
+                      name: Mumbai Users
+                      created_at: '2022-03-04T08:46:13.5570000Z'
+                      contacts_count: 281
+                    - id: 7d23c5bb-0f7a-4a49-874a-567a6c15d7fc
+                      name: campaign activity and custom event
+                      created_at: '2022-03-04T17:43:00.7220000Z'
+                      contacts_count: 0
+                    - id: 91502428-5700-4056-a88b-1a47d807f87e
+                      name: user activity and shopify
+                      created_at: '2022-03-04T18:03:21.0610000Z'
+                      contacts_count: 0
+                    - id: 4f994367-550d-4d94-9361-71fbd4315c29
+                      name: campaign and shopify
+                      created_at: '2022-03-06T17:13:12.6800000Z'
+                      contacts_count: 0
+                    - id: 589c8718-31cc-4b04-8d2a-5946650239bb
+                      name: Sa
+                      created_at: '2022-03-08T06:39:39.9830000Z'
+                      contacts_count: 0
+                    - id: 3aa72a43-ccac-40bd-8672-d570720d3a80
+                      name: delete-me-1
+                      created_at: '2022-03-16T07:13:39.1270000Z'
+                      contacts_count: 0
+                    - id: a1b4e2c5-5036-4abc-887a-46ed9680ca5a
+                      name: string
+                      created_at: '2022-03-20T05:46:00.0670000Z'
+                      contacts_count: 1
+                    - id: d0bf1713-ab69-4b64-8e2e-62f00985136b
+                      name: John
+                      created_at: '2022-03-20T05:47:12.9250000Z'
+                      contacts_count: 1
+                properties:
+                  listDetails:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                          description: Unique identifier for the list
+                        name:
+                          type: string
+                          minLength: 1
+                          description: Name of the list
+                        created_at:
+                          type: string
+                          minLength: 1
+                          description: Timestamp of the list creation date
+                        contacts_count:
+                          type: number
+                          description: Count of contacts in the list
+              examples: {}
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: ''

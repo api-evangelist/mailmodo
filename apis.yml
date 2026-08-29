@@ -321,18 +321,16 @@ apis:
       https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json
   - type: RateLimits
     url: https://www.mailmodo.com/pricing/
-- aid: mailmodo:mailmodo-user-journeys-api
-  name: Mailmodo User Journeys API
-  description: Add a contact to an automated email journey, or abort that journey for a contact
-  humanURL: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+- aid: mailmodo:mailmodo-addevent-api
+  name: Mailmodo Add Event API
+  description: The AddEvent API from Mailmodo — 1 operation(s) for addevent.
+  humanURL: https://www.mailmodo.com/developers/
   baseURL: https://api.mailmodo.com
   tags:
-  - Journeys
+  - AddEvent
   properties:
   - type: OpenAPI
-    url: openapi/mailmodo-user-journeys-api-openapi.yml
-  - type: Overlay
-    url: overlays/mailmodo-user-journeys-api-overlay.yaml
+    url: openapi/mailmodo-addevent-api-openapi.yml
   - type: Documentation
     url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
   - type: APIReference
@@ -341,47 +339,215 @@ apis:
     url: authentication/mailmodo-authentication.yml
   - type: Sandbox
     url: sandbox/mailmodo-sandbox.yml
-- aid: mailmodo:mailmodo-dynamic-form-api
-  name: Mailmodo Dynamic Form API
-  description: Trigger a campaign whose AMP email carries a form generated at runtime from the request payload
-  humanURL: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
-  baseURL: https://api.mailmodo.com
-  tags:
-  - Dynamic Form
-  properties:
-  - type: OpenAPI
-    url: openapi/mailmodo-dynamic-form-api-openapi.yml
-  - type: Overlay
-    url: overlays/mailmodo-dynamic-form-api-overlay.yaml
   - type: Documentation
     url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
-  - type: APIReference
-    url: https://developers.mailmodo.com/
-  - type: Authentication
-    url: authentication/mailmodo-authentication.yml
-  - type: Sandbox
-    url: sandbox/mailmodo-sandbox.yml
-- aid: mailmodo:mailmodo-repeatable-block-api
-  name: Mailmodo Repeatable Block API
-  description: Trigger a campaign whose AMP email repeats a content block once per item in the payload
-  humanURL: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
-  baseURL: https://api.mailmodo.com
-  tags:
-  - Repeatable Block
-  properties:
-  - type: OpenAPI
-    url: openapi/mailmodo-repeatable-block-api-openapi.yml
-  - type: Overlay
-    url: overlays/mailmodo-repeatable-block-api-overlay.yaml
   - type: Documentation
     url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-addtolist-api
+  name: Mailmodo Add To List API
+  description: The AddToList API from Mailmodo — 2 operation(s) for addtolist.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - AddToList
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-addtolist-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
   - type: APIReference
     url: https://developers.mailmodo.com/
   - type: Authentication
     url: authentication/mailmodo-authentication.yml
   - type: Sandbox
     url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-bulktriggercampaign-api
+  name: Mailmodo Bulktrigger Campaign API
+  description: The BulktriggerCampaign API from Mailmodo — 1 operation(s) for bulktriggercampaign.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - BulktriggerCampaign
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-bulktriggercampaign-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-campaignreports-api
+  name: Mailmodo Campaign Reports API
+  description: The CampaignReports API from Mailmodo — 1 operation(s) for campaignreports.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - CampaignReports
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-campaignreports-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-getallcontactlists-api
+  name: Mailmodo Get All Contact Lists API
+  description: The GetAllContactLists API from Mailmodo — 1 operation(s) for getallcontactlists.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - GetAllContactLists
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-getallcontactlists-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-getalltemplates-api
+  name: Mailmodo Get All Templates API
+  description: The GetAllTemplates API from Mailmodo — 1 operation(s) for getalltemplates.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - GetAllTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-getalltemplates-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-getcontactdetails-api
+  name: Mailmodo Get Contact Details API
+  description: The GetContactDetails API from Mailmodo — 1 operation(s) for getcontactdetails.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - GetContactDetails
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-getcontactdetails-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-hooks-api
+  name: Mailmodo Hooks API
+  description: The Hooks API from Mailmodo — 2 operation(s) for hooks.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - Hooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-hooks-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-removefromlist-api
+  name: Mailmodo Remove From List API
+  description: The RemoveFromList API from Mailmodo — 1 operation(s) for removefromlist.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - RemoveFromList
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-removefromlist-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
+- aid: mailmodo:mailmodo-triggercampaign-api
+  name: Mailmodo Trigger Campaign API
+  description: The TriggerCampaign API from Mailmodo — 1 operation(s) for triggercampaign.
+  humanURL: https://www.mailmodo.com/developers/
+  baseURL: https://api.mailmodo.com
+  tags:
+  - TriggerCampaign
+  properties:
+  - type: OpenAPI
+    url: openapi/mailmodo-triggercampaign-api-openapi.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
+  - type: APIReference
+    url: https://developers.mailmodo.com/
+  - type: Authentication
+    url: authentication/mailmodo-authentication.yml
+  - type: Sandbox
+    url: sandbox/mailmodo-sandbox.yml
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
+  - type: Documentation
+    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
 common:
+  - type: Overlay
+    url: overlays/mailmodo-user-journeys-api-overlay.yaml
+  - type: Overlay
+    url: overlays/mailmodo-dynamic-form-api-overlay.yaml
+  - type: Overlay
+    url: overlays/mailmodo-repeatable-block-api-overlay.yaml
   - type: IssueTracker
     url: https://github.com/mailmodo/mailmodo-mcp/issues
   - type: Releases

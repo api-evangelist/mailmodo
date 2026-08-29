@@ -1,20 +1,412 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Mailmodo Campaigns Contacts API
-  description: Mailmodo is an AI-powered interactive email marketing and automation platform. Its public REST API enables developers to manage contacts and contact lists, trigger transactional and broadcast campaigns built from AMP-for-Email templates, send custom events into journeys, list templates and campaigns, and fetch campaign reports. All requests are authenticated via an API key issued from the Mailmodo dashboard (Settings -> API Keys) and passed in the `mmApiKey` HTTP header.
-  version: 1.0.0
-  contact:
-    name: Mailmodo
-    url: https://www.mailmodo.com/developers/
+  title: Mailmodo Contacts API
+  version: '1.0'
+  description: 'Operations tagged Contacts across 2 of this provider''s published API definitions: mailmodo-contact-management-openapi.json, mailmodo-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
+- url: https://api.mailmodo.com/api/v1
 - url: https://api.mailmodo.com
   description: Production
-security:
-- ApiKeyAuth: []
 tags:
 - name: Contacts
-  description: Add, remove, archive, unsubscribe, resubscribe, and look up contacts
 paths:
+  /contacts/unsubscribe:
+    parameters: []
+    post:
+      summary: Suppress/unsubscribe a contact
+      operationId: post-contacts-unsubscribe
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+                x-examples:
+                  example-1:
+                    success: true
+                    message: The contact is successfully added/updated
+              examples: {}
+        ? ''
+        : description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+                x-examples:
+                  example-1:
+                    success: true
+                    message: The email ID is already present in the suppression list.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: testEventContact9@mailmodo.com
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                  description: Email address of the contact to be suppressed/unsubscribed
+              required:
+              - email
+            examples: {}
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  email: john@example.com
+                  data:
+                    first_name: John
+                    last_name: Doe
+                    company: ACME Inc
+                  listName: string
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                data:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      minLength: 1
+                    last_name:
+                      type: string
+                      minLength: 1
+                    company:
+                      type: string
+                      minLength: 1
+                listName:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              - listName
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+              required:
+              - email
+              x-examples:
+                example-1:
+                  email: testEventContact9@mailmodo.com
+        description: ''
+      description: Suppressing/unsubscribing a contact will add them to the suppression list and they will not receive any further communication from you
+      x-internal: false
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+        in: header
+        name: Content-Type
+        description: application/json
+        required: true
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        required: true
+        description: 'Please input your API key available at https://manage.mailmodo.com/app/settings/apikey '
+      tags:
+      - Contacts
+      security:
+      - mmApiKey: []
+    servers:
+    - url: https://api.mailmodo.com/api/v1
+  /contacts/updateSubscription:
+    parameters: []
+    post:
+      summary: Update Subscription
+      description: '- Resubscribe or unsubscribe contact from email type(s).
+
+        - If the contact is completely unsubscribed (from all email types), then this API won''t be applicable.
+
+        - Use Resubscribe API to revert complete unsubscription.'
+      operationId: ''
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  email: ''
+                  reSubscribeTo: []
+                  unsubscribeFrom: []
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                  description: Email address of the contact whose subscription status is to be updated
+                reSubscribeTo:
+                  type: array
+                  description: Enter email type(s) to which the contact will be resubscribed
+                  items:
+                    type: string
+                    example: Promotional
+                unsubscribeFrom:
+                  type: array
+                  description: Enter email type(s) from which contact will be unsubcribed
+                  items:
+                    type: string
+                    example: Transactional
+              required:
+              - email
+              - reSubscribeTo
+              - unsubscribeFrom
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    message: Subscription update is successful
+                    currentUnsubscribedEmailTypes: []
+                properties:
+                  message:
+                    type: string
+                    example: Subscription update is successful
+                    minLength: 1
+                  currentUnsubscribedEmailTypes:
+                    type: array
+                    items:
+                      type: string
+                      example: Promotional
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    message: 'Invalid channels found: cricket. Please choose a correct channel'
+                    validChannels:
+                    - Promotional
+                    - Transactional
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid channels found: cricket. Please choose a correct channel'
+                  validChannels:
+                    type: array
+                    items:
+                      type: string
+                      minLength: 0
+                      example: Promotional,Transactional
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                exampl:
+                  value: '[object Object]'
+                example-1:
+                  value: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - Contacts
+      security:
+      - mmApiKey: []
+    servers:
+    - url: https://api.mailmodo.com/api/v1
+  /contacts/resubscribe:
+    parameters: []
+    post:
+      summary: Resubscribe contact
+      description: '- Use this API to resubscribe a suppressed(unsubscribed) contact.'
+      operationId: ''
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+        in: header
+        name: Content-Type
+        required: true
+        description: application/json
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              x-examples:
+                example-1:
+                  email: deena24@mailmodo.com
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              x-examples:
+                example-1:
+                  email: gursahay24@gmail.com
+        description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: The email ID is successfully Subscribed
+      x-internal: false
+      tags:
+      - Contacts
+      security:
+      - mmApiKey: []
+    servers:
+    - url: https://api.mailmodo.com/api/v1
+  /contacts:
+    parameters: []
+    delete:
+      summary: Archive an exising contact
+      operationId: delete
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                - success
+                - message
+                x-examples:
+                  example-1:
+                    success: true
+                    message: The contact is successfully deleted
+          headers: {}
+        '400':
+          description: Email address doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      description: Use this API to archive a contact using email ID. For more details, check out our documentation on [how to archive contacts in Mailmodo](https://support.mailmodo.com/support/solutions/articles/84000379892-how-to-archive-contacts-in-mailmodo-)
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+        in: header
+        name: Content-Type
+        description: application/json
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  email: avneesh+mcptest@mailmodo.com
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  description: Email address of the contact which you want to delete.
+            examples:
+              Example 1:
+                value:
+                  email: example@mailmodo.com
+        description: ''
+      x-internal: false
+      x-stoplight:
+        id: 24y96t8rbfi17
+      tags:
+      - Contacts
+      security:
+      - mmApiKey: []
+    servers:
+    - url: https://api.mailmodo.com/api/v1
   /api/v1/addToList:
     post:
       tags:
@@ -35,6 +427,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/addToList/batch:
     post:
       tags:
@@ -55,6 +452,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/removeFromList:
     post:
       tags:
@@ -84,6 +486,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/contacts/unsubscribe:
     post:
       tags:
@@ -110,6 +517,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/contacts/resubscribe:
     post:
       tags:
@@ -136,6 +548,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/contacts:
     delete:
       tags:
@@ -157,6 +574,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddContactResponse'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
   /api/v1/getContactDetails:
     get:
       tags:
@@ -178,8 +600,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Contact'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.mailmodo.com
+      description: Production
 components:
   schemas:
+    AddContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
     AddContactsBatchRequest:
       type: object
       required:
@@ -231,19 +668,19 @@ components:
           type: object
           additionalProperties: true
           description: Optional custom attributes used for personalization and segmentation
-    AddContactResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-        data:
-          type: object
-          additionalProperties: true
   securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: ''
     ApiKeyAuth:
       type: apiKey
       in: header
       name: mmApiKey
       description: API key issued from the Mailmodo dashboard at https://manage.mailmodo.com/app/settings/apikey. Sent as the `mmApiKey` request header on every call.
+x-refined-from:
+- mailmodo-contact-management-openapi.json
+- mailmodo-openapi.yml
+x-stoplight:
+  id: a058e7501dfe7

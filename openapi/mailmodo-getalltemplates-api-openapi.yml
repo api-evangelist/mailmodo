@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  title: Get All Templates API
+  version: '1.0'
+  description: Get a list of all templates and export it to your software stack.
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: GetAllTemplates
+paths:
+  /getAllTemplates:
+    parameters: []
+    get:
+      summary: Get All Templates
+      operationId: get-getAllTemplates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    templateDetails:
+                    - id: string
+                      name: string
+                      created_at: string
+                      updated_at: string
+                      format: string
+                      type: string
+                      thumbnail_url: string
+                      created_by: string
+                      state: string
+                      is_uploaded: string
+                properties:
+                  templateDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: ID of the template
+                        name:
+                          type: string
+                          description: Name of the template
+                        created_at:
+                          type: string
+                          description: Date & Time in ISO when template was created
+                        updated_at:
+                          type: string
+                          description: Date & Time in ISO when template was last updated
+                        format:
+                          type: string
+                          description: AMP or HTML
+                        thumbnail_url:
+                          type: string
+                          description: This will be an open url to the thumbnail image so that it can be embedded in any page.
+                        type:
+                          type: string
+                          description: email type specified at the time of creation i.e. promotional, transactional, etc.
+                        personalization_data:
+                          type: array
+                          x-stoplight:
+                            id: 4eqiqzkkb3rpf
+                          description: List of personalization parameters which were used in the template.
+                          items: {}
+                        created_by:
+                          type: string
+                          description: email address or user id of the person creating the template.
+                        state:
+                          type: string
+                          description: Archive or Active
+                        is_uploaded:
+                          type: string
+                          description: Yes or No
+              examples:
+                Example 1:
+                  value:
+                    templateDetails:
+                    - id: string
+                      name: string
+                      created_at: string
+                      updated_at: string
+                      format: string
+                      thumbnail_url: string
+                      type: string
+                      personalization_data:
+                      - string
+                      - string
+                      created_by: string
+                      state: string
+                      is_uploaded: string
+                Example 2:
+                  value:
+                    templateDetails:
+                    - id: e4e792a7-989b-40c3-b3fe-08a092ba0892
+                      name: Product Update
+                      created_at: '2022-02-23T10:22:28.531Z'
+                      updated_at: '2022-03-17T03:06:45.181Z'
+                      format: AMP
+                      type: Promotional
+                      personalization_data: []
+                      thumbnail_url: https://mmstorageprod1.blob.core.windows.net/templates/4a87cad6-6c73-49c7-812e-f9023d47be0d/e4e792a7-989b-40c3-b3fe-08a092ba0892/thumbnail.png
+                      created_by: 4a87cad6-6c73-49c7-812e-f9023d47be0d
+                      state: Active
+                      is_uploaded: false
+                    - id: 84c49a9b-26a7-4465-bc12-b50bf1e7e20f
+                      name: Welcome Email Template
+                      created_at: '2025-05-05T02:52:52.366Z'
+                      updated_at: '2025-05-05T02:52:59.707Z'
+                      format: HTML
+                      type: Promotional
+                      personalization_data:
+                      - ${first_name}
+                      thumbnail_url: https://mmstoragedebug.blob.core.windows.net/templates/eef5dae5-8f18-4abd-957b-4b2041be1961/84c49a9b-26a7-4465-bc12-b50bf1e7e20f/thumbnail.png
+                      created_by: eef5dae5-8f18-4abd-957b-4b2041be1961
+                      state: Active
+                      is_uploaded: false
+      description: The Get All Templates API returns the list of all templates and their metadata like template name, category, etc., for all active templates in that user account on the Mailmodo platform.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: 'The API gives us details like id, name, created and updated dates, format, email type, thumbnail url, created by, state and uploaded status.
+
+
+          '
+      parameters:
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      tags:
+      - GetAllTemplates
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+x-stoplight:
+  id: shonrvhb4jw5u

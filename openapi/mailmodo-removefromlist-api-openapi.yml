@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: Contact Management Remove From List API
+  version: '1.0'
+  description: "Steps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+servers:
+- url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: RemoveFromList
+paths:
+  /removeFromList:
+    parameters: []
+    post:
+      summary: Remove contact from a list
+      description: '- Use this API to remove a contact from a list'
+      operationId: ''
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+        in: header
+        name: Content-Type
+        description: application/json
+      - schema:
+          type: string
+        in: header
+        name: mmApiKey
+        description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  email: example@domain.com
+                  listName: My Emails
+              properties:
+                email:
+                  type: string
+                  description: Email address of the contact
+                listName:
+                  type: string
+                  description: Name of the list from which the contact needs to be removed
+              required:
+              - email
+              - listName
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              x-examples:
+                example-1:
+                  email: gursahay24@gmail.com
+          text/html:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  email: example@domain.com
+                  listName: Name of the list
+              properties:
+                email:
+                  type: string
+                  description: Email address to be removed from the list
+                listName:
+                  type: string
+                  description: Name of the list from which the Email address should the correct
+              required:
+              - email
+              - listName
+        description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: The email ID is successfully Subscribed
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: list does not exists
+        ? ''
+        : content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: User has been successfully removed from list
+          description: OK
+      x-internal: false
+      tags:
+      - RemoveFromList
+components:
+  securitySchemes:
+    mmApiKey:
+      name: mmApiKey
+      type: apiKey
+      in: header
+      description: ''

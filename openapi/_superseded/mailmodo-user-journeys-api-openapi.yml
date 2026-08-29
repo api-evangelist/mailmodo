@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: User Journeys
+  title: User Journeys API
   version: '1.0'
   summary: Send users to a series of emails
   description: 'Use the API to trigger or abort the journey for a contact directly from your system.
@@ -13,6 +13,11 @@ info:
   x-source: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
 servers:
 - url: https://api.mailmodo.com
+security:
+- mmApiKey: []
+tags:
+- name: User Journeys
+  description: Send users to a series of emails
 paths:
   /hooks/start/{journey-id}:
     parameters:
@@ -212,14 +217,8 @@ paths:
         description: Please input your API key available at https://manage.mailmodo.com/app/settings/apikey
         required: true
 components:
-  schemas: {}
   securitySchemes:
     mmApiKey:
       name: mmApiKey
       type: apiKey
       in: header
-security:
-- mmApiKey: []
-tags:
-- name: User Journeys
-  description: Send users to a series of emails

@@ -1,13 +1,24 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Repeatable Block
+  title: Repeatable Block API
   version: '1.0'
   description: "Use repeatable block to personalise content for your users.  \n\nYou can personalise content in your newsletters, product recommendation emails, receipts, invoices, etc. \n\nHow to setup repeatable block in the editor?\n\n1. Personalise block elements with relevant attributes.\n2. Switch on the repeatable block option. \n3. Copy block id to use in the configuration. \n4. Preview and test the email.  \n\nYou would require mmAPI key, campaign id, block id to configure this API. Follow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/162-how-to-get-the-mmapi-key-campaign-id-and-block-id )"
   x-source: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
 servers:
 - url: https://api.mailmodo.com/api/v1
+security:
+- mmApiKey: []
+tags:
+- name: Repeatable Block
+  description: 'Use repeatable block to personalise content for your users.  '
 paths:
   /triggerCampaign/{campaign-id}:
+    parameters:
+    - schema:
+        type: string
+      name: campaign-id
+      in: path
+      required: true
     post:
       summary: Send email with repeatable block
       operationId: post-triggerCampaign-campaign-id
@@ -151,21 +162,9 @@ paths:
         required: true
       tags:
       - Repeatable Block
-    parameters:
-    - schema:
-        type: string
-      name: campaign-id
-      in: path
-      required: true
 components:
-  schemas: {}
   securitySchemes:
     mmApiKey:
       name: mmApiKey
       type: apiKey
       in: header
-security:
-- mmApiKey: []
-tags:
-- name: Repeatable Block
-  description: 'Use repeatable block to personalise content for your users.  '
