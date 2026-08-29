@@ -7,6 +7,20 @@ description: >-
   platform layers AI assistance on top of campaigns, journeys, segmentation, and analytics, and exposes a REST API for
   contact management, transactional sends, broadcast and bulk triggers, custom event ingestion, and campaign reporting.
 type: Index
+deliveryModel:
+  model: open-core
+  license: GPL-3.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
