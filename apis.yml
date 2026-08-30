@@ -393,6 +393,8 @@ apis:
   humanURL: https://www.mailmodo.com/developers/
   baseURL: https://api.mailmodo.com
   tags:
+  - Campaign Reports
+  tags_raw:
   - CampaignReports
   properties:
   - type: OpenAPI
