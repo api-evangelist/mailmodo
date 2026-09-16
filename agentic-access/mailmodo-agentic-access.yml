@@ -1,20 +1,222 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/mailmodo-openapi.yml
+source: openapi/mailmodo-addevent-api-openapi.yml, openapi/mailmodo-addtolist-api-openapi.yml,
+  openapi/mailmodo-bulktriggercampaign-api-openapi.yml, openapi/mailmodo-campaigns-api-openapi.yml,
+  openapi/mailmodo-contact-lists-api-openapi.yml, openapi/mailmodo-contacts-api-openapi.yml,
+  openapi/mailmodo-events-api-openapi.yml, openapi/mailmodo-getallcontactlists-api-openapi.yml,
+  openapi/mailmodo-getalltemplates-api-openapi.yml, openapi/mailmodo-getcontactdetails-api-openapi.yml,
+  openapi/mailmodo-hooks-api-openapi.yml, openapi/mailmodo-removefromlist-api-openapi.yml, openapi/mailmodo-templates-api-openapi.yml,
+  openapi/mailmodo-triggercampaign-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 14
+  operations: 29
   by_action_class:
-    acting: 10
-    connected: 4
+    acting: 22
+    connected: 7
   by_consequence:
-    write: 9
-    read: 4
-    physical: 1
+    write: 20
+    read: 7
+    physical: 2
   human_in_the_loop_required: 0
 operations:
+- path: /addEvent
+  method: post
+  operationId: post-add-event
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /addToList
+  method: post
+  operationId: post-user
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /addToList/batch
+  method: post
+  operationId: post-user
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /bulktriggerCampaign/{campaign-id}
+  method: post
+  operationId: post-bulkTriggerCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/triggerCampaign/{campaignId}
+  method: post
+  operationId: triggerCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/bulktriggerCampaign/{campaignId}
+  method: post
+  operationId: bulkTriggerCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/campaigns
+  method: get
+  operationId: listCampaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/campaignReports/{campaignId}
+  method: post
+  operationId: getCampaignReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/getAllContactLists
+  method: get
+  operationId: getAllContactLists
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /contacts/unsubscribe
+  method: post
+  operationId: post-contacts-unsubscribe
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /contacts/updateSubscription
+  method: post
+  operationId: postContactsUpdateSubscription
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /contacts/resubscribe
+  method: post
+  operationId: postContactsResubscribe
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /contacts
+  method: delete
+  operationId: delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v1/addToList
   method: post
   operationId: addContactToList
@@ -121,9 +323,27 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/getAllContactLists
+- path: /api/v1/addEvent
+  method: post
+  operationId: addEvent
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /getAllContactLists
   method: get
-  operationId: getAllContactLists
+  operationId: get-getAllContatLists
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -131,9 +351,29 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/triggerCampaign/{campaignId}
+- path: /getAllTemplates
+  method: get
+  operationId: get-getAllTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /getContactDetails
+  method: get
+  operationId: get-getContactDetails?email=gursahay@mailmodo.com
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /hooks/start/{journey-id}
   method: post
-  operationId: triggerCampaign
+  operationId: post-hooks-start-journey-id
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -147,9 +387,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/bulktriggerCampaign/{campaignId}
+- path: /hooks/abort/{journey-id}
   method: post
-  operationId: bulkTriggerCampaign
+  operationId: post-hooks-abort-journey-id
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -163,19 +403,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/campaigns
-  method: get
-  operationId: listCampaigns
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v1/campaignReports/{campaignId}
+- path: /removeFromList
   method: post
-  operationId: getCampaignReport
+  operationId: postRemoveFromList
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -199,9 +429,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/addEvent
+- path: /triggerCampaign/{campaign-id}
   method: post
-  operationId: addEvent
+  operationId: post-triggerCampaign-campaign-id
   x-agentic-access:
     action-class: acting
     consequence: physical
