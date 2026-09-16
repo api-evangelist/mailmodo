@@ -390,30 +390,6 @@ apis:
     url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
   - type: Documentation
     url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
-- aid: mailmodo:mailmodo-campaignreports-api
-  name: Mailmodo Campaign Reports API
-  description: The CampaignReports API from Mailmodo — 1 operation(s) for campaignreports.
-  humanURL: https://www.mailmodo.com/developers/
-  baseURL: https://api.mailmodo.com
-  tags:
-  - Campaign Reports
-  tags_raw:
-  - CampaignReports
-  properties:
-  - type: OpenAPI
-    url: openapi/mailmodo-campaignreports-api-openapi.yml
-  - type: Documentation
-    url: https://www.mailmodo.com/developers/338c9fcc7ae2e-user-journeys
-  - type: APIReference
-    url: https://developers.mailmodo.com/
-  - type: Authentication
-    url: authentication/mailmodo-authentication.yml
-  - type: Sandbox
-    url: sandbox/mailmodo-sandbox.yml
-  - type: Documentation
-    url: https://www.mailmodo.com/developers/e7d1abdadacd7-dynamic-form
-  - type: Documentation
-    url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
 - aid: mailmodo:mailmodo-getallcontactlists-api
   name: Mailmodo Get All Contact Lists API
   description: The GetAllContactLists API from Mailmodo — 1 operation(s) for getallcontactlists.
