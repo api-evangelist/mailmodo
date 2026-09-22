@@ -1,34 +1,32 @@
-# Kin Score artifact — mailmodo — 2026-08-20T165047
+# Kin Score artifact — mailmodo — 2026-09-21T211425
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: mailmodo
-  schema_version: 0.12.0
-  scored_at: '2026-08-20'
-  run_ts: 2026-08-20T165047
-  composite: 67.7
-  band: exemplar
+  schema_version: 0.22.0
+  scored_at: '2026-09-21'
+  run_ts: 2026-09-21T211425
+  composite: 64.0
+  band: strong
   facets:
     discoverability: 81.5
-    contract_quality: 79.5
-    governance: 41.7
-    operational_transparency: 26.3
-    developer_ergonomics: 56.5
-    commercial_clarity: 100.0
-    contract_governance: 41.7
+    contract_quality: 79.4
+    contract_governance: 33.3
+    operational_transparency: 34.2
+    developer_ergonomics: 57.1
     access_clarity: 100.0
   agent_readiness:
-    score: 45.8
-    band: agent-ready
+    score: 42.8
+    band: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
       mcp_server: documented
-      auth_clarity: true
-      idempotency: false
+      auth_clarity: bearer
+      idempotency: verified
       error_semantics: documented
-      openapi_examples: partial
+      openapi_examples: verified
       rate_limit_signal: documented
       event_surface_described: true
       agent_skills: derived
@@ -36,13 +34,20 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
+  open_source:
+    applies: true
+    score: 25.0
   provenance:
     mcp: first-party
     skills: derived
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 8
+      total: 17
       derived: 0
       coverage: 0.0
       callable: 100.0
