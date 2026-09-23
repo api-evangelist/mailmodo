@@ -2,7 +2,18 @@ openapi: 3.2.0
 info:
   title: Contact Management Get All Contact Lists API
   version: '1.0'
-  description: "Steps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+  description: 'Steps to get the mmApiKey ⤵️
+
+
+    - Step 1 - Go to the settings page.
+
+    - Step 2 - Click on API keys.
+
+    - Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button.
+
+    - Step 4 - Click on Show API Key to view the API key.
+
+    - Step 5 - Copy the API Key and paste it into your system.'
 servers:
 - url: https://api.mailmodo.com/api/v1
 security:
@@ -17,7 +28,16 @@ paths:
       tags:
       - GetAllContactLists
       operationId: get-getAllContatLists
-      description: "Retrieve the following data for all the lists in your Mailmodo account :\n\n- list ID \n- list name \n- list creation date and \n- contacts count"
+      description: 'Retrieve the following data for all the lists in your Mailmodo account :
+
+
+        - list ID
+
+        - list name
+
+        - list creation date and
+
+        - contacts count'
       x-internal: false
       parameters:
       - schema:

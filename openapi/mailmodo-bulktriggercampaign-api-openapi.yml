@@ -2,7 +2,13 @@ openapi: 3.2.0
 info:
   title: Sending Emails Bulktrigger Campaign API
   version: '1.0'
-  description: "Use the API to send an email template, trigger a campaign or add a contact into a list directly from your system. \n\nUsers require mmAPI key, template id and campaign id in respective cases to configure this API. \n\nFollow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/145-how-to-get-the-mmapi-key-template-id-and-campaign-id ) \n"
+  description: 'Use the API to send an email template, trigger a campaign or add a contact into a list directly from your system.
+
+
+    Users require mmAPI key, template id and campaign id in respective cases to configure this API.
+
+
+    Follow the help doc to get these details from your Mailmodo account. ( https://help.mailmodo.com/en/articles/145-how-to-get-the-mmapi-key-template-id-and-campaign-id )'
 servers:
 - url: https://api.mailmodo.com/api/v1
 security:
@@ -111,7 +117,10 @@ paths:
                       type: string
                       description: 'example: first_name'
         description: 'For example: You can broadcast a campaign (with some personalization parameter added to the email template like Newsletter content - which is common to all users in the list) to the entire contact list using a single API request. '
-      description: "The broadcast campaign API allows the user to trigger campaigns to the entire contact list using a single API request. To call this API, you will need the campaign id. It allows you to send a campaign with some personalisation parameters which is common to all users in the list. Once the campaign is sent, you can see the analytics for the same in the campaign dashboard. \n\nPLEASE NOTE - You will need to create a triggered campaign on the Mailmodo triggered before using this API. This API won't work for Bulk Campaign. "
+      description: 'The broadcast campaign API allows the user to trigger campaigns to the entire contact list using a single API request. To call this API, you will need the campaign id. It allows you to send a campaign with some personalisation parameters which is common to all users in the list. Once the campaign is sent, you can see the analytics for the same in the campaign dashboard.
+
+
+        PLEASE NOTE - You will need to create a triggered campaign on the Mailmodo triggered before using this API. This API won''t work for Bulk Campaign.'
       parameters:
       - schema:
           type: string

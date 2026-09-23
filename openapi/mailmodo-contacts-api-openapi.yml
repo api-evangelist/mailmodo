@@ -157,7 +157,7 @@ paths:
         - If the contact is completely unsubscribed (from all email types), then this API won''t be applicable.
 
         - Use Resubscribe API to revert complete unsubscription.'
-      operationId: ''
+      operationId: postContactsUpdateSubscription
       parameters:
       - schema:
           type: string
@@ -265,6 +265,7 @@ paths:
       - Contacts
       security:
       - mmApiKey: []
+      x-operation-id-source: derived
     servers:
     - url: https://api.mailmodo.com/api/v1
   /contacts/resubscribe:
@@ -272,7 +273,7 @@ paths:
     post:
       summary: Resubscribe contact
       description: '- Use this API to resubscribe a suppressed(unsubscribed) contact.'
-      operationId: ''
+      operationId: postContactsResubscribe
       parameters:
       - schema:
           type: string
@@ -329,6 +330,7 @@ paths:
       - Contacts
       security:
       - mmApiKey: []
+      x-operation-id-source: derived
     servers:
     - url: https://api.mailmodo.com/api/v1
   /contacts:
@@ -365,7 +367,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: Use this API to archive a contact using email ID. For more details, check out our documentation on [how to archive contacts in Mailmodo](https://support.mailmodo.com/support/solutions/articles/84000379892-how-to-archive-contacts-in-mailmodo-)
+      description: Use this API to archive a contact using email ID. For more details, check out our documentation on how to archive contacts in Mailmodo
       parameters:
       - schema:
           type: string
@@ -607,28 +609,6 @@ paths:
       description: Production
 components:
   schemas:
-    AddContactResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-        data:
-          type: object
-          additionalProperties: true
-    AddContactsBatchRequest:
-      type: object
-      required:
-      - values
-      - listName
-      properties:
-        listName:
-          type: string
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddContactRequest'
     Contact:
       type: object
       properties:
@@ -653,6 +633,18 @@ components:
         data:
           type: object
           additionalProperties: true
+    AddContactsBatchRequest:
+      type: object
+      required:
+      - values
+      - listName
+      properties:
+        listName:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddContactRequest'
     AddContactRequest:
       type: object
       required:
@@ -668,6 +660,16 @@ components:
           type: object
           additionalProperties: true
           description: Optional custom attributes used for personalization and segmentation
+    AddContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
   securitySchemes:
     mmApiKey:
       name: mmApiKey
@@ -682,5 +684,3 @@ components:
 x-refined-from:
 - mailmodo-contact-management-openapi.json
 - mailmodo-openapi.yml
-x-stoplight:
-  id: a058e7501dfe7

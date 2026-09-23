@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   title: Custom Events Add Event API
   version: '1.0'
-  description: "## Hyper-personalize emails based on events data using the Events API\n\nUse the events data from your app or website in Mailmodo to hyper-personalize emails targeting the right audience, with right content, at the right time.\n\n> Dynamic segments + interactive emails = higher conversions\n  \n\nBoost your conversions by combining the events-based dynamic segments with Mailmodo's interactive AMP emails with just a few clicks.\n\n  \n\n### Use behavioral data to segment your audience\n\n⚡ Create audience segments based on real-time behaviors like clicks, page views, or scrolls\n\n⚡ Add or update contacts in real time and import historical data for accurate segmentation\n\n### Hyper personalize your campaigns \n\n⚡ Send interactive emails using events data with precise content personalization\n\n⚡ Create email drips for different points in the customer lifecycle\n\n### Trigger email campaigns \n\n⚡ Send email sequences and journeys with a wide range of triggers.\n\n⚡ Automate browse and cart abandonment, product recommendations, etc.\n\n\n> Need help getting started with Events API? Happy to help, [talk to us](https://meetings.hubspot.com/mailmodo/landing-pages-demo?utm_source=landing-page&utm_medium=developer-doc&utm_campaign=events-api). \n\n\nSteps to get the mmApiKey ⤵️\n\n- Step 1 - Go to the settings page. \n- Step 2 - Click on API keys.\n- Step 3 - You would see a pre-made default API key for your account. You can use that or create a new API key by clicking on Add New API Key button. \n- Step 4 - Click on Show API Key to view the API key.\n- Step 5 - Copy the API Key and paste it into your system."
+  description: '## Hyper-personalize emails based on events data using the Events API
+
+
+    Use the events data from your app or website in Mailmodo to hyper-personalize emails targeting the right audience, with right content, at the right time.'
 servers:
 - url: https://api.mailmodo.com/api/v1
 security:
@@ -103,7 +106,19 @@ paths:
               type: object
               properties: {}
         description: ''
-      description: "- The add event API provides you the ability to add custom events of a contact using email as an identifier\n\n- Adding events requires a POST request with a JSON payload specifying the email and the event information. \n\n- Please note that we only accept event names with type as string and event properties with types as either string, number, or boolean\n\n- One event can be sent per API call.\n\n> You can send us old events using the optional **ts** attribute which accepts the time of the occurence of the event as a UNIX timestamp. **Ex:** 1653304684 "
+      description: '- The add event API provides you the ability to add custom events of a contact using email as an identifier
+
+
+        - Adding events requires a POST request with a JSON payload specifying the email and the event information.
+
+
+        - Please note that we only accept event names with type as string and event properties with types as either string, number, or boolean
+
+
+        - One event can be sent per API call.
+
+
+        > You can send us old events using the optional **ts** attribute which accepts the time of the occurence of the event as a UNIX timestamp. **Ex:** 1653304684'
       parameters:
       - schema:
           type: string
