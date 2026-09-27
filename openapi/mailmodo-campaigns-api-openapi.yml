@@ -123,6 +123,24 @@ paths:
                 $ref: '#/components/schemas/CampaignReport'
 components:
   schemas:
+    BulkTriggerCampaignRequest:
+      type: object
+      required:
+      - recipients
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            required:
+            - email
+            properties:
+              email:
+                type: string
+                format: email
+              data:
+                type: object
+                additionalProperties: true
     TriggerCampaignRequest:
       type: object
       required:
@@ -148,26 +166,6 @@ components:
           type: string
         ref:
           type: string
-    CampaignReport:
-      type: object
-      properties:
-        campaignId:
-          type: string
-        sent:
-          type: integer
-        delivered:
-          type: integer
-        opened:
-          type: integer
-        clicked:
-          type: integer
-        bounced:
-          type: integer
-        unsubscribed:
-          type: integer
-        formSubmissions:
-          type: integer
-          description: Submissions from AMP-for-Email interactive forms
     Campaign:
       type: object
       properties:
@@ -190,24 +188,26 @@ components:
         updatedAt:
           type: string
           format: date-time
-    BulkTriggerCampaignRequest:
+    CampaignReport:
       type: object
-      required:
-      - recipients
       properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            required:
-            - email
-            properties:
-              email:
-                type: string
-                format: email
-              data:
-                type: object
-                additionalProperties: true
+        campaignId:
+          type: string
+        sent:
+          type: integer
+        delivered:
+          type: integer
+        opened:
+          type: integer
+        clicked:
+          type: integer
+        bounced:
+          type: integer
+        unsubscribed:
+          type: integer
+        formSubmissions:
+          type: integer
+          description: Submissions from AMP-for-Email interactive forms
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

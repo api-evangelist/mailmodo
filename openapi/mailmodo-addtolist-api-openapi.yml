@@ -263,7 +263,7 @@ paths:
     parameters: []
     post:
       summary: Bulk add contact to a list
-      operationId: post-user
+      operationId: postAddToListBatch
       responses:
         '200':
           description: OK
@@ -509,6 +509,8 @@ paths:
       security: []
       tags:
       - AddToList
+      x-operation-id-source: normalized
+      x-operation-id-original: post-user
 components:
   securitySchemes:
     mmApiKey:
