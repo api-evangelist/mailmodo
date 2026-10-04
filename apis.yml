@@ -38,6 +38,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mailmodo.png
+x-docs-platform: stoplight
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
   - Email
   - Interactive Email
@@ -523,6 +526,9 @@ apis:
   - type: Documentation
     url: https://www.mailmodo.com/developers/ccbd7751adeb5-repeatable-block
 common:
+  - type: CapabilityMap
+    url: capabilities/mailmodo-capability-edges.yml
+    name: Mailmodo Business Capability Map
   - type: Overlay
     url: overlays/mailmodo-user-journeys-api-overlay.yaml
   - type: Overlay
