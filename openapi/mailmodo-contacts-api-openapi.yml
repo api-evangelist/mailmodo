@@ -609,6 +609,18 @@ paths:
       description: Production
 components:
   schemas:
+    AddContactsBatchRequest:
+      type: object
+      required:
+      - values
+      - listName
+      properties:
+        listName:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddContactRequest'
     Contact:
       type: object
       properties:
@@ -643,18 +655,6 @@ components:
         data:
           type: object
           additionalProperties: true
-    AddContactsBatchRequest:
-      type: object
-      required:
-      - values
-      - listName
-      properties:
-        listName:
-          type: string
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddContactRequest'
     AddContactRequest:
       type: object
       required:

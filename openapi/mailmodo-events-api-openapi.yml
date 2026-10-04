@@ -37,6 +37,13 @@ paths:
                 $ref: '#/components/schemas/EventResponse'
 components:
   schemas:
+    EventResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     EventRequest:
       type: object
       required:
@@ -51,13 +58,6 @@ components:
         event_properties:
           type: object
           additionalProperties: true
-    EventResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

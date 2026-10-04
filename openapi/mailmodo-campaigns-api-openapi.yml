@@ -123,6 +123,26 @@ paths:
                 $ref: '#/components/schemas/CampaignReport'
 components:
   schemas:
+    CampaignReport:
+      type: object
+      properties:
+        campaignId:
+          type: string
+        sent:
+          type: integer
+        delivered:
+          type: integer
+        opened:
+          type: integer
+        clicked:
+          type: integer
+        bounced:
+          type: integer
+        unsubscribed:
+          type: integer
+        formSubmissions:
+          type: integer
+          description: Submissions from AMP-for-Email interactive forms
     Campaign:
       type: object
       properties:
@@ -154,26 +174,6 @@ components:
           type: string
         ref:
           type: string
-    CampaignReport:
-      type: object
-      properties:
-        campaignId:
-          type: string
-        sent:
-          type: integer
-        delivered:
-          type: integer
-        opened:
-          type: integer
-        clicked:
-          type: integer
-        bounced:
-          type: integer
-        unsubscribed:
-          type: integer
-        formSubmissions:
-          type: integer
-          description: Submissions from AMP-for-Email interactive forms
     TriggerCampaignRequest:
       type: object
       required:
