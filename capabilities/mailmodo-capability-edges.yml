@@ -1,0 +1,63 @@
+slug: mailmodo
+provider: Mailmodo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Campaigns
+  spec_file: mailmodo-campaigns-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: POST /api/v1/bulktriggerCampaign/{campaignId} 'Bulk Trigger a Campaign to Multiple Recipients';
+    POST /api/v1/campaignReports/{campaignId} 'Get Campaign Report'
+  reason: Triggering email campaigns and retrieving campaign reports is email marketing automation execution
+    and measurement.
+- tag: BulktriggerCampaign
+  spec_file: mailmodo-bulktriggercampaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: POST /bulktriggerCampaign/{campaign-id} 'Broadcast campaign to a list'
+  reason: Broadcasting an email campaign to a contact list is marketing-automation campaign execution.
+- tag: TriggerCampaign
+  spec_file: mailmodo-triggercampaign-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: POST /triggerCampaign/{campaign-id}  "Send campaign email" — "trigger a campaign ... directly
+    from your system"
+  reason: Operation executes an email marketing campaign send, which is email/marketing-automation execution
+    under digital marketing management.
+- tag: Contacts
+  spec_file: mailmodo-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: '"Suppress/unsubscribe a contact", "Resubscribe contact", "Archive an exising contact", "Get
+    Contact Details"'
+  reason: Operations maintain contact records and their subscription/consent state in the marketing database
+    — contact master data management, not campaign execution.
+- tag: Hooks
+  spec_file: mailmodo-hooks-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /hooks/start/{journey-id}  "Add a new user to the journey"; POST /hooks/abort/{journey-id}  "Abort
+    the journey for a user"
+  reason: Despite the 'Hooks' tag name, the operations start and abort marketing automation journeys for
+    a contact — marketing automation, not webhook subscription plumbing.
