@@ -120,3 +120,32 @@ second_product_line:
 discounts:
   - NGO / not-for-profit discounted plans (terms apply)
   - 20% saving on annual billing
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  - subscription
+  units: []
+  plans:
+  - name: Lite
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Pro
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Max
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods:
+    - month
