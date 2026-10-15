@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://azuremarketplace.microsoft.com/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
+- shopify/integrations/shopify-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -51,4 +52,20 @@ edges:
       - mailmodo
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/mailmodo-1
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - 'Mailmodo: AI Email Marketing'
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 source: https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
