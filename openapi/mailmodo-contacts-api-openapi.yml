@@ -621,6 +621,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AddContactRequest'
+    AddContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
     Contact:
       type: object
       properties:
@@ -642,16 +652,6 @@ components:
           type: array
           items:
             type: string
-        data:
-          type: object
-          additionalProperties: true
-    AddContactResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
         data:
           type: object
           additionalProperties: true

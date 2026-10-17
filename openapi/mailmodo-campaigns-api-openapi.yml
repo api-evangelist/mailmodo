@@ -123,26 +123,33 @@ paths:
                 $ref: '#/components/schemas/CampaignReport'
 components:
   schemas:
-    CampaignReport:
+    TriggerCampaignResponse:
       type: object
       properties:
-        campaignId:
+        success:
+          type: boolean
+        message:
           type: string
-        sent:
-          type: integer
-        delivered:
-          type: integer
-        opened:
-          type: integer
-        clicked:
-          type: integer
-        bounced:
-          type: integer
-        unsubscribed:
-          type: integer
-        formSubmissions:
-          type: integer
-          description: Submissions from AMP-for-Email interactive forms
+        ref:
+          type: string
+    BulkTriggerCampaignRequest:
+      type: object
+      required:
+      - recipients
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            required:
+            - email
+            properties:
+              email:
+                type: string
+                format: email
+              data:
+                type: object
+                additionalProperties: true
     Campaign:
       type: object
       properties:
@@ -165,15 +172,26 @@ components:
         updatedAt:
           type: string
           format: date-time
-    TriggerCampaignResponse:
+    CampaignReport:
       type: object
       properties:
-        success:
-          type: boolean
-        message:
+        campaignId:
           type: string
-        ref:
-          type: string
+        sent:
+          type: integer
+        delivered:
+          type: integer
+        opened:
+          type: integer
+        clicked:
+          type: integer
+        bounced:
+          type: integer
+        unsubscribed:
+          type: integer
+        formSubmissions:
+          type: integer
+          description: Submissions from AMP-for-Email interactive forms
     TriggerCampaignRequest:
       type: object
       required:
@@ -190,24 +208,6 @@ components:
           type: boolean
         listName:
           type: string
-    BulkTriggerCampaignRequest:
-      type: object
-      required:
-      - recipients
-      properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            required:
-            - email
-            properties:
-              email:
-                type: string
-                format: email
-              data:
-                type: object
-                additionalProperties: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
