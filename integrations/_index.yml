@@ -103,3 +103,43 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: mailmodo-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@mailmodo/cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@mailmodo/cli'
+      version: 1.0.20
+      released: '2026-08-24'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@mailmodo/cli
+      repo_leg: github-org:mailmodo
+      publisher_leg: email:mailmodo.com
+      matched_by: domain
+    - name: '@mailmodo/sdk'
+      version: 2.0.4
+      released: '2026-08-12'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@mailmodo/sdk
+      repo_leg: domain:mailmodo.com
+      publisher_leg: email:mailmodo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
