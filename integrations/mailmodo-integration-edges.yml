@@ -1,5 +1,9 @@
-generated: '2026-10-13'
+generated: '2026-10-20'
 method: searched
+source:
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
+- https://zapier.com/apps/mailmodo/integrations
+- https://n8n.io/integrations/mailmodo/
 checked:
 - https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
@@ -15,7 +19,44 @@ checked:
 - https://zapier.com/api/v4/apps/
 - shopify/integrations/shopify-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
-marketplace_apps: []
+- https://composio.dev/toolkits/mailmodo
+- https://monid.ai/tools/mailmodo
+- https://n8n.io/integrations/mailmodo/
+- https://zapier.com/apps/mailmodo/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: mailmodo
+  url: https://zapier.com/apps/mailmodo/integrations
+  external_url: https://mailmodo.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: all_template
+    label: Template Submission
+  actions:
+  - key: create_contact
+    label: Create a Contact
+  - key: triggerJourney
+    label: Trigger Journey
+  - key: trigger_campaign
+    label: Trigger Campaign
+  searches: []
+- marketplace: n8n
+  channel: open-source-node
+  app: mailmodo
+  url: https://n8n.io/integrations/mailmodo/
+  identity: title
+  pair_pages: 8
+  pairs:
+  - microsoft-excel
+  - mysql
+  - notion
+  - openai
+  - postgres
+  - slack
+  - supabase
+  - telegram
 edges:
 - partner_name: Microsoft Azure Marketplace
   partner: microsoft-azure
@@ -186,4 +227,426 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-source: https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Razorpay
+  partner: razorpay
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/razorpay-1
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://razorpay.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: QRTIGER QR Code
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/qr-code-generator-1
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.qrcode-tiger.com/
+- partner_name: Manychat
+  partner: manychat
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/manychat
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://manychat.com/
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: OptinMonster
+  partner: optinmonster
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/optinmonster
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://optinmonster.com/
+- partner_name: Airmeet
+  partner: airmeet
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/airmeet
+  direction: third-party
+  category: Event Management
+  partner_url: https://www.airmeet.com/
+- partner_name: Whop
+  partner: whop
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/whop
+  direction: third-party
+  category: Commerce
+  partner_url: https://whop.com/
+- partner_name: Ninja Forms
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/ninjaforms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://ninjaforms.com/extensions/zapier/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Skool
+  partner: skool
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/skool
+  direction: third-party
+  category: Education
+  partner_url: https://skool.com/
+- partner_name: Product Fruits
+  partner: product-fruits
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/product-fruits
+  direction: third-party
+  category: Product Management
+  partner_url: https://productfruits.com/
+- partner_name: ScoreApp
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/scoreapp
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.scoreapp.com/
+- partner_name: Paperform
+  partner: paperform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/paperform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://paperform.co/?utm_medium=partners&utm_source=Zapier&utm_campaign=integration_partners&utm_content=integration_page
+- partner_name: Zoho Desk
+  partner: zoho-desk
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/zoho-desk
+  direction: third-party
+  category: Customer Support
+  partner_url: https://go.zoho.com/lC3
+- partner_name: Base44
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/base44
+  direction: third-party
+  category: AI Assistants
+  partner_url: https://base44.com/
+- partner_name: Judge.me
+  partner: judge-me
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/judgeme
+  direction: third-party
+  category: eCommerce
+  partner_url: https://judge.me/
+- partner_name: Swipe Pages
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/swipe-pages
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://swipepages.com/
+- partner_name: Nimble
+  partner: nimble
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/nimble
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.nimble.com/?utm_source=zapier
+- partner_name: Wheel of Popups
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/wheel-of-popups
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.wheelofpopups.com/
+- partner_name: Waitlist
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/waitlist
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: http://getwaitlist.com/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: ChatGPT (OpenAI)
+  partner: openai
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/chatgpt
+  direction: third-party
+  category: AI Assistants
+  partner_url: https://chat.openai.com/chat
+- partner_name: Stripe (Legacy)
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/stripe-legacy
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: Squarespace Commerce
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/squarespace-commerce
+  direction: third-party
+  category: Website Builders
+  partner_url: https://squarespace.com/
+- partner_name: VacationLabs
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/mailmodo/integrations/vacationlabs
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.vacationlabs.com/
+templates:
+- title: Create new Mailmodo contacts from new Jotform submissions
+  url: https://zapier.com/apps/jotform/integrations/mailmodo/255653379/create-new-mailmodo-contacts-from-new-jotform-submissions
+  apps:
+  - jotform
+  - mailmodo
+- title: Add demographic information to new Mailmodo subscribers with Versium REACH and create Salesforce leads
+  url: https://zapier.com/apps/mailmodo/integrations/salesforce/1194395/add-demographic-information-to-new-mailmodo-subscribers-with-versium-reach-and-create-salesforce-leads
+  apps:
+  - mailmodo
+  - versium-reach
+  - salesforce
+- title: Send Mailmodo campaigns for new Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/mailmodo/1218996/send-mailmodo-campaigns-for-new-google-sheets-rows
+  apps:
+  - google-sheets
+  - mailmodo
+- title: Create Mailmodo contacts from new Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/mailmodo/1221251/create-mailmodo-contacts-from-new-google-sheets-rows
+  apps:
+  - google-sheets
+  - mailmodo
+- title: Create Mailmodo contacts from new or updated Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/mailmodo/1230350/create-mailmodo-contacts-from-new-or-updated-google-sheets-rows
+  apps:
+  - google-sheets
+  - mailmodo
+- title: Create Mailmodo contacts from new Tally submissions
+  url: https://zapier.com/apps/mailmodo/integrations/tally/1236428/create-mailmodo-contacts-from-new-tally-submissions
+  apps:
+  - tally
+  - mailmodo
+- title: Trigger Mailmodo journeys for new or updated Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/mailmodo/1237303/trigger-mailmodo-journeys-for-new-or-updated-google-sheets-rows
+  apps:
+  - google-sheets
+  - mailmodo
+- title: Create spreadsheet rows in Google Sheets for new template submissions in Mailmodo
+  url: https://zapier.com/apps/google-sheets/integrations/mailmodo/1241004/create-spreadsheet-rows-in-google-sheets-for-new-template-submissions-in-mailmodo
+  apps:
+  - mailmodo
+  - google-sheets
+- title: Create contacts in Mailmodo for new Webflow form submissions
+  url: https://zapier.com/apps/mailmodo/integrations/webflow/1241826/create-contacts-in-mailmodo-for-new-webflow-form-submissions
+  apps:
+  - webflow
+  - mailmodo
+- title: Trigger Mailmodo campaigns for new Google Forms responses
+  url: https://zapier.com/apps/google-forms/integrations/mailmodo/1253642/trigger-mailmodo-campaigns-for-new-google-forms-responses
+  apps:
+  - google-forms
+  - mailmodo
+- title: Send direct messages in Slack for new Mailmodo template submissions
+  url: https://zapier.com/apps/mailmodo/integrations/slack/1257836/send-direct-messages-in-slack-for-new-mailmodo-template-submissions
+  apps:
+  - mailmodo
+  - slack
+- title: Create Mailmodo campaigns from new Ninja Forms submissions
+  url: https://zapier.com/apps/mailmodo/integrations/ninjaforms/1263733/create-mailmodo-campaigns-from-new-ninja-forms-submissions
+  apps:
+  - ninjaforms
+  - mailmodo
+template_total: 143
