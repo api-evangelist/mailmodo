@@ -7,9 +7,17 @@ source:
 checked:
 - https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
+- https://cdn.winget.microsoft.com/cache
+- https://composio.dev/toolkits/mailmodo
 - https://crates.io/api/v1
+- https://formulae.brew.sh/api/cask.json
+- https://formulae.brew.sh/api/formula.json
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
+- https://github.com/ScoopInstaller/Extras
+- https://github.com/ScoopInstaller/Main
+- https://monid.ai/tools/mailmodo
+- https://n8n.io/integrations/mailmodo/
 - https://proxy.golang.org
 - https://pypi.org/pypi
 - https://registry.npmjs.org
@@ -17,12 +25,9 @@ checked:
 - https://rubygems.org/api/v1
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
 - https://zapier.com/api/v4/apps/
+- https://zapier.com/apps/mailmodo/integrations
 - shopify/integrations/shopify-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
-- https://composio.dev/toolkits/mailmodo
-- https://monid.ai/tools/mailmodo
-- https://n8n.io/integrations/mailmodo/
-- https://zapier.com/apps/mailmodo/integrations
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -587,6 +592,36 @@ edges:
   direction: third-party
   category: Website Builders
   partner_url: https://www.vacationlabs.com/
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official CLI (npm registry)
+  evidence: https://www.npmjs.com/package/@mailmodo/cli
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public package index)
+    spec_file: null
+    packages:
+    - name: '@mailmodo/cli'
+      version: 1.0.20
+      released: '2026-08-24'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@mailmodo/cli
+      cli: bin mailmodo
+      repo_leg: github-org:mailmodo
+      publisher_leg: email:mailmodo.com
+      matched_by: domain
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  detected_by: sweep-official-clis.py
+  first_seen: '2026-10-20'
 templates:
 - title: Create new Mailmodo contacts from new Jotform submissions
   url: https://zapier.com/apps/jotform/integrations/mailmodo/255653379/create-new-mailmodo-contacts-from-new-jotform-submissions
