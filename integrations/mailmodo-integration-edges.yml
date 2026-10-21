@@ -7,17 +7,9 @@ source:
 checked:
 - https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
-- https://cdn.winget.microsoft.com/cache
-- https://composio.dev/toolkits/mailmodo
 - https://crates.io/api/v1
-- https://formulae.brew.sh/api/cask.json
-- https://formulae.brew.sh/api/formula.json
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
-- https://github.com/ScoopInstaller/Extras
-- https://github.com/ScoopInstaller/Main
-- https://monid.ai/tools/mailmodo
-- https://n8n.io/integrations/mailmodo/
 - https://proxy.golang.org
 - https://pypi.org/pypi
 - https://registry.npmjs.org
@@ -25,9 +17,18 @@ checked:
 - https://rubygems.org/api/v1
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailmodo
 - https://zapier.com/api/v4/apps/
-- https://zapier.com/apps/mailmodo/integrations
 - shopify/integrations/shopify-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
+- https://composio.dev/toolkits/mailmodo
+- https://monid.ai/tools/mailmodo
+- https://n8n.io/integrations/mailmodo/
+- https://zapier.com/apps/mailmodo/integrations
+- https://cdn.winget.microsoft.com/cache
+- https://formulae.brew.sh/api/cask.json
+- https://formulae.brew.sh/api/formula.json
+- https://github.com/ScoopInstaller/Extras
+- https://github.com/ScoopInstaller/Main
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -79,39 +80,6 @@ edges:
   seller_name: Mailmodo Technologies pvt ltd
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/mailmodo-1
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - 'Mailmodo: AI Email Marketing'
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-- partner_name: Zoom (own)
-  partner: zoom
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.zoom.us/apps/FwCGSSoNQByeOKzTdEfxfw
-  mirror_of: zoom/integrations/zoom-integration-edges.yml
-  apps:
-  - Mailmodo
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Zoom app
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -622,6 +590,56 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/mailmodo-1
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - 'Mailmodo: AI Email Marketing'
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/FwCGSSoNQByeOKzTdEfxfw
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Mailmodo
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/mailmodo-224516
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Mailmodo
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: EMAIL
 templates:
 - title: Create new Mailmodo contacts from new Jotform submissions
   url: https://zapier.com/apps/jotform/integrations/mailmodo/255653379/create-new-mailmodo-contacts-from-new-jotform-submissions
