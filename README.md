@@ -1,4 +1,4 @@
-# Mailmodo (mailmodo)
+# Mailmodo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,93 +66,219 @@
 
 Mailmodo is an AI-powered interactive email marketing and automation platform headquartered in Bengaluru with a presence in San Francisco. It pioneered AMP-for-Email at scale, letting brands embed forms, quizzes, polls, carousels, and calendars directly inside the inbox to drive engagement and conversions without a landing-page round-trip. The platform layers AI assistance on top of campaigns, journeys, segmentation, and analytics, and exposes a REST API for contact management, transactional sends, broadcast and bulk triggers, custom event ingestion, and campaign reporting.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/apis.yml)
+**Areas:** Email · Interactive Email · AMP for Email · Marketing Automation · Transactional Email · Campaigns · Journeys · Customer Engagement
 
-## Scope
+## Mailmodo on APIs.io
 
-- **Type:** Index
+Everything profiled for Mailmodo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mailmodo/](https://apis.io/providers/mailmodo/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (14)
 
-- Email
-- Interactive Email
-- AMP for Email
-- Marketing Automation
-- Transactional Email
-- Campaigns
-- Journeys
-- Customer Engagement
+- [Mailmodo Campaigns API](https://apis.io/apis/mailmodo/mailmodo-campaigns-api/) — List campaigns, fetch reports, and trigger sends to individuals or lists
+- [Mailmodo Contact Lists API](https://apis.io/apis/mailmodo/mailmodo-contact-lists-api/) — Manage the named contact lists used for segmentation and campaigns
+- [Mailmodo Contacts API](https://apis.io/apis/mailmodo/mailmodo-contacts-api/) — Add, remove, archive, unsubscribe, resubscribe, and look up contacts
+- [Mailmodo Events API](https://apis.io/apis/mailmodo/mailmodo-events-api/) — Send custom user events into Mailmodo journeys and segments
+- [Mailmodo Templates API](https://apis.io/apis/mailmodo/mailmodo-templates-api/) — List interactive AMP email templates available on the workspace
+- [Mailmodo Add Event API](https://apis.io/apis/mailmodo/mailmodo-addevent-api/) — The AddEvent API from Mailmodo — 1 operation(s) for addevent.
+- [Mailmodo Add To List API](https://apis.io/apis/mailmodo/mailmodo-addtolist-api/) — The AddToList API from Mailmodo — 2 operation(s) for addtolist.
+- [Mailmodo Bulktrigger Campaign API](https://apis.io/apis/mailmodo/mailmodo-bulktriggercampaign-api/) — The BulktriggerCampaign API from Mailmodo — 1 operation(s) for bulktriggercampaign.
+- [Mailmodo Get All Contact Lists API](https://apis.io/apis/mailmodo/mailmodo-getallcontactlists-api/) — The GetAllContactLists API from Mailmodo — 1 operation(s) for getallcontactlists.
+- [Mailmodo Get All Templates API](https://apis.io/apis/mailmodo/mailmodo-getalltemplates-api/) — The GetAllTemplates API from Mailmodo — 1 operation(s) for getalltemplates.
+- [Mailmodo Get Contact Details API](https://apis.io/apis/mailmodo/mailmodo-getcontactdetails-api/) — The GetContactDetails API from Mailmodo — 1 operation(s) for getcontactdetails.
+- [Mailmodo Hooks API](https://apis.io/apis/mailmodo/mailmodo-hooks-api/) — The Hooks API from Mailmodo — 2 operation(s) for hooks.
+- [Mailmodo Remove From List API](https://apis.io/apis/mailmodo/mailmodo-removefromlist-api/) — The RemoveFromList API from Mailmodo — 1 operation(s) for removefromlist.
+- [Mailmodo Trigger Campaign API](https://apis.io/apis/mailmodo/mailmodo-triggercampaign-api/) — The TriggerCampaign API from Mailmodo — 1 operation(s) for triggercampaign.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Mailmodo REST API
+Event-driven and webhook contracts.
 
-REST API for managing contacts, contact lists, custom events, campaigns, templates, and campaign reports. Used to drive transactional sends, bulk triggers, journey enrollment, and AMP-for-Email interactive campaigns. Authentication is via an API key issued from the Mailmodo dashboard and passed in the `mmApiKey` request header.
+- [Mailmodo Webhooks](https://apis.io/asyncapis/mailmodo/mailmodo-webhooks/)
 
-- **Human URL:** [https://www.mailmodo.com/developers/](https://www.mailmodo.com/developers/)
-- **Base URL:** `https://api.mailmodo.com`
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Email
-- Contacts
-- Campaigns
-- Templates
-- Events
-- AMP for Email
+- [Mailmodo MCP Server](https://apis.io/servers/mailmodo/mailmodo-mcp-server/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://www.mailmodo.com/developers/)
-- [API Reference](https://developers.mailmodo.com/)
-- [Quickstart](https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api/)
-- [Authentication](https://manage.mailmodo.com/app/settings/apikey)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/openapi/mailmodo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-contact-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-campaign-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-template-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-schema/mailmodo-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-contact-structure.json)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-structure/mailmodo-campaign-structure.json)
-- [J S O N- L D](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/json-ld/mailmodo-context.jsonld)
-- [Example](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-trigger-campaign-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-contact-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/examples/mailmodo-add-event-example.json)
-- [Rate Limits](https://www.mailmodo.com/pricing/)
-- [Postman Collection](collections/mailmodo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mailmodo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Common Properties
+- [Mailmodo Agentic Access](https://apis.io/agentic-access/mailmodo/mailmodo-agentic-access/)
+
+#### JSON Schema (4)
+
+The data models the API reads and writes.
+
+- [Mailmodo Campaign](https://apis.io/schemas/mailmodo/mailmodo-campaign/)
+- [Mailmodo Contact](https://apis.io/schemas/mailmodo/mailmodo-contact/)
+- [Mailmodo Custom Event](https://apis.io/schemas/mailmodo/mailmodo-event/)
+- [Mailmodo Template](https://apis.io/schemas/mailmodo/mailmodo-template/)
+
+#### JSON Structure (2)
+
+Data models expressed in JSON Structure.
+
+- [Mailmodo Campaign Structure](https://apis.io/json-structure/mailmodo/mailmodo-campaign-structure/)
+- [Mailmodo Contact Structure](https://apis.io/json-structure/mailmodo/mailmodo-contact-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Mailmodo Context](https://apis.io/jsonld/mailmodo/mailmodo-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [mailmodo Vocabulary](https://apis.io/vocabularies/mailmodo/mailmodo-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Mailmodo Add Contact Example](https://apis.io/examples/mailmodo/mailmodo-add-contact-example/)
+- [Mailmodo Add Event Example](https://apis.io/examples/mailmodo/mailmodo-add-event-example/)
+- [Mailmodo Trigger Campaign Example](https://apis.io/examples/mailmodo/mailmodo-trigger-campaign-example/)
+
+#### Collections (14)
+
+Postman and Open Collection request collections.
+
+- [Mailmodo API](https://apis.io/collections/mailmodo/open-mailmodo/)
+- [Mailmodo Campaigns API](https://apis.io/collections/mailmodo/open-mailmodo-campaigns-api/)
+- [Mailmodo Campaigns Contact Lists API](https://apis.io/collections/mailmodo/open-mailmodo-contact-lists-api/)
+- [Mailmodo Campaigns Contacts API](https://apis.io/collections/mailmodo/open-mailmodo-contacts-api/)
+- [Dynamic form](https://apis.io/collections/mailmodo/open-mailmodo-dynamic-form-api/)
+- [Mailmodo Campaigns Events API](https://apis.io/collections/mailmodo/open-mailmodo-events-api/)
+- [Repeatable Block](https://apis.io/collections/mailmodo/open-mailmodo-repeatable-block-api/)
+- [Mailmodo Campaigns Templates API](https://apis.io/collections/mailmodo/open-mailmodo-templates-api/)
+- [User Journeys](https://apis.io/collections/mailmodo/open-mailmodo-user-journeys-api/)
+- [Mailmodo Campaigns API](https://apis.io/collections/mailmodo/postman-mailmodo-campaigns-api/)
+- [Mailmodo Campaigns Contact Lists API](https://apis.io/collections/mailmodo/postman-mailmodo-contact-lists-api/)
+- [Mailmodo Campaigns Contacts API](https://apis.io/collections/mailmodo/postman-mailmodo-contacts-api/)
+- [Mailmodo Campaigns Events API](https://apis.io/collections/mailmodo/postman-mailmodo-events-api/)
+- [Mailmodo Campaigns Templates API](https://apis.io/collections/mailmodo/postman-mailmodo-templates-api/)
+
+#### Overlays (8)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mailmodo Campaigns Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-campaigns-api-overlay/)
+- [Mailmodo Contact Lists Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-contact-lists-api-overlay/)
+- [Mailmodo Contacts Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-contacts-api-overlay/)
+- [Mailmodo Dynamic Form Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-dynamic-form-api-overlay/)
+- [Mailmodo Events Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-events-api-overlay/)
+- [Mailmodo Repeatable Block Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-repeatable-block-api-overlay/)
+- [Mailmodo Templates Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-templates-api-overlay/)
+- [Mailmodo User Journeys Api Overlay](https://apis.io/overlays/mailmodo/mailmodo-user-journeys-api-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Mailmodo — jsonschema rules](https://apis.io/rules/mailmodo/mailmodo-jsonschema-spectral-rules/)
+- [Mailmodo API Rules](https://apis.io/rules/mailmodo/mailmodo-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mailmodo Authentication](https://apis.io/security/mailmodo/mailmodo-authentication/)
+- [Mailmodo Domain Security](https://apis.io/security/mailmodo/mailmodo-domain-security/)
+- [Mailmodo Trust Center](https://apis.io/security/mailmodo/mailmodo-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Mailmodo Plans Pricing](https://apis.io/plans/mailmodo/mailmodo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Mailmodo Rate Limits](https://apis.io/rate-limits/mailmodo/mailmodo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Mailmodo Finops](https://apis.io/finops/mailmodo/mailmodo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.mailmodo.com)
 - [Documentation](https://www.mailmodo.com/developers/)
-- [API Reference](https://developers.mailmodo.com/)
-- [Support](https://support.mailmodo.com/)
-- [Sign Up](https://manage.mailmodo.com/auth/signup)
-- [Portal](https://manage.mailmodo.com/)
-- [Console](https://manage.mailmodo.com/app/settings/apikey)
+- [Getting started](https://www.mailmodo.com/developers/8e957152b6128-getting-started-with-mailmodo-api)
+- [API reference](https://developers.mailmodo.com/)
 - [Pricing](https://www.mailmodo.com/pricing/)
-- [Terms of Service](https://www.mailmodo.com/gdpr/termsandconditions/)
-- [Privacy Policy](https://www.mailmodo.com/gdpr/privacypolicy/)
+- [Support](https://support.mailmodo.com/)
 - [Blog](https://www.mailmodo.com/blog/)
-- [GitHub Organization](https://github.com/mailmodo)
-- [GitHub Repository](https://github.com/mailmodo/mailmodo-mcp)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rules/mailmodo-rules.yml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/vocabulary/mailmodo-vocabulary.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/plans/mailmodo-plans-pricing.yml)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/rate-limits/mailmodo-rate-limits.yml)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/mailmodo/refs/heads/main/finops/mailmodo-finops.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://www.mailmodo.com/gdpr/termsandconditions/)
+- [Privacy policy](https://www.mailmodo.com/gdpr/privacypolicy/)
+- [GitHub](https://github.com/mailmodo)
+- [Status](https://status.mailmodo.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 63.0** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 73.3 |
+| Contract governance | 31.8 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 57.1 |
+| Access clarity | 92.1 |
+
+**Agent readiness 38.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mailmodo/](https://apis.io/providers/mailmodo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mailmodo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mailmodo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
